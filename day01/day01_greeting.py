@@ -1,0 +1,15 @@
+name= input("Enter your name: ")
+age= int(input("Enter your age: "))
+hobby= input("Enter your favorite hobby: ")
+year = 2026
+turn60=year+(60-age)
+print ()
+
+print ("-----------------------------------------------")
+print ()
+print ("Hello "+name+"!👋")
+print ("You are",age,"years old")
+print ("Wow,",hobby,"is awesome! Keep enjoying it.")
+print ("In",str(turn60)+",","You will turn 60 ")
+print ()
+print ("-----------------------------------------------")
