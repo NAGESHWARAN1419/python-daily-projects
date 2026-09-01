@@ -1,0 +1,171 @@
+# 🧮 Basic Calculator
+
+A simple command-line calculator built with Python.
+
+This project allows the user to enter two numbers, choose an arithmetic operation, and calculate the result. The program runs continuously until the user chooses `q` to quit.
+
+It also handles division by zero without crashing the program.
+
+## 📌 Features
+
+* ➕ Addition
+* ➖ Subtraction
+* ✖️ Multiplication
+* ➗ Division
+* 🔢 Accepts decimal numbers
+* 🔄 Runs continuously using a `while` loop
+* ❌ Handles division by zero
+* 🚪 Allows the user to quit by entering `q`
+* ⚠️ Displays a message for invalid operations
+
+## 🧠 Concepts Used
+
+This project helped me practice:
+
+* `input()`
+* Variables
+* `float()` type conversion
+* Arithmetic operators
+* `if-elif-else`
+* `while True`
+* `break`
+* `try-except`
+* `ZeroDivisionError`
+* Basic error handling
+* User input validation
+
+## 💻 How It Works
+
+The program follows these steps:
+
+1. Asks the user to enter the first number.
+2. Asks the user to enter the second number.
+3. Asks the user to select an operation:
+
+   * `+` for addition
+   * `-` for subtraction
+   * `*` for multiplication
+   * `/` for division
+   * `q` to quit
+4. Performs the selected calculation.
+5. Displays the result.
+6. If the user tries to divide by zero, it displays:
+
+   ```text
+   Cannot divide by zero
+   ```
+7. The program continues until the user enters `q`.
+
+## 🚀 Example Run
+
+```text
+Enter first number: 10
+Enter second number: 5
+Choose operation(+,-,*,/)or use 'q'-Quit: *
+=======================================================================
+
+Result: 10.0 * 5.0 = 50.0
+
+=======================================================================
+```
+
+### Division Example
+
+```text
+Enter first number: 10
+Enter second number: 0
+Choose operation(+,-,*,/)or use 'q'-Quit: /
+=======================================================================
+
+Cannot divide by zero
+
+=======================================================================
+```
+
+### Quit Example
+
+```text
+Enter first number: 10
+Enter second number: 5
+Choose operation(+,-,*,/)or use 'q'-Quit: q
+
+Bye
+```
+
+## 🛡️ Error Handling
+
+The calculator uses `try-except` to handle division by zero:
+
+```python
+try:
+    # calculation
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+```
+
+Instead of crashing when the user enters `0` as the second number during division, the program catches the `ZeroDivisionError` and displays a friendly message.
+
+## 🔄 Continuous Calculation
+
+The calculator uses:
+
+```python
+while True:
+```
+
+This allows the user to perform multiple calculations without restarting the program.
+
+The loop can be stopped using:
+
+```python
+if operation == "q":
+    print("Bye")
+    break
+```
+
+## 📂 Project Structure
+
+```text
+basic-calculator/
+│
+├── main.py
+└── README.md
+```
+
+## 🚀 How to Run
+
+Make sure Python 3 is installed on your system.
+
+Run the program using:
+
+```bash
+python3 main.py
+```
+
+Then follow the instructions displayed in the terminal.
+
+## 🎯 Bonus Feature Completed
+
+The optional bonus requirement has been implemented.
+
+The user can perform multiple calculations continuously and type:
+
+```text
+q
+```
+
+to exit the calculator.
+
+## 📚 What I Learned
+
+While building this project, I learned how to combine basic Python concepts to create a useful command-line application.
+
+I practiced taking user input, converting strings into numbers, using arithmetic operators, making decisions with `if-elif-else`, repeating code with a `while` loop, exiting loops with `break`, and handling errors with `try-except`.
+
+This project is part of my journey toward strengthening my Python fundamentals through small practical projects.
+
+## 👨‍💻 Author
+
+**Nageshwaran N**
+
+Learning Python and improving my programming skills step by step.
