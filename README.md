@@ -1,12 +1,12 @@
-90-Day Python "One Project a Day" Plan
+**90-Day Python "One Project a Day" Plan**
 
-Built to run alongside a beginner Python course (basics → OOP → file handling → mini real-world tools), so each project uses only what you've learned up to that day. Difficulty increases gradually — Day 1 project takes 15–20 min, Day 90 project takes 2–3 hrs.
-
-
-Phase 1 (Days 1–15): Fundamentals — variables, input/output, operators, conditionals, loops
+_Built to run alongside a beginner Python course (basics → OOP → file handling → mini real-world tools), so each project uses only what you've learned up to that day. Difficulty increases gradually — Day 1 project takes 15–20 min, Day 90 project takes 2–3 hrs._
 
 
-Day	Project
+**Phase 1 (Days 1–15): Fundamentals — variables, input/output, operators, conditionals, loops**
+
+
+**Day	Project**
 
 1	Simple greeting app — ask name & age, print a personalized message
 
@@ -39,10 +39,10 @@ Day	Project
 15	Mini review project: Unit converter (length/weight/temperature menu-driven)
 
 
-Phase 2 (Days 16–30): Strings, Lists, Tuples, Dictionaries, Sets
+**Phase 2 (Days 16–30): Strings, Lists, Tuples, Dictionaries, Sets**
 
 
-Day	Project
+**Day	Project**
 
 16	Palindrome string checker
 
@@ -75,10 +75,10 @@ Day	Project
 30	Mini review project: Address book app (add, search, update, delete using dict)
 
 
-Phase 3 (Days 31–45): Functions, Recursion, File Handling, Exception Handling
+**Phase 3 (Days 31–45): Functions, Recursion, File Handling, Exception Handling**
 
 
-Day	Project
+**Day	Project**
 
 31	Rewrite Day-2 calculator using functions
 
@@ -111,10 +111,9 @@ Day	Project
 45	Milestone project: Personal expense tracker (functions + file storage + exception handling)
 
 
-Phase 4 (Days 46–60): OOP (Classes, Objects, Inheritance, Polymorphism)
+**Phase 4 (Days 46–60): OOP (Classes, Objects, Inheritance, Polymorphism)**
 
-
-Day	Project
+**Day	Project**
 
 46	Student class with attributes and a display() method
 
@@ -147,10 +146,10 @@ Day	Project
 60	Milestone project: Library management system (OOP + file storage combined)
 
 
-Phase 5 (Days 61–75): Modules, Regex, Datetime, APIs/Requests basics, Small Automation
+**Phase 5 (Days 61–75): Modules, Regex, Datetime, APIs/Requests basics, Small Automation**
 
 
-Day	Project
+**Day	Project**
 
 61	Email/phone number validator using re (regex)
 
@@ -183,10 +182,10 @@ Day	Project
 75	Milestone project: Automation tool — organize a folder by file type + log actions to file
 
 
-Phase 6 (Days 76–90): Integration Projects & Exam Revision Buffer
+**Phase 6 (Days 76–90): Integration Projects & Exam Revision Buffer**
 
 
-Day	Project
+**Day	Project**
 
 76	Personal finance tracker v2 (OOP + file + categorized reports)
 
@@ -219,10 +218,11 @@ Day	Project
 90	Capstone: Combine everything into one complete app — e.g., a "Personal Assistant CLI" with notes, expense tracker, to-do list, and reminders all in one program, using OOP + files + exception handling
 
 
-How to use this
+**How to use this**
 
-1 project per day, done after that day's course video/topic — don't jump ahead of concepts you haven't learned.
+_1 project per day, done after that day's course video/topic — don't jump ahead of concepts you haven't learned.
 Keep each project's code in its own file/folder: day01_greeting.py, day02_calculator.py, etc. — great for a GitHub portfolio later.
 If a day's project feels too easy/hard for your pace, swap it with a neighboring day rather than skipping — the phase order (not the exact day number) is what matters.
 
 Days 87–90 are intentionally lighter/flexible — use them as slack if any earlier day runs long, or for extra exam revision.
+_
