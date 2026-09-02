@@ -1,0 +1,22 @@
+Even/Odd and Positive/Negative/Zero Checker
+
+Concepts used: input(), int(), if-elif-else, modulo operator %
+Problem Statement
+
+Write a Python program that:
+1.Asks the user to enter a number.
+2.Checks and prints whether the number is even or odd.
+3.Checks and prints whether the number is positive, negative, or zero.
+
+Example Run:
+Enter a number: -8
+-8 is even.
+-8 is negative.
+
+Enter a number: 7
+7 is odd.
+7 is positive.
+
++Bonus (optional)
+Let the user check multiple numbers in a loop until they type q to quit (just like Day 2).
+Print all three results in one combined sentence, e.g.: "-8 is even and negative."

@@ -1,0 +1,263 @@
+# 🔢 Even/Odd and Positive/Negative/Zero Checker
+
+A beginner-friendly Python program that checks whether a number is **even or odd** and whether it is **positive, negative, or zero**.
+
+The program also includes a continuous loop, allowing the user to check multiple numbers until they enter `q` to quit.
+
+## 📌 Features
+
+* 🔢 Accepts a number from the user
+* ✅ Checks whether the number is even or odd
+* ➕ Checks whether the number is positive
+* ➖ Checks whether the number is negative
+* 0️⃣ Checks whether the number is zero
+* 🔄 Allows multiple numbers to be checked
+* 🚪 Allows the user to quit by entering `q`
+* 💬 Displays the results in a combined sentence
+
+## 🧠 Concepts Used
+
+This project helped me practice:
+
+* `input()`
+* Variables
+* `int()` type conversion
+* `if-elif-else`
+* `while True`
+* `break`
+* Modulo operator `%`
+* Comparison operators
+* String variables
+* Basic conditional logic
+
+## ⚙️ How It Works
+
+The program follows these steps:
+
+1. Asks the user to enter a number.
+2. Checks whether the user entered `q`.
+3. If `q` is entered, the program exits.
+4. Converts the input into an integer.
+5. Uses the modulo operator `%` to determine whether the number is even or odd.
+6. Checks whether the number is positive, negative, or zero.
+7. Stores the results in variables.
+8. Prints both results together in a combined sentence.
+9. Repeats the process until the user enters `q`.
+
+## 🔍 Even or Odd Logic
+
+The program uses the modulo operator `%`.
+
+```python
+if num % 2 == 0:
+    print(num, "is Even")
+else:
+    print(num, "is Odd")
+```
+
+If the remainder after dividing a number by `2` is `0`, the number is **even**.
+
+Otherwise, the number is **odd**.
+
+### Example
+
+```text
+8 % 2 = 0
+```
+
+Therefore:
+
+```text
+8 is Even
+```
+
+And:
+
+```text
+7 % 2 = 1
+```
+
+Therefore:
+
+```text
+7 is Odd
+```
+
+## 📊 Positive, Negative, or Zero Logic
+
+The program uses `if-elif-else`:
+
+```python
+if num < 0:
+    print(num, "is negative")
+elif num > 0:
+    print(num, "is positive")
+else:
+    print(num, "is zero")
+```
+
+This checks three possible conditions:
+
+| Condition  | Result   |
+| ---------- | -------- |
+| `num < 0`  | Negative |
+| `num > 0`  | Positive |
+| `num == 0` | Zero     |
+
+## 💻 Example Run
+
+### Example 1
+
+```text
+Enter a number or q-quite: -8
+
+===============================
+
+-8 is Even
+-8 is negative
+-----------------------------
+-8 is Even and negative
+-----------------------------
+
+===============================
+```
+
+### Example 2
+
+```text
+Enter a number or q-quite: 7
+
+===============================
+
+7 is Odd
+7 is positive
+-----------------------------
+7 is Odd and positive
+-----------------------------
+
+===============================
+```
+
+### Example 3 — Zero
+
+```text
+Enter a number or q-quite: 0
+
+===============================
+
+0 is Even
+0 is zero
+-----------------------------
+0 is Even and zero
+-----------------------------
+
+===============================
+```
+
+### Example 4 — Quit
+
+```text
+Enter a number or q-quite: q
+
+===============================
+
+Bye
+
+===============================
+```
+
+## 🔄 Continuous Checking
+
+The program uses:
+
+```python
+while True:
+```
+
+This creates an infinite loop so the user can check multiple numbers.
+
+The loop stops when the user enters:
+
+```text
+q
+```
+
+The program then uses:
+
+```python
+break
+```
+
+to exit the loop.
+
+## 🎯 Bonus Features Completed
+
+The optional bonus requirements have been implemented.
+
+### 1. Multiple Number Checking
+
+The user can check multiple numbers without restarting the program.
+
+### 2. Combined Result
+
+The program stores the results in variables:
+
+```python
+a = "Even"
+b = "negative"
+```
+
+and then displays them together:
+
+```python
+print(num, "is", a, "and", b)
+```
+
+For example:
+
+```text
+-8 is Even and negative
+```
+
+## 📂 Project Structure
+
+```text
+even-odd-positive-negative-checker/
+│
+├── main.py
+└── README.md
+```
+
+## 🚀 How to Run
+
+Make sure Python 3 is installed.
+
+Run the program using:
+
+```bash
+python3 main.py
+```
+
+Then enter a number when prompted.
+
+To exit the program:
+
+```text
+q
+```
+
+## 📚 What I Learned
+
+Through this project, I practiced using conditions to make decisions in Python.
+
+I learned how the modulo operator `%` can be used to determine whether a number is even or odd. I also practiced comparing numbers to determine whether they are positive, negative, or zero.
+
+The bonus features helped me understand how `while` loops and `break` can be used to create a program that continues running until the user chooses to quit.
+
+This project is part of my journey toward building strong Python fundamentals through small practical programs.
+
+## 👨‍💻 Author
+
+**Nageshwaran N**
+
+Learning Python and improving my programming skills step by step.
