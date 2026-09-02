@@ -1,0 +1,26 @@
+Simple greeting app — ask name & age, print a personalized message
+
+Question1
+Concepts used:
+ print(),
+ input(),
+ variables,
+ string formatting (f-strings)
+Problem Statement
+
+Write a Python program that:
+1.Asks the user to enter their name.
+2.Asks the user to enter their age.
+3.Asks the user to enter their favorite hobby.
+4.Prints a personalized greeting message using all three inputs.
+
+Example Run:
+Enter your name: Arun
+Enter your age: 22
+Enter your favorite hobby: cricket
+
+Output:
+Hello Arun! 👋
+You are 22 years old.
+Wow, cricket is awesome! Keep enjoying it.
+
