@@ -1,0 +1,29 @@
+Simple Interest Calculator
+
+Concepts used:
+ input(),
+ float(),
+ arithmetic operators,
+ formulas
+
+Problem Statement
+
+Write a Python program that:
+1.Asks the user for the Principal amount (P).
+2.Asks the user for the Rate of interest (R, in %).
+3.Asks the user for the Time period (T, in years).
+4.Calculates the Simple Interest using the formula:
+5.Also calculates and prints the Total Amount = Principal + Simple Interest.
+                  SI = (P * R * T) / 100
+Example run:
+Enter Principal amount: 10000
+Enter Rate of interest (%): 5
+Enter Time period (years): 2
+
+Output
+Simple Interest = 1000.0
+Total Amount = 11000.0
+
+Bonus (optional)
+Round the results to 2 decimal places (look up round()).
+Let the user calculate for multiple cases in a loop until they type q to quit (you already know this pattern from Day 2 & 3).

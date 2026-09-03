@@ -1,0 +1,204 @@
+# 💰 Simple Interest Calculator
+
+A beginner-friendly Python program that calculates **Simple Interest** and the **Total Amount** based on the Principal amount, Rate of Interest, and Time period.
+
+The program also allows the user to perform multiple calculations and exit by entering `q`.
+
+## 📌 Features
+
+* 💵 Accepts Principal amount
+* 📈 Accepts Rate of Interest
+* ⏱️ Accepts Time period in years
+* 🧮 Calculates Simple Interest
+* 💰 Calculates Total Amount
+* 🔢 Rounds results to 2 decimal places
+* 🔄 Allows multiple calculations
+* 🚪 Allows the user to quit by entering `q`
+
+## 🧠 Concepts Used
+
+This project helped me practice:
+
+* `input()`
+* Variables
+* `float()` type conversion
+* Arithmetic operators
+* Mathematical formulas
+* `round()`
+* `while True`
+* `break`
+* Basic user input handling
+
+## 📐 Formula
+
+Simple Interest is calculated using:
+
+```text
+SI = (P × R × T) / 100
+```
+
+Where:
+
+* **P** = Principal amount
+* **R** = Rate of Interest (%)
+* **T** = Time period in years
+* **SI** = Simple Interest
+
+The Total Amount is calculated using:
+
+```text
+Total Amount = Principal + Simple Interest
+```
+
+## ⚙️ How It Works
+
+The program follows these steps:
+
+1. Asks the user to enter the Principal amount.
+2. The user can enter `q` to quit.
+3. Asks for the Rate of Interest.
+4. Asks for the Time period.
+5. Converts the input values into floating-point numbers.
+6. Calculates the Simple Interest.
+7. Calculates the Total Amount.
+8. Rounds both results to 2 decimal places.
+9. Displays the results.
+10. Repeats the process until the user enters `q`.
+
+## 💻 Example Run
+
+```text
+Enter Principal amount or press q to quit: 10000
+Enter Rate of interest(%): 5
+Enter Time period(years): 2
+
+===================================
+
+Simple Interest =  1000.0
+Total Amount =  11000.0
+
+===================================
+```
+
+## 🔢 Decimal Example
+
+The program also works with decimal values:
+
+```text
+Enter Principal amount or press q to quit: 12500.50
+Enter Rate of interest(%): 6.5
+Enter Time period(years): 2.5
+
+===================================
+
+Simple Interest =  2031.33
+Total Amount =  14531.83
+
+===================================
+```
+
+## 🔄 Multiple Calculations
+
+The program uses:
+
+```python
+while True:
+```
+
+This allows the user to calculate Simple Interest for multiple cases without restarting the program.
+
+To stop the program, enter:
+
+```text
+q
+```
+
+The program then uses:
+
+```python
+break
+```
+
+to exit the loop.
+
+## 🎯 Bonus Features Completed
+
+### ✅ Round Results
+
+The program uses:
+
+```python
+round(si, 2)
+round(total_amt, 2)
+```
+
+This rounds the results to **2 decimal places**.
+
+### ✅ Continuous Calculations
+
+The program runs inside a `while True` loop, allowing multiple calculations until the user enters `q`.
+
+## 🧮 Example Calculation
+
+For:
+
+```text
+Principal = 10,000
+Rate = 5%
+Time = 2 years
+```
+
+The Simple Interest is:
+
+```text
+SI = (10000 × 5 × 2) / 100
+SI = 1000
+```
+
+Therefore:
+
+```text
+Total Amount = 10000 + 1000
+Total Amount = 11000
+```
+
+## 📂 Project Structure
+
+```text
+simple-interest-calculator/
+│
+├── main.py
+└── README.md
+```
+
+## 🚀 How to Run
+
+Make sure Python 3 is installed on your system.
+
+Run the program using:
+
+```bash
+python3 main.py
+```
+
+Then follow the instructions displayed in the terminal.
+
+To quit:
+
+```text
+q
+```
+
+## 📚 What I Learned
+
+Through this project, I practiced using mathematical formulas in Python and learned how to take numerical input from the user using `float()`.
+
+I also practiced using a `while` loop to repeat a program, `break` to exit the loop, and `round()` to make numerical results easier to read.
+
+This is part of my Python learning journey, where I am building my programming fundamentals by creating small practical projects every day.
+
+## 👨‍💻 Author
+
+**Nageshwaran N**
+
+Learning Python and improving my programming skills step by step.
