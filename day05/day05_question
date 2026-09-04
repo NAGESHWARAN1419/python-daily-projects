@@ -1,0 +1,32 @@
+Temperature Converter (Celsius ↔ Fahrenheit)
+
+Concepts used:
+ input(),
+ float(),
+ arithmetic operators,
+ if-elif-else
+Problem Statement
+
+Write a Python program that:
+1.Asks the user to enter a temperature value.
+2.Asks the user whether it's in Celsius (C) or Fahrenheit (F).
+3.Converts it to the other unit and prints the result.
+
+Formulas:
+Fahrenheit = (Celsius * 9/5) + 32
+Celsius = (Fahrenheit - 32) * 5/9
+
+Example Run
+
+Enter temperature value: 100
+Is this in Celsius or Fahrenheit? (C/F): C
+100.0°C = 212.0°F
+
+Enter temperature value: 98.6
+Is this in Celsius or Fahrenheit? (C/F): F
+98.6°F = 37.0°C
+
+Bonus (optional)
+Round the result to 2 decimal places.
+Loop so the user can convert multiple temperatures until they type q to quit.
+Handle invalid unit input (something other than C/F) with a friendly message.

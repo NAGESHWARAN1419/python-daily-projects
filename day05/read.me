@@ -1,0 +1,168 @@
+🌡️ Temperature Converter
+
+A beginner-friendly Python program that converts temperatures between Celsius (°C) and Fahrenheit (°F).
+
+The program allows the user to perform multiple conversions, rounds the results to 2 decimal places, and handles invalid unit input with a friendly message.
+
+📌 Features
+🌡️ Converts Celsius to Fahrenheit
+🌡️ Converts Fahrenheit to Celsius
+🔢 Accepts decimal temperature values
+🎯 Rounds results to 2 decimal places
+🔄 Allows multiple temperature conversions
+🚪 Allows the user to quit by entering q
+⚠️ Handles invalid unit input
+🔤 Accepts both uppercase and lowercase C / F
+🧠 Concepts Used
+
+This project helped me practice:
+
+input()
+Variables
+float() type conversion
+str() type conversion
+Arithmetic operators
+if-elif-else
+while True
+break
+round()
+Logical operator or
+Basic input validation
+
+📐 Conversion Formulas
+Celsius → Fahrenheit
+Fahrenheit = (Celsius × 9/5) + 32
+Fahrenheit → Celsius
+Celsius = (Fahrenheit - 32) × 5/9
+
+⚙️ How It Works
+
+The program follows these steps:
+1.Asks the user to enter a temperature value.
+2.The user can enter q to quit.
+3.Asks whether the temperature is in Celsius or Fahrenheit.
+4.Checks the selected unit.
+5.Applies the appropriate conversion formula.
+6.Rounds the result to 2 decimal places.
+7.Displays the converted temperature.
+8.If the user enters something other than C or F, a friendly error message is displayed.
+9.The program repeats until the user enters q.
+
+💻 Example Run
+Celsius to Fahrenheit
+Enter temperature value or (to quit press q): 100
+Is this in Celsius or Fahrenheit? (C/F): C
+
+====================================
+
+100.0°C = 212.0°F
+
+====================================
+
+Fahrenheit to Celsius
+Enter temperature value or (to quit press q): 98.6
+Is this in Celsius or Fahrenheit? (C/F): F
+
+====================================
+
+98.6°F = 37.0°C
+
+====================================
+
+
+Invalid Unit
+Enter temperature value or (to quit press q): 100
+Is this in Celsius or Fahrenheit? (C/F): X
+
+====================================
+
+Invalid input. You can choose C or F
+
+====================================
+
+
+Quit
+Enter temperature value or (to quit press q): q
+
+====================================
+
+Bye
+
+====================================
+
+🔢 Rounding the Result
+The program uses round() to display the converted temperature with a maximum of 2 decimal places.
+
+For example:
+
+round(f, 2)
+and:
+round(c, 2)
+
+This makes the output easier to read.
+
+
+🔄 Continuous Conversion
+The program uses:
+while True:
+|->This allows the user to convert multiple temperatures without restarting the program.
+
+
+The loop stops when the user enters:
+
+q
+
+The program then uses:
+
+break
+
+to exit the loop.
+
+
+🎯 Bonus Features Completed
+
+All three optional bonus requirements have been completed:
+✅ Round the result to 2 decimal places
+✅ Convert multiple temperatures using a loop
+✅ Handle invalid unit input with a friendly message
+
+
+The program also accepts both uppercase and lowercase units:
+C
+c
+F
+f
+
+
+📂 Project Structure
+temperature-converter/
+│
+├── main.py
+└── README.md
+
+
+🚀 How to Run
+Make sure Python 3 is installed on your system.
+Run the program using:
+python3 day05_temp_converter.py
+
+
+Then follow the instructions displayed in the terminal.
+
+To quit the program:
+
+q
+
+
+📚 What I Learned
+
+Through this project, I practiced using mathematical formulas in Python and learned how to perform calculations based on user input.
+I also practiced conditional statements using if-elif-else, repeating a program using while, exiting a loop with break, rounding numbers with round(), and handling invalid user input.
+This project is part of my Python learning journey, where I am building my programming fundamentals by creating small practical projects every day.
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
