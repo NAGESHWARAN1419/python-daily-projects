@@ -1,0 +1,37 @@
+DAY06
+
+BMI Calculator with Health Category
+
+Concepts used:
+ input(),
+ float(),
+ arithmetic operators,
+ if-elif-else
+
+
+Problem Statement
+1.Write a Python program that:
+2.Asks the user for their weight (in kg).
+3.Asks the user for their height (in meters).
+4.Calculates BMI using the formula:
+5.Based on the BMI value, prints the health category:
+     1)BMI < 18.5 → Underweight
+     2)18.5 ≤ BMI < 25 → Normal weight
+     3)25 ≤ BMI < 30 → Overweight
+     4)BMI ≥ 30 → Obese
+
+
+Formala:
+   BMI = weight / (height * height)
+
+
+Example run:
+Enter your weight (kg): 70
+Enter your height (m): 1.75
+Your BMI is 22.86
+Category: Normal weight
+
+Bonus (optional)
+1.Round the BMI to 2 decimal places.
+2.Loop so the user can check multiple times until they type q to quit.
+3.Handle invalid height of 0 (which would cause a divide-by-zero error) with a friendly message instead of crashing.

@@ -1,0 +1,210 @@
+⚖️ BMI Calculator with Health Category
+
+A beginner-friendly Python program that calculates a person's Body Mass Index (BMI) using their weight and height, then displays the corresponding BMI category.
+
+The program also allows multiple calculations, rounds the BMI to 2 decimal places, and handles a height of 0 without crashing.
+
+📌 Features
+⚖️ Accepts weight in kilograms
+📏 Accepts height in meters
+🧮 Calculates BMI
+🔢 Rounds BMI to 2 decimal places
+📊 Determines the BMI category
+🔄 Allows multiple BMI calculations
+🚪 Allows the user to quit by entering q
+⚠️ Handles division by zero when height is 0
+🧠 Concepts Used
+
+This project helped me practice:
+
+ input()
+ Variables 
+ float() type conversion
+ Arithmetic operators
+ if-elif-else
+ while True
+ break
+ try-except
+ ZeroDivisionError
+ round()
+ Comparison operators
+ Basic error handling
+
+
+📐 BMI Formula
+
+BMI is calculated using:
+BMI = weight / (height × height)
+
+
+Where:
+
+Weight is measured in kilograms (kg)
+Height is measured in meters (m)
+Example
+Weight = 70 kg
+Height = 1.75 m
+
+Calculation:
+
+BMI = 70 / (1.75 × 1.75)
+BMI = 22.86
+📊 BMI Categories
+
+The program uses the following categories:
+
+BMI Range	Category
+BMI < 18.5	Underweight
+18.5 ≤ BMI < 25	Normal weight
+25 ≤ BMI < 30	Overweight
+BMI ≥ 30	Obese
+⚙️ How It Works
+
+The program follows these steps:
+
+Displays the BMI Calculator heading.
+Asks the user to enter their weight.
+The user can enter q to quit.
+Asks the user to enter their height.
+Converts the input values to floating-point numbers.
+Calculates the BMI using the BMI formula.
+Rounds the BMI to 2 decimal places.
+Checks the BMI against the different categories.
+Displays the BMI and category.
+Repeats the process until the user enters q.
+
+
+💻 Example Run
+BMI CALCULATER
+-----------------------------------------------------
+Enter your weight(kg): 70
+Enter your height(m): 1.75
+
+=============================================
+
+Your BMI is  22.86
+Category: Normal weight
+
+=============================================
+
+-----------------------------------------------------
+⚠️ Handling Height of 0
+
+A height of 0 would cause a division-by-zero error because the BMI formula divides by height squared.
+
+The program handles this using:
+
+
+try:
+    bmi = kg / (height * height)
+
+
+except ZeroDivisionError:
+    print("Invaid height of 0 Enter correct height")
+
+
+Instead of crashing, the program displays a friendly error message.
+
+
+🔄 Continuous BMI Calculations
+
+
+The program uses:
+
+
+while True:
+
+This allows the user to calculate BMI multiple times without restarting the program.
+
+
+To exit the program, enter:
+
+q
+
+
+The program then uses:
+
+break
+
+to stop the loop.
+
+
+🎯 Bonus Features Completed
+
+All three optional bonus requirements have been implemented:
+
+✅ BMI rounded to 2 decimal places
+✅ Multiple BMI calculations using a loop
+✅ Height 0 handled using ZeroDivisionError
+
+
+🧪 Example — Different Categories
+
+Underweight
+Weight: 50 kg
+Height: 1.80 m
+
+BMI: 15.43
+Category: Underweight
+
+
+Normal Weight
+Weight: 70 kg
+Height: 1.75 m
+
+BMI: 22.86
+Category: Normal weight
+
+
+Overweight
+Weight: 80 kg
+Height: 1.70 m
+
+BMI: 27.68
+Category: Overweight
+
+
+Obese
+Weight: 100 kg
+Height: 1.70 m
+
+BMI: 34.60
+Category: Obese
+
+
+📂 Project Structure
+bmi-calculator/
+│
+├── main.py
+└── README.md
+
+
+🚀 How to Run
+
+
+Make sure Python 3 is installed on your system.
+
+Run the program using:
+
+python3 main.py
+
+
+Then follow the instructions displayed in the terminal.
+
+To quit:
+
+q
+
+
+📚 What I Learned
+
+Through this project, I practiced using mathematical formulas in Python and learned how to use conditional statements to classify a calculated value.
+I also practiced loops, exception handling, type conversion, and rounding numbers.
+This project is part of my Python learning journey, where I am building my programming fundamentals by creating small practical projects every day.
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
