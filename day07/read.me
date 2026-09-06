@@ -1,0 +1,189 @@
+✖️ Multiplication Table Generator
+
+A beginner-friendly Python program that generates a multiplication table for any number entered by the user.
+Unlike a fixed 1–10 table, this program allows the user to choose the range and generate multiple multiplication tables without restarting the program.
+
+📌 Features
+🔢 Accepts a number from the user
+✖️ Generates its multiplication table
+🔢 Allows the user to choose the table range
+🔄 Supports multiple table generations
+🚪 Allows the user to quit by entering q
+📊 Displays the multiplication results clearly
+
+
+🧠 Concepts Used
+
+This project helped me practice:
+
+input()
+Variables
+int() type conversion
+for loops
+range()
+while True
+break
+Arithmetic operators
+User input handling
+
+
+⚙️ How It Works
+
+The program follows these steps:
+
+Displays the Multiplication Table Generator heading.
+Asks the user to enter a number.
+The user can enter q to quit.
+Asks the user to enter the desired range.
+
+
+Converts the inputs into integers.
+
+Uses a for loop to generate the multiplication table.
+Prints the result for every number from 1 up to the selected range.
+Repeats the process so the user can generate another table.
+Stops when the user enters q.
+
+💻 Example Run
+Multiplication Table from 1 to 10
+----------------------------------------------
+MULTIPLICATION TABLE GRENTERATOR
+----------------------------------------------
+Enter a number or press q (quit): 7
+
+Enter range value: 10
+==============================================
+
+7 x 1 = 7
+7 x 2 = 14
+7 x 3 = 21
+7 x 4 = 28
+7 x 5 = 35
+7 x 6 = 42
+7 x 7 = 49
+7 x 8 = 56
+7 x 9 = 63
+7 x 10 = 70
+
+==============================================
+----------------------------------------------
+
+
+🎯 Custom Range
+
+The program allows the user to choose how far the multiplication table should go.
+
+
+For example:
+
+Enter a number or press q (quit): 5
+Enter range value: 20
+
+The program will generate:
+
+5 x 1 = 5
+5 x 2 = 10
+5 x 3 = 15
+...
+5 x 18 = 90
+5 x 19 = 95
+5 x 20 = 100
+
+The range is controlled using:
+
+for i in range(1, ran + 1):
+    print(num, "x", i, "=", num * i)
+
+
+🔄 Multiple Table Generation
+
+The program uses:
+
+while True:
+   This allows the user to generate multiple multiplication tables without restarting the program.
+
+
+For example:
+
+Enter a number or press q (quit): 7
+Enter range value: 10
+
+[Table 7 is generated]
+
+
+Enter a number or press q (quit): 12
+Enter range value: 5
+
+[Table 12 is generated]
+
+
+To exit the program, enter:
+
+q
+
+The program then uses:
+break
+to stop the loop.
+
+
+🔍 Understanding range()
+
+The program uses:
+range(1, ran + 1)
+
+If the user enters:
+10
+
+Python generates:
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+ran + 1 is used because the ending value of range() is not included.
+
+
+For example:
+range(1, 11)
+
+produces numbers from 1 to 10.
+
+
+🎯 Bonus Features Completed
+
+Both optional bonus requirements have been implemented:
+✅ User can choose the multiplication range
+✅ User can generate multiple tables
+✅ User can type q to quit
+
+
+📂 Project Structure
+multiplication-table-generator/
+│
+├── main.py
+└── README.md
+
+
+🚀 How to Run
+
+Make sure Python 3 is installed on your system.
+
+Run the program using:
+python3 day07_multiplication_table.py
+
+
+Then follow the instructions displayed in the terminal.
+To quit the program:
+
+q
+
+
+📚 What I Learned
+
+Through this project, I practiced using for loops and range() to repeat an operation a specific number of times.
+I also learned how to combine a while loop with a for loop to create a program that can repeatedly generate multiplication tables.
+The custom range feature helped me understand that loops don't always need to use fixed values and can instead use values provided by the user.
+This project is part of my Python learning journey, where I am building my programming fundamentals by creating small practical projects every day.
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
