@@ -1,0 +1,39 @@
+Day 8: Number Guessing Game
+
+Concepts used:
+ import random,
+ while loop,
+ if-elif-else,
+ comparison operators
+
+Problem Statement
+
+Write a Python program that:
+1.Picks a random number between 1 and 100 using the random module.
+2.Asks the user to guess the number.
+3.After each guess, tells the user if their guess is too high, too low, or correct.
+4.Keeps looping until the user guesses correctly.
+5.At the end, prints how many attempts it took.
+
+Example Run
+I'm thinking of a number between 1 and 100.
+
+Enter your guess: 50
+Too low!
+
+Enter your guess: 75
+Too high!
+
+Enter your guess: 62
+Too low!
+
+Enter your guess: 68
+Correct! You guessed it in 4 attempts.
+
+How to generate the random number
+     import random
+     number = random.randint(1, 100)
+
+Bonus (optional)
+Limit the user to a maximum of 7 attempts — if they don't guess it in time, reveal the number and say "Game Over".
+After the game ends, ask if they want to play again (y/n).
