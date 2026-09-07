@@ -1,0 +1,225 @@
+🎯 Number Guessing Game
+
+A beginner-friendly Python command-line game where the computer randomly chooses a number between 1 and 100, and the player tries to guess it.
+After every guess, the program tells the player whether the guess is too high, too low, or correct.
+The game also includes a maximum of 7 attempts and gives the player the option to play again after the game ends.
+
+
+📌 Features
+🎲 Generates a random number between 1 and 100
+🔢 Allows the user to enter guesses
+⬆️ Tells the user when the guess is too high
+⬇️ Tells the user when the guess is too low
+✅ Detects when the correct number is guessed
+🔢 Counts the number of attempts
+⏳ Limits the player to 7 attempts
+💀 Displays "Game Over" when all attempts are used
+🔄 Allows the player to play again
+🚪 Allows the user to exit using n or q
+🧠 Concepts Used
+
+
+This project helped me practice:
+
+import random
+random.randint()
+input()
+int() type conversion
+Variables
+while loops
+Nested while loops
+if-elif-else
+Comparison operators
+break
+continue
+Incrementing variables
+f-strings
+User input handling
+
+
+🎲 Generating a Random Number
+
+The program uses Python's random module:
+
+import random
+
+number = random.randint(1, 100)
+
+random.randint(1, 100) generates a random integer between 1 and 100.
+
+For example, the computer might secretly choose:
+
+42
+
+The player does not see the number and has to guess it.
+
+
+⚙️ How It Works
+
+The program follows these steps:
+
+Imports the random module.
+Generates a random number between 1 and 100.
+Sets the attempt counter to 0.
+Asks the player to enter a guess.
+Converts the guess to an integer.
+Increases the attempt counter.
+Compares the guess with the random number.
+Displays:
+Too low!
+Too high!
+Correct!
+Gives the player a maximum of 7 attempts.
+If the player guesses correctly, the game ends.
+If all 7 attempts are used, the game displays Game over.
+After the game, the player can choose to play again.
+
+
+💻 Example Run
+Guess the number from 1 to 100
+______________________________________________
+
+I'm thinking of a number between 1 to 100.
+Enter your guess: 50
+Too low!
+
+----------------------------------
+You have only 6 attempts
+----------------------------------
+
+Enter your guess: 75
+Too high!
+
+----------------------------------
+You have only 5 attempts
+----------------------------------
+
+Enter your guess: 62
+Too low!
+
+----------------------------------
+You have only 4 attempts
+----------------------------------
+
+Enter your guess: 68
+Correct! Your guessed it in 4 attempts.
+
+
+🎯 Maximum 7 Attempts
+
+The program keeps track of attempts using:
+
+attempt = 0
+
+Every time the user makes a guess:
+
+attempt += 1
+
+The program then checks how many attempts remain:
+
+if attempt < 7:
+    print(f"You have only {7-attempt} attempts")
+else:
+    print("Game over")
+
+This gives the player a maximum of 7 guesses.
+
+
+💀 Game Over
+
+If the player fails to guess the number within 7 attempts, the game ends.
+
+Example:
+
+Enter your guess: 90
+Too high!
+
++++++++++++++++++++++++++++++++++++++++++++
+
+Game over
+
++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+🔄 Play Again Feature
+
+After the game ends, the program asks:
+
+If you want to play again(y/n):
+
+If the player enters:
+
+y
+
+the game starts again with a new random number.
+
+If the player enters:
+
+n
+
+the program displays:
+
+Bye
+
+and exits.
+
+
+The program uses continue to start another game:
+
+if play == "y" or play == "Y":
+    continue
+
+
+🚪 Quit Option
+
+The player can also enter:
+
+q
+
+when asked for a guess.
+
+
+This immediately breaks out of the current guessing loop.
+
+
+🎯 Bonus Features Completed
+
+Both optional bonus requirements have been implemented:
+
+✅ Maximum of 7 attempts
+✅ Displays Game Over after 7 unsuccessful attempts
+✅ Asks whether the player wants to play again
+✅ Generates a new random number for a new game
+
+
+📂 Project Structure
+number-guessing-game/
+│
+├── day09_sum_of_digits.py
+└── README.md
+
+
+🚀 How to Run
+
+Make sure Python 3 is installed on your system.
+Run the program using:
+
+python3 day09_sum_of_digits.py
+
+Then follow the instructions displayed in the terminal.
+
+
+📚 What I Learned
+
+Through this project, I learned how to use Python's random module to generate unpredictable numbers.
+I also practiced using nested while loops, keeping track of attempts, comparing values with if-elif-else, and controlling loops with break and continue.
+The play-again feature helped me understand how one loop can control the entire game while another loop controls the individual guesses.
+This project is part of my Python learning journey, where I am building my programming fundamentals by creating small practical projects every day.
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
