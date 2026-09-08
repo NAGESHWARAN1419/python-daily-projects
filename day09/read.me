@@ -1,0 +1,204 @@
+🔢 Sum of Digits of a Number
+
+A beginner-friendly Python program that calculates the sum of all digits of a number using mathematical operations instead of converting the number into a string.
+The program also handles negative numbers and allows the user to calculate the sum for multiple numbers until they enter q to quit.
+
+
+📌 Features
+🔢 Accepts a number from the user
+➕ Calculates the sum of its digits
+🧮 Uses mathematical digit extraction
+➖ Handles negative numbers using abs()
+🔄 Supports multiple calculations
+🚪 Allows the user to quit by entering q
+🚫 Does not convert the number to a string for digit calculation
+
+
+🧠 Concepts Used
+
+This project helped me practice:
+
+input()
+int() type conversion
+abs()
+while loop
+Modulo operator %
+Integer division //
+Variables
+Arithmetic operators
+if statement
+break
+f-strings
+
+
+⚙️ How It Works
+
+The program uses two important mathematical operations to extract digits.
+
+% 10 — Get the Last Digit
+digit = num % 10
+
+For example:
+
+12345 % 10 = 5
+
+So 5 is the last digit.
+
+// 10 — Remove the Last Digit
+num = num // 10
+
+For example:
+
+12345 // 10 = 1234
+
+The last digit 5 has been removed.
+
+The program repeatedly performs these two operations until the number becomes 0.
+
+
+🔍 Example Calculation
+
+For the number:
+
+12345
+
+The program extracts the digits one by one:
+
+12345 → 5
+1234  → 4
+123   → 3
+12    → 2
+1     → 1
+
+Then adds them:
+
+5 + 4 + 3 + 2 + 1 = 15
+
+Therefore:
+
+Sum of digits = 15
+
+
+💻 Example Run
+--------------------------------------
+Sum of Digits of a Number:-
+--------------------------------------
+
+Enter a number or press q to Quit: 12345
+
+======================================
+
+Sum of digit = 15
+
+======================================
+➖ Negative Number Handling
+
+The program uses:
+
+num = abs(int(num0))
+
+abs() converts a negative number into its positive value.
+
+For example:
+
+-12345 → 12345
+
+The program can therefore calculate:
+
+1 + 2 + 3 + 4 + 5 = 15
+
+Example:
+
+Enter a number or press q to Quit: -12345
+
+======================================
+
+Sum of digit = 15
+
+======================================
+
+
+🔄 Multiple Number Checking
+
+The program uses:
+
+while True:
+
+This allows the user to calculate the digit sum multiple times without restarting the program.
+
+For example:
+
+Enter a number or press q to Quit: 123
+Sum of digit = 6
+
+Enter a number or press q to Quit: 987
+Sum of digit = 24
+
+Enter a number or press q to Quit: -456
+Sum of digit = 15
+
+To stop the program:
+
+q
+
+The program then uses:
+
+break
+
+to exit.
+
+
+🎯 Bonus Features Completed
+
+Both optional bonus requirements have been completed:
+
+✅ Handles negative numbers using abs()
+✅ Allows multiple numbers to be checked
+✅ Allows the user to quit using q
+
+
+🚫 No String Conversion
+
+One important requirement of this exercise was to not convert the number into a string to calculate the digits.
+
+Instead, the program uses:
+
+digit = num % 10
+num = num // 10
+
+This demonstrates how numbers can be processed mathematically.
+
+
+
+📂 Project Structure
+day09/
+│
+├── day09_sum_of_digits.py
+├── day09_question
+└── read.me
+
+
+🚀 How to Run
+
+Make sure Python 3 is installed.
+Run the program using:
+python3 day09_sum_of_digits.py
+Then enter a number when prompted.
+
+To quit:
+
+q
+
+
+📚 What I Learned
+
+Through this project, I learned how to extract individual digits from a number using mathematical operations.
+The % operator helps me get the last digit, while // removes the last digit. By repeating these operations inside a while loop, I can process every digit without converting the number into a string.
+I also practiced handling negative numbers with abs() and combining loops with user input.
+This is Day 9 of my Python learning journey, where I am building my programming fundamentals through small practical projects every day.
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
