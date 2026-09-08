@@ -1,0 +1,23 @@
+Day 9: Sum of Digits of a Number
+
+Concepts used: input(), int(), while loop, modulo %, integer division //
+
+Problem Statement
+Write a Python program that:
+1.Asks the user to enter a number.
+2.Calculates the sum of its digits using a loop (not by converting to a string — use math instead).
+Prints the result.
+
+Example Run
+Enter a number: 12345
+Sum of digits = 15
+(1+2+3+4+5 = 15)
+
+How digit extraction works (the math trick)
+num % 10   # gives the LAST digit
+num // 10  # removes the last digit
+So you repeatedly grab the last digit, add it to a running total, then chop it off — until the number becomes 0.
+
+Bonus (optional)
+1)Handle negative numbers correctly (hint: use abs() to make it positive first).
+2)Loop so the user can check multiple numbers until they type q to quit.
