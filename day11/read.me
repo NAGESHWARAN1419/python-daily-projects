@@ -1,0 +1,185 @@
+📅 Leap Year Checker
+
+A beginner-friendly Python program that checks whether a given year is a leap year based on the standard leap-year rules.
+The program also allows the user to check multiple years and quit by entering q.
+
+
+📌 Features
+📅 Accepts a year from the user
+✅ Checks whether the year is a leap year
+❌ Identifies years that are not leap years
+🧮 Uses divisibility rules with %
+🔄 Allows multiple years to be checked
+🚪 Allows the user to quit by entering q
+
+🧠 Concepts Used
+
+This project helped me practice:
+
+input()
+int() type conversion
+Variables
+Modulo operator %
+if-else
+Logical operator and
+Logical operator or
+Comparison operators
+while True
+break
+f-strings
+
+
+📐 Leap Year Rules
+
+A year is a leap year when:
+Divisible by 4 AND NOT divisible by 100
+
+OR
+
+Divisible by 400
+
+In Python:
+
+if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+    print(f"{year} is a leap year.")
+else:
+    print(f"{year} is NOT a leap year.")
+
+
+🤔 Why Are These Rules Needed?
+
+Most years divisible by 4 are leap years.
+
+For example:
+
+2024 ÷ 4 = 506
+
+So 2024 is a leap year.
+
+However, century years such as 1900 are special.
+
+1900 ÷ 4 = 475
+1900 ÷ 100 = 19
+1900 ÷ 400 = 4.75
+
+Because 1900 is divisible by 100 but not by 400, it is not a leap year.
+
+But 2000 is divisible by 400:
+
+2000 ÷ 400 = 5
+
+Therefore, 2000 is a leap year.
+
+Quick Memory Trick
+÷ 4     → usually leap
+÷ 100   → not leap
+÷ 400   → leap again
+
+
+💻 Example Run
+Leap Year
+--------------------------------------------------
+Leap Year Calculater:-
+--------------------------------------------------
+Enter a year or press q to quit: 2024
+
+============================================
+
+2024 is a leap year.
+
+============================================
+Not a Leap Year
+Enter a year or press q to quit: 1900
+
+============================================
+
+1900 is NOT a leap year.
+
+============================================
+Century Leap Year
+Enter a year or press q to quit: 2000
+
+============================================
+
+2000 is a leap year.
+
+============================================
+🔄 Multiple Year Checking
+
+The program uses:
+
+while True:
+
+This allows the user to check multiple years without restarting the program.
+
+For example:
+
+Enter a year or press q to quit: 2024
+2024 is a leap year.
+
+Enter a year or press q to quit: 1900
+1900 is NOT a leap year.
+
+Enter a year or press q to quit: 2000
+2000 is a leap year.
+
+To stop the program:
+
+q
+
+The program then uses:
+
+break
+
+to exit the loop.
+
+
+
+🎯 Bonus Feature Completed
+
+The optional bonus requirement has been completed:
+
+✅ User can check multiple years
+✅ User can enter q to quit
+
+
+📂 Project Structure
+
+Following the project naming structure:
+day11/
+│
+├── day11_LeapYearChecker.py
+├── day11_question
+└── read.me
+
+
+🚀 How to Run
+
+Make sure Python 3 is installed on your system.
+
+Run the program using:
+
+python3 day11_LeapYearChecker.py
+
+Then enter a year when prompted.
+
+To quit:
+
+q
+
+
+📚 What I Learned
+
+Through this project, I learned how to use the modulo operator % to check whether a number is divisible by another number.
+I also practiced combining multiple conditions using the logical operators and and or.
+The leap-year problem helped me understand how several conditions can work together to make a decision.
+I also practiced using a while loop so that the program can repeatedly check different years until the user chooses to quit.
+
+
+This is Day 11 of my Python learning journey, where I am building my programming fundamentals through small practical projects every day.
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
