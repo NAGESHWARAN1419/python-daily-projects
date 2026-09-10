@@ -1,0 +1,36 @@
+Day 10: Reverse a Number / Palindrome Number Checker
+
+Concepts used:
+ while loop,
+ modulo %,
+ integer division //,
+ comparison
+
+Problem Statement
+
+Write a Python program that:
+1.Asks the user to enter a number.
+2.Reverses the number using a loop (similar digit-extraction technique as Day 9, but this time you build a new number instead of a sum).
+3.Checks if the number is a palindrome (reads the same forwards and backwards, e.g. 121, 1331) by comparing the original number to its reverse.
+4.Prints both the reversed number and whether it's a palindrome.
+
+
+Example Run
+Enter a number: 12345
+Reversed number: 54321
+12345 is NOT a palindrome.
+
+Enter a number: 1221
+Reversed number: 1221
+1221 IS a palindrome.
+
+Hint: How to reverse a number
+Same digit-extraction trick as Day 9, but instead of adding digits to a total, you build the reversed number:
+     reversed_num = reversed_num * 10 + digit
+Think about why multiplying by 10 each time and adding the new digit builds the number in reverse order — trace it by hand for 123 before coding, like we did on Day 9.
+
+
+Bonus (optional)
+Handle negative numbers using abs() (like Day 9).
+Loop so the user can check multiple numbers until they type q to quit.
+
