@@ -1,0 +1,241 @@
+Day10🔄 Reverse a Number / Palindrome Number Checker
+
+A beginner-friendly Python program that reverses a number using mathematical operations and checks whether the number is a palindrome.
+A palindrome number reads the same from the front and from the back, such as 121, 1221, or 1331.
+The program also handles negative numbers using abs() and allows the user to check multiple numbers until they enter q.
+
+📌 Features
+🔢 Accepts a number from the user
+🔄 Reverses the number using a while loop
+🧮 Uses % to extract digits
+➗ Uses // to remove digits
+🔍 Checks whether the number is a palindrome
+➖ Handles negative numbers using abs()
+🔄 Allows multiple numbers to be checked
+🚪 Allows the user to quit by entering q
+
+
+🧠 Concepts Used
+
+This project helped me practice:
+
+input()
+int() type conversion
+abs()
+while loop
+Modulo operator %
+Integer division //
+Arithmetic operators
+Comparison operators
+Variables
+if-else
+break
+f-strings
+
+
+⚙️ How It Works
+
+The program uses the same digit-extraction technique learned in Day 9: Sum of Digits, but instead of adding the digits together, it builds a new number in reverse order.
+
+The basic process is:
+
+digit = num % 10
+r_num = r_num * 10 + digit
+num = num // 10
+Step 1 — Get the Last Digit
+digit = num % 10
+
+For example:
+
+123 % 10 = 3
+
+So the last digit is 3.
+
+Step 2 — Add the Digit to the Reversed Number
+r_num = r_num * 10 + digit
+
+This builds the reversed number one digit at a time.
+
+Step 3 — Remove the Last Digit
+num = num // 10
+
+For example:
+
+123 // 10 = 12
+
+The last digit has been removed.
+
+
+🔍 Example: Reversing 123
+
+Starting with:
+
+num = 123
+r_num = 0
+
+The process is:
+
+123 → digit = 3 → r_num = 3
+12  → digit = 2 → r_num = 32
+1   → digit = 1 → r_num = 321
+
+Final result:
+
+Reversed number: 321
+
+
+🧩 Palindrome Checking
+
+After reversing the number, the program compares the reversed number with the original number.
+
+if r_num == abs(int(num0)):
+    print(f"{r_num} Is a palindrome")
+else:
+    print(f"{r_num} Is NOT a palindrome")
+
+If both numbers are equal, the number is a palindrome.
+
+Example
+Original: 1221
+Reverse:  1221
+
+Since they are the same:
+
+1221 Is a palindrome
+
+But:
+
+Original: 12345
+Reverse:  54321
+
+They are different:
+
+54321 Is NOT a palindrome
+💻 Example Run
+Non-Palindrome
+-----------------------------------------------
+Reverse a Number / Palindrome Number Checker
+-----------------------------------------------
+Enter a number: 12345
+
+========================================
+
+Reversed number: 54321
+54321 Is NOT a palindrome
+
+========================================
+
+-----------------------------------------------
+Palindrome
+Enter a number: 1221
+
+========================================
+
+Reversed number: 1221
+1221 Is a palindrome
+
+========================================
+➖ Negative Numbers
+
+The program uses:
+
+num = abs(int(num0))
+
+This converts a negative number into its positive value before reversing it.
+
+For example:
+
+-1221 → 1221
+
+The palindrome comparison also uses:
+
+abs(int(num0))
+
+so the negative sign does not affect the palindrome check.
+
+
+🔄 Multiple Number Checking
+
+The program uses:
+
+while True:
+
+This allows the user to check multiple numbers without restarting the program.
+
+For example:
+
+Enter a number: 123
+Reversed number: 321
+321 Is NOT a palindrome
+
+Enter a number: 121
+Reversed number: 121
+121 Is a palindrome
+
+Enter a number: 1331
+Reversed number: 1331
+1331 Is a palindrome
+
+To quit:
+
+q
+
+The program uses:
+
+break
+
+to exit the loop.
+
+
+🎯 Bonus Features Completed
+
+Both optional bonus requirements have been completed:
+
+✅ Handles negative numbers using abs()
+✅ Allows multiple numbers to be checked
+✅ Allows the user to quit using q
+
+
+📂 Project Structure
+
+Following your project naming rule:
+
+day10/
+│
+├── day10_reverse_num.py
+├── day10_question
+└── read.me
+
+
+🚀 How to Run
+
+Make sure Python 3 is installed on your system.
+
+Run the program using:
+
+python3 day10_reverse_num.py
+
+Then enter a number when prompted.
+
+To quit:
+
+q
+
+
+📚 What I Learned
+
+Through this project, I learned how to use the same mathematical digit-extraction technique from Day 9 for a different purpose.
+Instead of adding each digit, I learned how to build a completely new number in reverse order using:
+r_num = r_num * 10 + digit
+
+I also learned how to compare the original number with its reverse to determine whether it is a palindrome.
+This project helped me understand how % and // can be combined with a while loop to process numbers digit by digit.
+This is Day 10 of my Python learning journey, where I am building my programming fundamentals through small practical projects every day.
+
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
