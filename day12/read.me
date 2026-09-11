@@ -1,0 +1,218 @@
+📝 Simple Grading System
+
+A beginner-friendly Python program that takes a student's marks and assigns a grade based on the given marks range.
+
+The program also validates marks, allows the user to check multiple students, and provides a q option to quit.
+
+📌 Features
+📝 Accepts marks from the user
+📊 Assigns grades based on marks
+✅ Validates marks between 0 and 100
+❌ Displays an invalid-marks message for values outside the valid range
+🔄 Allows multiple students to be checked
+🚪 Allows the user to quit by entering q or Q
+
+
+🧠 Concepts Used
+
+This project helped me practice:
+
+input()
+int() type conversion
+Variables
+if-elif-else
+Comparison operators
+Logical operator or
+while True
+break
+f-strings
+Range checking
+Basic input validation
+📊 Grading System
+
+The program uses the following grading rules:
+
+Marks	Grade
+90 – 100	A+
+80 – 89	A
+70 – 79	B
+60 – 69	C
+40 – 59	D
+0 – 39	Fail
+< 0 or > 100	Invalid Marks
+
+
+⚙️ How It Works
+
+The program follows these steps:
+
+Displays the Simple Grading System heading.
+Asks the user to enter their marks.
+The user can enter q or Q to quit.
+Converts the marks into an integer using int().
+Checks whether the marks are within the valid range.
+Uses if-elif-else to determine the grade.
+Displays the result.
+Returns to the beginning so another student's marks can be entered.
+Continues until the user chooses to quit.
+
+
+💻 Example Run
+Grade A
+==========================================================
+------------------Simple Grading System-------------------
+==========================================================
+
+Enter your marks or (press q to Quit) :85
+
+==========================================================
+
+Grade: A
+
+==========================================================
+Fail
+Enter your marks or (press q to Quit) :35
+
+==========================================================
+
+Fail
+
+==========================================================
+Invalid Marks
+Enter your marks or (press q to Quit) :150
+
+==========================================================
+
+Invaild marks! Please enter a value between 0 to 100
+
+==========================================================
+Quit
+Enter your marks or (press q to Quit) :q
+
+==========================================================
+
+-------------------------Bye------------------------------
+
+==========================================================
+
+
+🔍 Understanding the Grade Conditions
+
+The program checks the conditions from the highest grade to the lowest:
+
+if 100 < mark:
+    print("Invalid marks")
+elif mark >= 90:
+    print("Grade: A+")
+elif 80 <= mark < 90:
+    print("Grade: A")
+elif 70 <= mark < 80:
+    print("Grade: B")
+elif 60 <= mark < 70:
+    print("Grade: C")
+elif 40 <= mark < 60:
+    print("Grade: D")
+elif 0 <= mark < 40:
+    print("Fail")
+elif mark < 0:
+    print("Invalid mark")
+
+This allows Python to determine which category the marks belong to.
+
+
+
+🔄 Multiple Student Checking
+
+The program uses:
+
+while True:
+
+This allows the program to continue checking marks for different students.
+
+For example:
+
+Enter your marks or (press q to Quit) :85
+Grade: A
+
+Enter your marks or (press q to Quit) :72
+Grade: B
+
+Enter your marks or (press q to Quit) :45
+Grade: D
+
+The user can continue entering marks until they enter:
+
+q
+
+or:
+
+Q
+
+The program then uses:
+
+break
+
+to exit the loop.
+
+
+
+🎯 Bonus Feature Status
+
+The multiple-student loop bonus has been completed:
+
+✅ Check multiple students
+✅ Use a continuous while loop
+✅ Quit using q or Q
+⏳ Average Marks Bonus
+
+The optional average marks tracking has not yet been implemented in this version.
+
+A future improvement could keep:
+
+total_marks = 0
+student_count = 0
+
+and calculate the average when the user quits.
+
+
+
+📂 Project Structure
+
+Following your project naming rule:
+
+day12/
+│
+├── day12_simple_grading_system.py
+├── day12_question
+└── read.me
+
+
+🚀 How to Run
+
+Make sure Python 3 is installed.
+
+Run the program using:
+
+python3 day12_simple_grading_system.py
+
+Then enter the student's marks when prompted.
+
+To quit:
+
+q
+
+
+📚 What I Learned
+
+Through this project, I practiced using multiple conditions to classify a value into different categories.
+I learned how if-elif-else can be used to create a grading system and how comparison operators can be combined to check ranges such as 80 <= mark < 90.
+I also practiced validating user input and using a while loop to repeatedly process different students.
+
+This is Day 12 of my Python learning journey, where I am building my programming fundamentals through small practical projects every day.
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
