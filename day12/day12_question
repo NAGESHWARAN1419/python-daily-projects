@@ -1,0 +1,36 @@
+Day 12: Simple Grading System
+
+Concepts used:
+ input(),
+ int()/float(),
+ if-elif-else
+
+Problem Statement
+Write a Python program that:
+1.Asks the user to enter their marks (out of 100).
+2.Assigns a grade based on these rules:
+   marks >= 90 → Grade A+
+   80 <= marks < 90 → Grade A
+   70 <= marks < 80 → Grade B
+   60 <= marks < 70 → Grade C
+   40 <= marks < 60 → Grade D
+         marks < 40 → Fail
+
+
+Prints the grade.
+Also validate: if marks are < 0 or > 100, print an "Invalid marks" message instead of a grade.
+Example Run
+
+Enter your marks: 85
+Grade: A
+
+Enter your marks: 35
+Grade: Fail
+
+Enter your marks: 150
+Invalid marks! Please enter a value between 0 and 100.
+
+Bonus (optional)
+1.Loop so the user can check multiple students until they type q to quit.
+2.Track and print the average grade/marks of all students checked in that session (hint: keep a running total and a count).
+
