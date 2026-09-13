@@ -1,0 +1,353 @@
+🏧 Day 14: Basic ATM Simulator
+
+📌 Project Overview
+
+This project is a beginner-friendly ATM Simulator built using Python.
+The program starts with a fixed balance of 5000 and allows the user to:
+
+🔐 Enter a PIN to access the ATM
+💰 Check the current balance
+➕ Deposit money
+➖ Withdraw money
+🚫 Prevent withdrawals when there are insufficient funds
+⚠️ Prevent negative deposit/withdrawal amounts
+🔒 Lock the card after 3 incorrect PIN attempts
+🚪 Exit the ATM
+
+This project mainly practices variables, if-elif-else, while loops, user input, and basic validation.
+
+
+✨ Features
+
+
+🔐 1. PIN Authentication
+
+The ATM uses a fixed PIN:
+
+pin = 1234
+
+The user gets 3 attempts to enter the correct PIN.
+
+If the PIN is incorrect:
+
+Wrong PIN. 2 attempts left.
+
+After 3 incorrect attempts:
+
+Too many wrong attempts. Card locked.
+
+
+💰 2. Check Balance
+
+Option 1 displays the current account balance.
+
+Example:
+
+1.Check Balance
+2.Deposit
+3.Withdraw
+4.Exit
+
+Choose an option: 1
+
+Current balance:5000
+
+
+➕ 3. Deposit Money
+
+Option 2 allows the user to deposit money.
+
+Example:
+
+Enter a deposit amount: 2000
+
+Deposit successful. New balance: 7000
+
+The program also checks for negative amounts:
+
+Enter a deposit amount: -500
+
+Invalid amount
+
+
+➖ 4. Withdraw Money
+
+Option 3 allows the user to withdraw money.
+
+The program checks whether enough money is available.
+
+Example:
+
+Enter amount to withdraw: 6000
+
+Insufficient funds!
+
+If enough money is available:
+
+Enter amount to withdraw: 2000
+
+Withdrawal successful. New balance 3000
+
+Negative withdrawals are also rejected:
+
+Enter amount to withdraw: -500
+
+Invalid amount!
+
+
+🚪 5. Exit
+
+Option 4 exits the ATM.
+
+Thank you for using the ATM.
+🎁 Bonus Features
+Bonus	Status
+PIN authentication	✅ Completed
+Maximum 3 PIN attempts	✅ Completed
+Lock after 3 wrong attempts	✅ Completed
+Validate negative deposit	✅ Completed
+Validate negative withdrawal	✅ Completed
+
+All optional bonus features were implemented. 🎉
+
+
+
+🧠 Concepts Used
+1. Variables
+
+Variables store information such as the balance, PIN, and number of attempts.
+
+amt = 5000
+pin = 1234
+attempt = 0
+
+2. while Loop
+
+The PIN system uses:
+
+while attempt < 3:
+
+This means:
+
+Keep asking for the PIN while the user still has attempts remaining.
+
+The ATM menu uses:
+
+while True:
+
+This keeps showing the ATM menu until the user selects Exit.
+
+3. if-elif-else
+
+The program uses conditions to decide what should happen.
+
+if option == 1:
+    ...
+elif option == 2:
+    ...
+elif option == 3:
+    ...
+
+Think of it like:
+
+"If the user chooses this, do this. Otherwise, check the next choice."
+
+4. PIN Checking
+
+The entered PIN is compared with the fixed PIN:
+
+if pin0 == pin:
+    access_granted = True
+    break
+
+If they match, access is granted.
+
+5. Boolean Variable
+access_granted = False
+
+This keeps track of whether the user successfully passed authentication.
+
+After entering the correct PIN:
+
+access_granted = True
+6. break
+
+break stops a loop.
+
+For example:
+
+if pin0 == pin:
+    access_granted = True
+    break
+
+Once the correct PIN is entered, there is no need to continue asking.
+
+
+🔄 How the Program Works
+
+The overall flow is:
+
+             START
+               │
+               ▼
+          Enter PIN
+               │
+        ┌──────┴──────┐
+        │             │
+    Correct?       Incorrect
+        │             │
+       YES            ▼
+        │        Attempts left?
+        │          │       │
+        │         YES      NO
+        │          │       │
+        │       Try again  LOCK
+        ▼
+    ATM MENU
+        │
+   ┌────┼─────────────┐
+   │    │      │      │
+   ▼    ▼      ▼      ▼
+Balance Deposit Withdraw Exit
+   │    │      │      │
+   └────┴──────┴──────┘
+              │
+              ▼
+         Back to Menu
+
+
+💡 Important Logic
+Withdrawal Check
+
+The program first checks whether the withdrawal is greater than the balance:
+
+if wd > amt:
+    print("Insufficient funds!")
+
+For example:
+
+Balance = 5000
+Withdrawal = 6000
+
+Since:
+
+6000 > 5000
+
+the withdrawal is rejected.
+
+Negative Amount Check
+
+For deposits:
+
+if dp < 0:
+    print("Invalid amount")
+
+For withdrawals:
+
+elif wd < 0:
+    print("Invalid amount!")
+
+This prevents values such as:
+
+Deposit: -1000
+Withdraw: -500
+
+
+🧪 Example
+Enter your PIN: 1234
+
+1.Check Balance
+2.Deposit
+3.Withdraw
+4.Exit
+
+Choose an option: 1
+Current balance:5000
+
+1.Check Balance
+2.Deposit
+3.Withdraw
+4.Exit
+
+Choose an option: 2
+Enter a deposit amount:1000
+Deposit successful. New balance: 6000
+
+1.Check Balance
+2.Deposit
+3.Withdraw
+4.Exit
+
+Choose an option: 3
+Enter amount to withdraw:2000
+Withdrawal successful. New balance 4000
+
+1.Check Balance
+2.Deposit
+3.Withdraw
+4.Exit
+
+Choose an option: 4
+Thank you for using the ATM.
+
+
+📂 Project Structure
+
+Following your Day 9+ naming rule:
+
+day14/
+├── day14_basic_atm_simulator.py
+├── day14_question
+└── read.me
+
+
+▶️ How to Run
+
+Open the project directory:
+
+cd day14
+
+Run the Python program:
+
+python3 day14_basic_atm_simulator.py
+
+
+📚 What I Learned
+
+Through this project, I practiced:
+
+Variables
+User input
+Integer conversion
+if-elif-else
+while loops
+break
+Boolean variables
+PIN authentication
+Attempt counting
+Balance calculations
+Input validation
+Conditional logic
+Building a menu-driven program
+
+This project is a good step toward understanding how real-world programs use conditions and loops to control user actions.
+
+
+🚀 Future Improvements
+
+Possible improvements for a future version:
+
+Allow the user to change the PIN
+Add transaction history
+Add multiple accounts
+Add account numbers
+Add transfer functionality
+Handle non-numeric input safely with try-except
+Store account information in a file/database
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
