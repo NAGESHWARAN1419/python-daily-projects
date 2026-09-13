@@ -1,0 +1,268 @@
+⭐ Pattern Printing — Stars & Pyramid
+
+A beginner-friendly Python program that prints different star patterns using nested for loops.
+The program allows the user to choose between a left-aligned triangle and a centered pyramid, and it can continue generating patterns until the user enters q.
+
+📌 Features
+⭐ Prints a left-aligned star triangle
+🔺 Prints a centered pyramid
+🔢 Allows the user to choose the number of rows
+🎯 Allows the user to choose the pattern
+🔄 Supports multiple pattern generations
+🚪 Allows the user to quit using q
+
+
+🧠 Concepts Used
+
+This project helped me practice:
+
+input()
+int() type conversion
+Variables
+Nested for loops
+range()
+print()
+end=""
+String multiplication
+Arithmetic operators
+while True
+if-elif
+break
+
+
+⭐ Pattern 1 — Left-Aligned Triangle
+
+For example, if the user enters 5:
+
+*
+**
+***
+****
+*****
+
+The program uses nested loops:
+
+for i in range(1, n + 1):
+    for j in range(i):
+        print("*", end="")
+    print()
+
+The outer loop controls the rows, while the inner loop controls how many stars are printed on each row.
+
+How it works
+
+For n = 5:
+
+Row 1 → *
+Row 2 → **
+Row 3 → ***
+Row 4 → ****
+Row 5 → *****
+
+
+🔺 Pattern 2 — Centered Pyramid
+
+For example, if the user enters 5:
+
+    *
+   ***
+  *****
+ *******
+*********
+
+The program calculates two things for every row:
+
+spaces = n - i
+stars = 2 * i - 1
+
+Then prints:
+
+print(" " * spaces + "*" * stars)
+How it works
+
+For n = 5:
+
+Row	Spaces	Stars
+1	4	1
+2	3	3
+3	2	5
+4	1	7
+5	0	9
+
+This creates the centered pyramid.
+
+
+🆕 Understanding end=""
+
+Normally:
+
+print("*")
+print("*")
+
+produces:
+
+*
+*
+
+because print() automatically moves to the next line.
+
+But:
+
+print("*", end="")
+print("*", end="")
+
+produces:
+
+**
+
+So end="" tells Python:
+
+"Don't move to the next line yet."
+
+After all the stars for one row are printed, the program uses:
+
+print()
+
+to move to the next line.
+
+
+💻 Example Run
+=======================================================
+==========Pattern Printing (Stars/Pyramid)=============
+=======================================================
+
+Enter the number of row or (press q to quit): 5
+Which pattern did you need press(1 or 2): 1
+
+*
+**
+***
+****
+*****
+
+______________________________________________________
+
+For the pyramid:
+
+Enter the number of row or (press q to quit): 5
+Which pattern did you need press(1 or 2): 2
+
+    *
+   ***
+  *****
+ *******
+*********
+
+______________________________________________________
+
+
+🔄 Multiple Pattern Generation
+
+The program uses:
+
+while True:
+
+This allows the user to generate another pattern without restarting the program.
+
+For example:
+
+Enter the number of row or (press q to quit): 4
+Which pattern did you need press(1 or 2): 1
+
+*
+**
+***
+****
+
+Enter the number of row or (press q to quit): 5
+Which pattern did you need press(1 or 2): 2
+
+    *
+   ***
+  *****
+ *******
+*********
+
+To quit:
+
+q
+
+The program uses:
+
+break
+
+to exit the loop.
+
+
+
+🎯 Pattern Selection
+
+The program provides two choices:
+
+1 → Left-aligned triangle
+2 → Centered pyramid
+
+The selection is handled using:
+
+if patten == 1:
+    ...
+elif patten == 2:
+    ...
+
+
+🎯 Bonus Features Completed
+
+Both optional bonus requirements have been implemented:
+
+✅ User can choose Pattern 1 or Pattern 2
+✅ User can generate multiple patterns
+✅ User can quit using q
+
+
+📂 Project Structure
+
+Following your Day 09 onward naming rule, the project should be:
+
+day13/
+│
+├── day13_pattern_printing_stars_pyramid.py
+├── day13_question
+└── README.md
+
+Important: For future days, I'll keep following your rule:
+
+dayXX_"heading"
+dayXX_question
+
+So for Day 14, the main file will follow the same naming style.
+
+
+🚀 How to Run
+
+Make sure Python 3 is installed.
+
+Run the program using:
+
+python3 day13_pattern_printing_stars_pyramid.py
+
+Then enter the number of rows and select the pattern.
+
+To quit:
+
+q
+
+
+📚 What I Learned
+
+Through this project, I learned how nested loops work.
+The outer loop controls the rows, while the inner loop performs repeated work inside each row.
+I also learned how print(..., end="") can be used to print multiple characters on the same line.
+The pyramid pattern helped me understand how spaces and stars can be calculated mathematically to create a centered shape.
+This is Day 13 of my Python learning journey, where I am building my programming fundamentals through small practical projects every day.
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
