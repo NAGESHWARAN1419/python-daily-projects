@@ -1,0 +1,44 @@
+Day 14: Basic ATM Simulator
+
+Concepts used: variables, if-elif-else, loops (no functions yet — that's Day 31)
+
+Problem Statement
+Write a Python program that simulates a simple ATM:
+Start with a fixed balance, e.g. balance = 5000.
+Show a menu with options:
+   1. Check Balance
+   2. Deposit
+   3. Withdraw
+   4. Exit
+
+Based on the user's choice:
+Check Balance → show current balance
+Deposit → ask for amount, add it to balance
+Withdraw → ask for amount, subtract from balance — but don't allow withdrawal if amount > balance (print "Insufficient funds" instead)
+Exit → quit the program
+Loop back to the menu after every action (except Exit).
+
+
+Example Run
+1. Check Balance
+2. Deposit
+3. Withdraw
+4. Exit
+Choose an option: 3
+Enter amount to withdraw: 6000
+Insufficient funds!
+
+Choose an option: 3
+Enter amount to withdraw: 2000
+Withdrawal successful. New balance: 3000
+
+Choose an option: 1
+Current balance: 3000
+
+Choose an option: 4
+Thank you for using the ATM. 
+
+
+Bonus (optional)
+1.Add a PIN check at the start (e.g. fixed PIN 1234) — if wrong, deny access; allow 3 attempts before locking out.
+2.Validate that deposit/withdraw amounts aren't negative.
