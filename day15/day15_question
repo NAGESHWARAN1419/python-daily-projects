@@ -1,0 +1,45 @@
+Day 15: Mini Review Project — Unit Converter
+
+This is your Phase 1 review project — no new concepts, just combining everything from Days 1–14 (input, conditionals, loops, arithmetic, menus) into one polished, menu-driven tool.
+Problem Statement
+
+
+Write a Python program with a main menu:
+1. Length Converter
+2. Weight Converter
+3. Temperature Converter
+4. Exit
+
+
+Each option should lead to its own sub-menu:
+1. Length Converter
+1. Kilometers to Miles
+2. Miles to Kilometers
+km → miles: miles = km * 0.621371
+miles → km: km = miles / 0.621371
+2. Weight Converter
+1. Kilograms to Pounds
+2. Pounds to Kilograms
+kg → lb: lb = kg * 2.20462
+lb → kg: kg = lb / 2.20462
+3. Temperature Converter — reuse your Day 5 logic (Celsius ↔ Fahrenheit)
+After every conversion, loop back to the main menu (not exit the program), until the user picks Exit.
+
+
+Example Run
+1. Length Converter
+2. Weight Converter
+3. Temperature Converter
+4. Exit
+Choose: 1
+
+1. Km to Miles
+2. Miles to Km
+Choose: 1
+Enter km: 10
+10 km = 6.21 miles
+
+What this project is testing
+Can you structure nested menus cleanly (menu → sub-menu → calculation → back to menu)?
+Can you reuse logic you've already written (Day 5's temperature code) inside a bigger program?
+Round all results to 2 decimal places.
