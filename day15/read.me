@@ -1,0 +1,396 @@
+🔄 Day 15: Mini Review Project — Unit Converter
+
+📌 Project Overview
+
+This project is a Phase 1 review project that combines the Python concepts learned from Days 1–14.
+Instead of learning a completely new concept, this project brings together:
+
+User input
+Variables
+Arithmetic calculations
+if-elif-else
+while loops
+Nested menus
+Sub-menus
+break
+Number conversion
+Rounding results
+
+The program works as a menu-driven unit converter with three different conversion categories:
+
+📏 Length Converter
+⚖️ Weight Converter
+🌡️ Temperature Converter
+🚪 Exit
+
+
+✨ Features
+
+
+📏 1. Length Converter
+
+The length menu provides two conversions:
+
+1.Km to Miles
+2.Miles to Km
+3.Back to Menu
+Kilometers → Miles
+
+The program uses:
+
+m = round(km * 0.621371, 2)
+
+Example:
+
+Enter Km: 10
+10.0 km = 6.21 miles
+Miles → Kilometers
+
+The program uses:
+
+km = round(m / 0.621371, 2)
+
+Example:
+
+Enter Miles: 10
+10.0 miles = 16.09 km
+
+
+⚖️ 2. Weight Converter
+
+The weight menu provides:
+
+1.Kilogram to pounds
+2.Pounds to Kilogram
+3.Back to Menu
+Kilograms → Pounds
+lb = round(kg * 2.20462, 2)
+
+Example:
+
+Enter Kilogram: 10
+10.0 kilogram = 22.05 lb
+Pounds → Kilograms
+kg = round(lb / 2.20462, 2)
+
+Example:
+
+Enter Pounds: 22
+22.0 lb = 9.98 kilogram
+
+
+🌡️ 3. Temperature Converter
+
+This section reuses the Celsius/Fahrenheit conversion logic from Day 5.
+
+The sub-menu contains:
+
+1.Celsius to Fahrenheit
+2.Fahrenheit to Celsius
+3.Back to Menu
+Celsius → Fahrenheit
+f = round((c * 9/5) + 32, 2)
+
+Example:
+
+Enter Celsius: 30
+30.0°C = 86.0°F
+Fahrenheit → Celsius
+c = round((f - 32) * 5/9, 2)
+
+Example:
+
+Enter Fahrenheit: 86
+86.0°F = 30.0°C
+🔙 Back to Main Menu
+
+A useful feature in your program is the Back to Menu option.
+
+For example:
+
+1.Km to Miles
+2.Miles to Km
+3.Back to Menu
+
+When the user selects 3:
+
+elif opt1 == 3:
+    break
+
+The break exits the sub-menu loop, not the entire program.
+
+So the user returns to:
+
+1.Lenght Converter
+2.Weight Converter
+3.Temperature Converter
+4.Exit
+
+This is an important example of using nested loops.
+
+
+
+🧠 How the Nested Menu Works
+
+The program has a main while loop:
+
+while True:
+
+Inside it, each converter has another while loop.
+
+The structure is basically:
+
+MAIN MENU
+   │
+   ├── 1. Length
+   │      │
+   │      ├── Km → Miles
+   │      ├── Miles → Km
+   │      └── Back
+   │
+   ├── 2. Weight
+   │      │
+   │      ├── Kg → Pounds
+   │      ├── Pounds → Kg
+   │      └── Back
+   │
+   ├── 3. Temperature
+   │      │
+   │      ├── Celsius → Fahrenheit
+   │      ├── Fahrenheit → Celsius
+   │      └── Back
+   │
+   └── 4. Exit
+
+Think of it like a building:
+
+🏢 Main menu = building
+🚪 Length = one room
+🚪 Weight = another room
+🚪 Temperature = another room
+🔙 Back = leave the room and return to the building
+
+
+
+🎯 Main Menu
+
+The program starts with:
+
+while True:
+    print("1.Lenght Converter")
+    print("2.Weight Converter")
+    print("3.Temperature Converter")
+    print("4.Exit")
+
+The user's choice is stored in:
+
+opt0 = int(input("Choose:"))
+
+Then if-elif-else decides which converter to open.
+
+
+
+🔢 Rounding Results
+
+All conversion results are rounded to 2 decimal places using:
+
+round(value, 2)
+
+For example:
+
+m = round(km * 0.621371, 2)
+
+This makes results easier to read instead of displaying many decimal places.
+
+
+⚠️ Invalid Menu Choices
+
+Each sub-menu contains an else block:
+
+else:
+    print("Invalid operation")
+    print("Press 3 to back to menu")
+
+So if the user enters something other than the available options, the program displays an error message.
+
+
+🧪 Example Run
+1.Lenght Converter
+2.Weight Converter
+3.Temperature Converter
+4.Exit
+Choose: 1
+
+1.Km to Miles
+2.Miles to Km
+3.Back to Menu
+Choose: 1
+
+Enter Km: 10
+10.0 km = 6.21 miles
+
+1.Km to Miles
+2.Miles to Km
+3.Back to Menu
+Choose: 3
+
+1.Lenght Converter
+2.Weight Converter
+3.Temperature Converter
+4.Exit
+Choose: 3
+
+1.Celsius to Fahrenheit
+2.Fahrenheit to Celsius
+3.Back to Menu
+Choose: 1
+
+Enter Celsius: 30
+30.0°C = 86.0°F
+
+1.Celsius to Fahrenheit
+2.Fahrenheit to Celsius
+3.Back to Menu
+Choose: 3
+
+1.Lenght Converter
+2.Weight Converter
+3.Temperature Converter
+4.Exit
+Choose: 4
+
+=====================================
+
+Bye
+
+=====================================
+
+📚 Concepts Practiced
+
+This project reviews the concepts from the previous days:
+
+Concept	How it is used:
+
+Variables----->Store input and conversion results
+input()------->Get choices and values
+int()--------->Convert menu choices
+float()------->Convert measurement values
+if-elif-else-->Select menus and conversions
+while--------->Keep menus running
+Nested loops-->Create sub-menus
+break--------->Return from sub-menu / exit
+Arithmetic---->Perform conversions
+round()------->Round results to 2 decimals
+f-strings----->Display formatted results
+
+
+🔁 Day 5 Logic Reused
+
+One important goal of this project was to reuse something learned previously.
+
+The temperature conversion from Day 5 has been incorporated into this larger menu-driven program:
+
+if opt1 == 1:
+    c = float(input("Enter Celsius:"))
+    f = round((c * 9/5) + 32, 2)
+
+and:
+
+elif opt1 == 2:
+    f = float(input("Enter Fahrenheit:"))
+    c = round((f - 32) * 5/9, 2)
+
+This demonstrates that you don't always need to write completely new logic—you can take logic you already understand and place it inside a bigger program.
+
+
+
+🎯 What This Project Tests
+
+✅ Nested Menu Structure
+
+You successfully created:
+
+Main Menu
+    ↓
+Sub Menu
+    ↓
+Calculation
+    ↓
+Back to Sub Menu
+    ↓
+Back to Main Menu
+
+
+✅ Reusing Previous Knowledge
+
+You reused the Day 5 temperature converter.
+
+
+✅ Rounding
+
+All conversion results use:
+
+round(..., 2)
+
+
+✅ Loop Control
+
+You use:
+
+break
+
+to leave a sub-menu or exit the program.
+
+
+📂 Project Structure
+
+Following your Day 9+ naming rule:
+
+
+day15/
+├── day15_unit_converter.py
+├── day15_question
+└── read.me
+
+
+▶️ How to Run
+
+Open the project directory:
+
+cd day15
+
+Run the program:
+
+python3 day15_unit_converter.py
+
+
+💡 What I Learned
+
+This project helped me understand how separate Python concepts can be combined into one useful application.
+
+I practiced:
+
+Creating a main menu
+Creating sub-menus
+Using nested while loops
+Returning from a sub-menu using break
+Performing different mathematical conversions
+Reusing logic from an earlier project
+Formatting output with f-strings
+Rounding calculations to 2 decimal places
+Handling invalid menu choices
+
+
+🏆 Phase 1 Review Complete!
+
+Days 1–14 → Concepts learned
+Day 15 → Concepts combined into one project
+
+This is a good milestone because the program is no longer just a small single-purpose calculator—it is a multi-option menu-driven application.
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
