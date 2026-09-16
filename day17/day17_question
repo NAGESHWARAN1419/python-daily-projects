@@ -1,0 +1,32 @@
+Day 17: Word/Character Counter in a Sentence
+
+Concepts used:
+ .split(),
+ len(),
+ strings
+
+
+Problem Statement
+Write a Python program that:
+1.Asks the user to enter a sentence.
+2.Counts and prints:
+    i)Total number of characters (including spaces)
+   ii)Total number of characters (excluding spaces)
+  iii)Total number of words
+
+
+Example Run
+Enter a sentence: I love Python programming
+Characters (with spaces): 26
+Characters (without spaces): 23
+Words: 4
+len("hello")   # → 5
+.split() — breaks a sentence into a list of words, splitting on spaces by default:
+"I love Python".split()   # → ['I', 'love', 'Python']
+len("I love Python".split())   # → 3  (number of words)
+Removing spaces (you already know this from Day 16):
+"I love Python".replace(" ", "")   # → "IlovePython"
+
+Bonus (optional)
+1.Count how many vowels (a, e, i, o, u) are in the sentence — hint: loop through each character and check membership with in, e.g. if char in "aeiouAEIOU":
+2.Loop so the user can check multiple sentences until they type q to quit.
