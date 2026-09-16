@@ -1,0 +1,442 @@
+🔤 Day 16: Palindrome String Checker
+
+
+📌 Project Overview
+
+This project is a Palindrome String Checker built using Python.
+The program asks the user to enter a word or phrase and checks whether it reads the same forwards and backwards.
+
+
+For example:
+
+madam → madam
+
+So:
+
+madam is a palindrome.
+
+The program is also case-insensitive, meaning:
+
+Madam
+MADAM
+madam
+
+are all treated the same.
+
+This project introduces an important new Python concept:
+
+
+
+🔄 String slicing with [::-1] to reverse a string.
+
+✨ Features
+
+
+🔤 1. Check a Word or Phrase
+
+The program accepts a word or phrase:
+
+wrd0 = input("Enter a word or (press q to Quite): ")
+
+Example:
+
+Enter a word or (press q to Quite): madam
+
+
+🔡 2. Case-Insensitive Checking
+
+The program converts the input to lowercase:
+
+wrd1 = wrd0.lower()
+
+For example:
+
+Madam
+
+becomes:
+
+madam
+
+This means uppercase and lowercase letters don't affect the palindrome check.
+
+
+🚫 3. Ignore Spaces
+
+You implemented the first bonus:
+
+wrd = wrd1.replace(" ", "")
+
+For example:
+
+nose son
+
+becomes:
+
+noseson
+
+Then the program checks:
+
+noseson
+
+against its reverse:
+
+noseson
+
+So it is detected as a palindrome.
+
+
+🔄 4. Reverse the String
+
+The main new concept is:
+
+r_wrd = wrd[::-1]
+
+For example:
+
+text = "hello"
+
+After:
+
+text[::-1]
+
+the result is:
+
+olleh
+
+
+🔁 5. Multiple Checks
+
+You also implemented the second bonus.
+
+The program uses:
+
+while True:
+
+so the user can check multiple words or phrases without restarting the program.
+
+The program continues until the user enters:
+
+q
+
+
+🚪 6. Quit Option
+
+If the user enters q, the program exits:
+
+if wrd == "q":
+    ...
+    break
+
+
+⚠️ 7. Empty Input Validation
+
+You also added a useful validation:
+
+if wrd == "":
+    print("Please enter an actual word or phrase")
+
+So pressing Enter without entering anything produces a message instead of performing the palindrome check.
+
+
+🎁 Bonus Features
+Bonus	Status
+Ignore spaces	✅ Completed
+Check multiple entries using a loop	✅ Completed
+Quit using q	✅ Completed
+Empty input validation	✅ Extra feature
+
+Both requested bonuses are completed. 🎉
+
+🧠 New Concept: String Slicing
+
+The most important new concept in Day 16 is string slicing.
+
+You used:
+
+wrd[::-1]
+
+The general slicing format is:
+
+text[start : stop : step]
+
+In:
+
+wrd[::-1]
+
+the values are:
+
+start → empty
+stop  → empty
+step  → -1
+
+A step of -1 means:
+
+Move through the string backwards.
+
+
+
+Imagine the letters are standing in a line:
+
+H → E → L → L → O
+
+Normally you walk:
+
+H → E → L → L → O
+
+But [::-1] tells Python:
+
+"Start from the end and walk backwards!"
+
+So:
+
+O → L → L → E → H
+
+Result:
+
+olleh
+
+
+🔡 .lower()
+
+You used:
+
+wrd1 = wrd0.lower()
+
+.lower() converts letters to lowercase.
+
+Example:
+
+"Madam".lower()
+
+becomes:
+
+madam
+
+This allows:
+
+Madam
+
+and:
+
+madam
+
+to be treated as the same word.
+
+
+
+🚫 .replace()
+
+You used:
+
+wrd = wrd1.replace(" ", "")
+
+This removes spaces.
+
+Example:
+
+never odd or even
+
+becomes:
+
+neveroddoreven
+
+This makes it possible to check phrases instead of only single words.
+
+
+
+🔄 Palindrome Logic
+
+Your program eventually compares:
+
+elif wrd == r_wrd:
+
+In simple terms:
+
+Original → madam
+Reverse  → madam
+           ↓
+         Same?
+           ↓
+          YES
+           ↓
+      Palindrome
+
+For a non-palindrome:
+
+Original → python
+Reverse  → nohtyp
+           ↓
+         Different
+           ↓
+       NOT Palindrome
+
+
+🧩 How Your Program Works
+
+The overall flow is:
+
+             START
+               │
+               ▼
+          Enter text
+               │
+               ▼
+          Convert lowercase
+               │
+               ▼
+          Remove spaces
+               │
+               ▼
+          Reverse string
+               │
+          ┌────┴────┐
+          │         │
+        Empty?      │
+          │         │
+         YES        ▼
+          │     Is it "q"?
+          │       │    │
+          │      YES   NO
+          │       │     │
+          │      EXIT   ▼
+          │         Compare
+          │        original/reverse
+          │             │
+          │       ┌─────┴─────┐
+          │       │           │
+          │      Same       Different
+          │       │           │
+          │       ▼           ▼
+          │   Palindrome   NOT Palindrome
+          │
+          ▼
+      Ask again
+
+
+🧪 Example Runs
+✅ Palindrome
+Enter a word or (press q to Quite): Madam
+
+Madam is a palindrome.
+
+
+❌ Not a Palindrome
+Enter a word or (press q to Quite): Python
+
+Python is NOT a palindrome.
+
+
+✅ Phrase
+Enter a word or (press q to Quite): never odd or even
+
+never odd or even is a palindrome.
+
+
+⚠️ Empty Input
+Enter a word or (press q to Quite):
+
+Please enter an actual word or phrase
+
+
+🚪 Quit
+Enter a word or (press q to Quite): q
+
+=====================================================
+
+Bye
+
+=====================================================
+
+
+📚 Concepts Used
+Concept	How it is used
+Strings	Store the user's word/phrase
+input()	Get user text
+.lower()	Make checking case-insensitive
+.replace()	Remove spaces
+String slicing	Reverse the string
+[::-1]	Reverse string
+if-elif-else	Decide the result
+while True	Allow repeated checks
+break	Exit the loop
+Variables	Store processed strings
+Comparison ==	Compare original and reversed text
+
+
+🔍 Important Difference from Day 10
+
+In Day 10, you checked whether a number was a palindrome.
+
+You had to manually reverse the number using:
+
+digit = num % 10
+r_num = r_num * 10 + digit
+num = num // 10
+
+In Day 16, strings make this much easier:
+
+r_wrd = wrd[::-1]
+
+So:
+
+Day 10 → Number → mathematical reversal
+Day 16 → String → slicing reversal
+
+This is a good example of how Python provides different tools for different data types.
+
+
+📂 Project Structure
+
+Following your Day 9+ naming rule:
+
+day16/
+├── day16_palindrome_string_checker.py
+├── day16_question
+└── read.me
+
+
+▶️ How to Run
+
+Open the project directory:
+
+cd day16
+
+Run the program:
+
+python3 day16_palindrome_string_checker.py
+
+
+💡 What I Learned
+
+In Day 16, I learned how to work with strings and introduced string slicing.
+
+I practiced:
+
+Working with strings
+.lower()
+.replace()
+String slicing
+Reversing strings using [::-1]
+Comparing strings
+Handling phrases with spaces
+Using while loops
+Using break
+Validating empty input
+Building a repeated string-checking program
+
+
+🏆 Phase 2 Begins!
+
+Day 16 is a nice step forward from the number-based problems of Days 9–15.
+
+The key thing learned today is:
+
+text[::-1] → reverse a string
+
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
