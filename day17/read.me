@@ -1,0 +1,473 @@
+🔤 Day 17: Word/Character Counter in a Sentence
+
+📌 Project Overview
+
+This project is a Word/Character Counter built using Python.
+The program asks the user to enter a sentence and calculates:
+
+🔢 Total characters including spaces
+🔢 Total characters excluding spaces
+📝 Total number of words
+🔤 Total number of vowels
+
+The project introduces two useful string operations:
+
+.split() → separates a sentence into words
+len() → counts the number of items/characters
+
+It also reuses the .replace() concept learned in Day 16.
+
+
+✨ Features
+
+🔢 1. Count Characters With Spaces
+
+The program uses:
+
+ste1 = len(ste)
+
+For example:
+
+I love Python
+
+Every character is counted, including spaces.
+
+
+🚫 2. Count Characters Without Spaces
+
+You used .replace() to remove spaces:
+
+ste2 = len(ste.replace(" ", ""))
+
+For example:
+
+I love Python
+
+becomes:
+
+IlovePython
+
+Then len() counts the remaining characters.
+
+
+📝 3. Count Words
+
+The program uses:
+
+ste3 = len(ste.split())
+
+.split() breaks the sentence into separate words.
+
+Example:
+
+"I love Python".split()
+
+produces:
+
+["I", "love", "Python"]
+
+Then:
+
+len(["I", "love", "Python"])
+
+gives:
+
+3
+
+
+🔤 4. Count Vowels
+
+You implemented the first bonus feature.
+
+The program loops through every character:
+
+for char in ste:
+    if char in "aeiouAEIOU":
+        v += 1
+
+This checks whether each character is a vowel.
+
+For example:
+
+I love Python programming
+
+contains vowels such as:
+
+I → vowel
+o → vowel
+e → vowel
+o → vowel
+o → vowel
+a → vowel
+i → vowel
+
+The program counts them automatically.
+
+
+
+🔁 5. Check Multiple Sentences
+
+You also implemented the second bonus feature.
+
+The program uses:
+
+while True:
+
+This allows the user to enter multiple sentences.
+
+The program continues until:
+
+q
+
+is entered.
+
+
+🎁 Bonus Features
+Bonus	Status
+Count vowels	✅ Completed
+Loop for multiple sentences	✅ Completed
+Quit using q	✅ Completed
+
+Both requested bonus features are completed. 🎉
+
+
+🧠 New Concept: len()
+
+len() tells Python:
+
+"How many things are inside this?"
+
+For a string:
+
+len("hello")
+
+the result is:
+
+5
+
+Because:
+
+h → 1
+e → 2
+l → 3
+l → 4
+o → 5
+
+
+
+Imagine five toys:
+
+🧸 🧸 🧸 🧸 🧸
+
+You ask:
+
+"How many toys?"
+
+len() answers:
+
+5
+
+The same idea works with characters and lists.
+
+
+
+📝 New Concept: .split()
+
+.split() breaks a string into pieces.
+
+For example:
+
+sentence = "I love Python"
+
+Then:
+
+sentence.split()
+
+becomes:
+
+["I", "love", "Python"]
+
+
+
+Imagine this sentence:
+
+I | love | Python
+
+The spaces act like walls separating the words.
+
+.split() tells Python:
+
+"Cut the sentence wherever there is a space."
+
+Then Python gets individual words.
+
+🔄 Combining split() and len()
+
+Your code:
+
+ste3 = len(ste.split())
+
+does two things:
+
+Step 1 — Split
+ste.split()
+
+Example:
+
+"I love Python programming"
+
+becomes:
+
+["I", "love", "Python", "programming"]
+Step 2 — Count
+len(...)
+
+counts the four items:
+
+4
+
+So:
+
+len(ste.split())
+
+means:
+
+Split the sentence into words, then count how many words there are.
+
+
+🚫 Removing Spaces
+
+You already learned this in Day 16:
+
+ste.replace(" ", "")
+
+Example:
+
+"I love Python"
+
+becomes:
+
+"IlovePython"
+
+Then:
+
+len(ste.replace(" ", ""))
+
+counts the characters without spaces.
+
+
+🔤 Understanding the Vowel Counter
+
+Your code:
+
+v = 0
+
+for char in ste:
+    if char in "aeiouAEIOU":
+        v += 1
+
+Let's break it down.
+
+Step 1
+
+Start the counter at zero:
+
+v = 0
+Step 2
+
+Look at every character:
+
+for char in ste:
+
+For:
+
+hello
+
+Python checks:
+
+h
+e
+l
+l
+o
+Step 3
+
+Check whether the character is a vowel:
+
+if char in "aeiouAEIOU":
+Step 4
+
+If it is a vowel:
+
+v += 1
+
+This means:
+
+v = v + 1
+
+
+🧩 How the Program Works
+              START
+                │
+                ▼
+        Enter a sentence
+                │
+          ┌─────┴─────┐
+          │           │
+        "q"?          NO
+          │           │
+         YES          ▼
+          │      Count characters
+          │           │
+          │           ▼
+          │      Remove spaces
+          │           │
+          │           ▼
+          │        Split words
+          │           │
+          │           ▼
+          │       Count vowels
+          │           │
+          │           ▼
+          │      Display results
+          │           │
+          │           ▼
+          │      Enter again
+          │
+          ▼
+         BYE
+
+
+
+🧪 Example Run
+=======================================================
+Word/Character Counter in a Sentence
+=======================================================
+
+Enter a sentence: I love Python programming
+
+-------------------------------------------------------
+Character (with spaces): 25
+Character (without spaces): 22
+Words: 4
+Vowels: 7
+-------------------------------------------------------
+
+Enter a sentence: q
+
+=======================================================
+
+Bye
+
+=======================================================
+
+The exact character/vowel counts depend on the sentence entered. Your program calculates them automatically.
+
+
+
+📚 Concepts Used
+Concept	How it is used
+Strings	Store the sentence
+input()	Get the sentence
+len()	Count characters and words
+.replace()	Remove spaces
+.split()	Separate words
+for loop	Check each character
+in	Check whether a character is a vowel
+if	Test vowel condition
++=	Increase vowel counter
+while True	Allow repeated checks
+break	Exit the program
+Variables	Store calculated values
+
+
+🔗 Connection With Previous Days
+
+This project combines several things you've already learned.
+
+Day 13 → Loops
+
+You continue using loops to repeat operations.
+
+Day 14 → Menu/Program Flow
+
+You continue practicing programs that run continuously until the user exits.
+
+Day 15 → Combining Concepts
+
+Day 15 combined several concepts into a single application.
+
+Day 16 → String Processing
+
+You reuse:
+
+.lower()
+
+and:
+
+.replace()
+
+Day 17 adds:
+
+.split()
+
+and:
+
+len()
+
+So your string-processing skills are gradually building.
+
+
+
+💡 What I Learned
+
+In Day 17, I learned how to analyze a sentence using Python string operations.
+
+I practiced:
+
+Using len() with strings
+Counting characters
+Removing spaces with .replace()
+Splitting sentences with .split()
+Counting words
+Looping through individual characters
+Checking membership with in
+Counting vowels using a variable
+Using while loops for repeated input
+Using break to exit
+
+
+🏆 Key Things to Remember
+len("hello")              → count characters
+"hello world".split()     → separate words
+"hello world".replace(" ", "") → remove spaces
+char in "aeiouAEIOU"      → check for a vowel
+
+
+📂 Project Structure
+
+Following your Day 9+ naming rule:
+
+day17/
+├── day17_word_character_counter.py
+├── day17_question
+└── read.me
+
+
+▶️ How to Run
+
+Open the project directory:
+
+cd day17
+
+Run the program:
+
+python3 day17_word_character_counter.py
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
+
