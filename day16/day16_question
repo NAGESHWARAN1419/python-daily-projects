@@ -1,0 +1,34 @@
+Day 16: Palindrome String Checker
+
+Concepts used:
+ strings,
+ string slicing,
+ .lower()
+
+
+Problem Statement
+Write a Python program that:
+1.Asks the user to enter a word or phrase.
+2.Checks if it's a palindrome — reads the same forwards and backwards.
+3.Should be case-insensitive ("Madam" should count as a palindrome, same as "madam").
+
+
+Example Run
+Enter a word: madam
+'madam' is a palindrome.
+
+Enter a word: Python
+'Python' is NOT a palindrome.
+
+New concept: String slicing / reversing
+Unlike numbers (Day 10), strings have a much easier trick to reverse them:
+text = "hello"
+reversed_text = text[::-1]   # → "olleh"
+
+This slicing syntax [::-1] means "give me the whole string, stepping backwards." We'll unpack exactly how slicing works if you're curious — but for now, know that [::-1] is the standard way to reverse a string in Python.
+Also useful: .lower() converts a string to all-lowercase, so comparisons aren't affected by case:
+"Madam".lower()   # → "madam"
+
+Bonus (optional)
+Ignore spaces too, so phrases like "nose son" or "never odd or even" are correctly detected as palindromes (hint: use .replace(" ", "") to remove spaces before checking).
+Loop so the user can check multiple entries until they type q to quit.
