@@ -1,0 +1,53 @@
+Day 18: Vowel Counter in a String
+
+Since you already built a vowel counter as yesterday's bonus, let's extend it into something a bit richer today rather than repeating the same task.
+Concepts used: for loops on strings, in, dictionaries (light intro)
+vowel_count = {"a": 0, "e": 0, "i": 0, "o": 0, "u": 0}
+
+# to increase the count for a specific key:
+vowel_count["a"] += 1
+
+# to loop through and print all key-value pairs:
+for key in vowel_count:
+    print(key, ":", vowel_count[key])Problem Statement
+
+Write a Python program that:
+1.Asks the user to enter a sentence.
+2.Counts and prints how many of each individual vowel appears (not just total vowels) — i.e., how many as, how many es, how many is, os, us separately.
+3.Should be case-insensitive (A and a both count as a).
+
+
+Example Run
+Enter a sentence: An elephant is an animal
+a: 5
+e: 2
+i: 1
+o: 0
+u: 0
+
+
+New concept: Dictionary (just the basics for now — full topic is Day 22)
+A dictionary stores key-value pairs. Here, each vowel is a "key" and its count is the "value":
+vowel_count = {"a": 0, "e": 0, "i": 0, "o": 0, "u": 0}
+
+# to increase the count for a specific key:
+vowel_count["a"] += 1
+
+# to loop through and print all key-value pairs:
+for key in vowel_count:
+    print(key, ":", vowel_count[key])
+Hint for the full solution
+sentence = input("Enter a sentence: ").lower()
+vowel_count = {"a": 0, "e": 0, "i": 0, "o": 0, "u": 0}
+
+for char in sentence:
+    if char in vowel_count:
+        vowel_count[char] += 1
+
+for key in vowel_count:
+    print(f"{key}: {vowel_count[key]}")
+Trace through this by hand with a short sentence first — pick a 5-6 word sentence and count vowels manually, then check your code's output matches.
+
+
+Bonus (optional)
+Loop so the user can check multiple sentences until they type q to quit
