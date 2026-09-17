@@ -1,0 +1,450 @@
+🔤 Day 18: Vowel Counter in a String
+
+
+📌 Project Overview
+
+This project is an improved version of the vowel counter from Day 17.
+Instead of counting only the total number of vowels, this program counts each vowel separately:
+
+a
+e
+i
+o
+u
+
+For example:
+
+a: 5
+e: 2
+i: 1
+o: 0
+u: 0
+
+The project introduces the basics of Python dictionaries while continuing to practice strings, for loops, and the in operator.
+
+
+
+✨ Features
+🔤 1. Count Each Vowel Separately
+
+The program creates a dictionary containing all five vowels:
+
+v_c = {"a": 0, "e": 0, "i": 0, "o": 0, "u": 0}
+
+Each vowel starts with a count of 0.
+
+As the program finds vowels, their individual counts increase.
+
+
+
+🔡 2. Case-Insensitive Counting
+
+The sentence is converted to lowercase immediately:
+
+ste = input("Enter a sentence or (press q in Quit):").lower()
+
+So:
+
+A
+a
+E
+e
+
+are handled consistently.
+
+For example:
+
+APPLE
+
+is converted to:
+
+apple
+
+
+🔎 3. Check Each Character
+
+The program loops through the sentence:
+
+for char in ste:
+    if char in v_c:
+        v_c[char] += 1
+
+Each character is checked to see whether it is one of the dictionary's vowel keys.
+
+If it is a vowel, its count increases.
+
+
+
+📖 4. Dictionary Basics
+
+The main new concept is a dictionary.
+
+Your dictionary is:
+
+v_c = {"a": 0, "e": 0, "i": 0, "o": 0, "u": 0}
+
+Think of it as five small boxes:
+
+┌─────┬─────┐
+│  a  │  0  │
+├─────┼─────┤
+│  e  │  0  │
+├─────┼─────┤
+│  i  │  0  │
+├─────┼─────┤
+│  o  │  0  │
+├─────┼─────┤
+│  u  │  0  │
+└─────┴─────┘
+
+The vowel is the key and the number is its value.
+
+
+
+➕ 5. Increase a Vowel's Count
+
+You use:
+
+v_c[char] += 1
+
+If:
+
+a: 0
+
+is found, it becomes:
+
+a: 1
+
+If another a is found:
+
+a: 2
+
+and so on.
+
+
+🔁 6. Multiple Sentences
+
+You also completed the optional bonus:
+
+while True:
+
+This allows the user to check multiple sentences.
+
+The program continues until the user enters:
+
+q
+
+
+🎁 Bonus Feature
+Bonus	Status
+Loop for multiple sentences	✅ Completed
+Quit using q	                ✅ Completed
+
+The optional bonus is fully implemented. 🎉
+
+
+
+🧠 New Concept: Dictionary
+
+A Python dictionary stores information as:
+
+key → value
+
+Your dictionary:
+
+v_c = {"a": 0, "e": 0, "i": 0, "o": 0, "u": 0}
+
+can be understood as:
+
+"a" → 0
+"e" → 0
+"i" → 0
+"o" → 0
+"u" → 0
+
+
+Imagine five labeled boxes:
+
+📦 A → 0
+📦 E → 0
+📦 I → 0
+📦 O → 0
+📦 U → 0
+
+When Python sees an a:
+
+📦 A → 1
+
+Another a:
+
+📦 A → 2
+
+Another:
+
+📦 A → 3
+
+The label tells Python which box to update.
+
+
+
+🔍 How v_c[char] += 1 Works
+
+Suppose:
+
+v_c = {"a": 0, "e": 0, "i": 0, "o": 0, "u": 0}
+
+Python finds:
+
+a
+
+Then:
+
+v_c["a"] += 1
+
+is basically:
+
+v_c["a"] = v_c["a"] + 1
+
+So:
+
+0 + 1 = 1
+
+Now the dictionary contains:
+
+a: 1
+
+
+🔎 Understanding if char in v_c
+
+Your code:
+
+if char in v_c:
+
+asks:
+
+"Is this character one of the keys in my dictionary?"
+
+For example:
+
+Sentence: hello
+
+Python checks:
+
+h → ❌
+e → ✅
+l → ❌
+l → ❌
+o → ✅
+
+Only e and o are found in the dictionary.
+
+Therefore:
+
+e: 1
+o: 1
+🔄 How Your Program Works
+              START
+                │
+                ▼
+         Enter a sentence
+                │
+                ▼
+          Convert to lowercase
+                │
+                ▼
+       Create vowel dictionary
+       a:0 e:0 i:0 o:0 u:0
+                │
+                ▼
+        Check every character
+                │
+        ┌───────┴───────┐
+        │               │
+    Is vowel?        Not vowel
+        │               │
+       YES              │
+        │               │
+        ▼               │
+   Increase count       │
+        │               │
+        └───────┬───────┘
+                │
+                ▼
+        Print all counts
+                │
+                ▼
+         Enter again
+                │
+                ▼
+             "q"?
+            /    \
+          NO      YES
+          │        │
+          └────────┘
+                   ▼
+                  BYE
+
+
+🧪 Example Run
+===================================================
+Vowel Counter in a String
+===================================================
+
+Enter a sentence or (press q in Quit): An elephant is an animal
+a:5
+e:2
+i:1
+o:0
+u:0
+
+Enter a sentence or (press q in Quit): Python programming
+a:0
+e:0
+i:1
+o:2
+u:0
+
+Enter a sentence or (press q in Quit): q
+
+===================================================
+
+Bye
+
+===================================================
+
+
+📚 Concepts Used
+Concept	How it is used
+Strings	Store the sentence
+.lower()	Make input case-insensitive
+for loop	Go through every character
+in	Check whether character is a vowel
+Dictionary	Store each vowel and its count
+Dictionary key	Represents each vowel
+Dictionary value	Stores the count
++= 1	Increase vowel count
+while True	Repeat the program
+break	Exit the program
+if	Check for vowels
+input()	Get user sentence
+f-string	Display results
+
+
+🔗 Connection With Day 17
+
+Day 17 counted the total number of vowels:
+
+Vowels: 7
+
+Day 18 gives us more detailed information:
+
+a: 3
+e: 1
+i: 1
+o: 2
+u: 0
+
+So the progression is:
+
+Day 17
+   ↓
+Total vowels
+   ↓
+Day 18
+   ↓
+Individual vowel counts
+
+This is a useful example of taking an earlier program and making it more detailed instead of simply repeating it.
+
+
+🧠 Dictionary Flow
+
+The core logic of your program can be remembered as:
+
+CREATE
+   ↓
+{"a":0, "e":0, "i":0, "o":0, "u":0}
+   ↓
+READ EACH CHARACTER
+   ↓
+IS IT A KEY?
+   ↓
+YES → INCREASE VALUE
+   ↓
+PRINT ALL KEY-VALUE PAIRS
+
+The most important line is:
+
+v_c[char] += 1
+
+Remember it as:
+
+Find the vowel's box → add 1 to its count.
+
+
+📂 Project Structure
+
+Following your Day 9+ naming rule:
+
+day18/
+├── day18_vowel_counter_in_a_string.py
+├── day18_question
+└── read.me
+
+
+▶️ How to Run
+
+Open the project directory:
+
+cd day18
+
+Run the program:
+
+python3 day18_vowel_counter_in_a_string.py
+
+
+💡 What I Learned
+
+In Day 18, I extended yesterday's vowel counter and learned the basics of Python dictionaries.
+
+I practiced:
+
+Creating a dictionary
+Working with key-value pairs
+Accessing dictionary values using keys
+Updating dictionary values
+Checking dictionary keys using in
+Looping through strings
+Looping through dictionary keys
+Counting individual vowels
+Using .lower() for case-insensitive input
+Using while loops for repeated input
+
+
+🏆 Key Things to Remember
+v_c = {"a": 0, "e": 0, "i": 0, "o": 0, "u": 0}
+
+Dictionary:
+
+key → value
+ a  →  0
+
+Update:
+
+v_c["a"] += 1
+
+Check a key:
+
+if char in v_c:
+
+Loop through keys:
+
+for key in v_c:
+    print(key, v_c[key])
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step
