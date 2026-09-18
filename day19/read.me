@@ -1,0 +1,453 @@
+🔤 Day 19: String Reverser + Case Converter Tool
+
+📌 Project Overview
+
+This project is a String Reverser + Case Converter Tool built using Python.
+The program asks the user to enter a string and provides a menu of different string operations:
+
+🔄 Reverse the string
+🔠 Convert to UPPERCASE
+🔡 Convert to lowercase
+📝 Convert to Title Case
+🔃 Swap Case
+🚪 Exit
+
+After performing an operation, the program also counts the uppercase and lowercase letters in the resulting string.
+This project builds on the string concepts learned in Days 16–18.
+
+
+
+✨ Features
+
+🔄 1. Reverse the String
+
+The program uses string slicing:
+
+ste0 = ste[::-1]
+
+Example:
+
+Hello World
+
+becomes:
+
+dlroW olleH
+
+
+🔠 2. Convert to UPPERCASE
+
+The program uses:
+
+ste0 = ste.upper()
+
+Example:
+
+Hello World
+
+becomes:
+
+HELLO WORLD
+
+
+🔡 3. Convert to lowercase
+
+The program uses:
+
+ste0 = ste.lower()
+
+Example:
+
+Hello World
+
+becomes:
+
+hello world
+
+
+📝 4. Convert to Title Case
+
+The program uses:
+
+ste0 = ste.title()
+
+Example:
+
+hello world
+
+becomes:
+
+Hello World
+
+Each word starts with an uppercase letter.
+
+
+🔃 5. Swap Case
+
+The program uses:
+
+ste0 = ste.swapcase()
+
+Example:
+
+Hello World
+
+becomes:
+
+hELLO wORLD
+
+Uppercase letters become lowercase, and lowercase letters become uppercase.
+
+
+🚪 6. Exit
+
+The user can select:
+
+6. Exit
+
+and the program stops.
+
+There is also a q/Q option when entering the string:
+
+if ste == "q" or ste == "Q":
+
+
+🎁 Bonus Features
+
+🔤 Count Uppercase Letters
+
+You implemented the second bonus feature:
+
+up_c = 0
+
+for char in ste0:
+    if char.isupper():
+        up_c += 1
+
+The program counts every uppercase letter in the resulting string.
+
+
+
+🔡 Count Lowercase Letters
+
+Similarly:
+
+lw_c = 0
+
+for char in ste0:
+    if char.islower():
+        lw_c += 1
+
+This counts every lowercase letter.
+
+
+
+🔄 New String Each Time
+
+You also implemented the first bonus in a slightly different way.
+
+The program asks for a new string at the beginning of every while loop:
+
+while True:
+    ste = input("Enter a string or (press q to Quit): ")
+
+So after an operation finishes, the program returns to the beginning and allows another string to be entered.
+
+
+
+🎁 Bonus Status
+Bonus	Status
+Enter a new string each loop	✅ Completed
+Count uppercase letters	✅ Completed
+Count lowercase letters	✅ Completed
+
+Both requested bonuses are implemented. 🎉
+
+
+
+🧠 String Methods Learned
+
+Day 19 introduces several useful Python string methods.
+
+.upper()
+text.upper()
+
+Converts letters to uppercase.
+
+hello → HELLO
+.lower()
+text.lower()
+
+Converts letters to lowercase.
+
+HELLO → hello
+.title()
+text.title()
+
+Capitalizes the beginning of each word.
+
+hello world → Hello World
+.swapcase()
+text.swapcase()
+
+Flips the case of each letter.
+
+Hello World → hELLO wORLD
+[::-1]
+
+You learned this in Day 16.
+
+text[::-1]
+
+reverses the string.
+
+Hello → olleH
+
+
+🔍 .isupper() and .islower()
+
+Your bonus introduces two more useful string methods.
+
+.isupper()
+char.isupper()
+
+asks:
+
+"Is this character uppercase?"
+
+Example:
+
+A → True
+a → False
+.islower()
+char.islower()
+
+asks:
+
+"Is this character lowercase?"
+
+Example:
+
+a → True
+A → False
+
+
+👶 Simple Way to Understand the Program
+
+Imagine you give Python a sentence:
+
+Hello World
+
+Then Python gives you a toolbox:
+
+┌─────────────────────────┐
+│     STRING TOOLBOX      │
+├─────────────────────────┤
+│ 1 → Reverse             │
+│ 2 → UPPERCASE           │
+│ 3 → lowercase           │
+│ 4 → Title Case          │
+│ 5 → Swap Case           │
+│ 6 → Exit                │
+└─────────────────────────┘
+
+You choose a tool, Python changes the string, and then the program counts its uppercase and lowercase letters.
+
+
+
+🔄 How the Program Works
+              START
+                │
+                ▼
+          Enter a string
+                │
+          ┌─────┴─────┐
+          │           │
+        q/Q?          NO
+          │           │
+         YES          ▼
+          │       Show menu
+          │           │
+          │      Choose operation
+          │           │
+          │     ┌─────┼──────────────┐
+          │     │     │      │       │
+          │     ▼     ▼      ▼       ▼
+          │   Reverse Upper Lower  Title/Swap
+          │     │     │      │       │
+          │     └─────┴──────┴───────┘
+          │              │
+          │              ▼
+          │       Count uppercase
+          │              │
+          │              ▼
+          │       Count lowercase
+          │              │
+          │              ▼
+          │        Display result
+          │              │
+          │              ▼
+          │        Enter new string
+          │
+          ▼
+           BYE
+
+
+🧪 Example Run
+Enter a string or (press q to Quit): Hello World
+
+1. Reverse the string
+2. Convert to UPPERCASE
+3. Convert to lowercase
+4. Convert to Title Case
+5. Swap case (upper ↔ lower for each letter)
+6. Exit
+
+Choose: 5
+
+hELLO wORLD
+
+-------------------------------------
+In the sentence: hELLO wORLD
+Uppercase letters: 5
+Lowercase letters: 5
+-------------------------------------
+
+Enter a string or (press q to Quit): Python Programming
+
+1. Reverse the string
+2. Convert to UPPERCASE
+3. Convert to lowercase
+4. Convert to Title Case
+5. Swap case (upper ↔ lower for each letter)
+6. Exit
+
+Choose: 2
+
+PYTHON PROGRAMMING
+
+-------------------------------------
+In the sentence: PYTHON PROGRAMMING
+Uppercase letters: 17
+Lowercase letters: 0
+-------------------------------------
+
+Enter a string or (press q to Quit): q
+
+Bye
+
+
+📚 Concepts Used
+Concept	How it is used
+Strings	Store user text
+input()	Get the string
+while True	Repeat the tool
+if-elif-else	Select operations
+break	Exit the loop
+[::-1]	Reverse the string
+.upper()	Convert to uppercase
+.lower()	Convert to lowercase
+.title()	Convert to title case
+.swapcase()	Swap letter cases
+.isupper()	Detect uppercase letters
+.islower()	Detect lowercase letters
+for loop	Check each character
+Counter variables	Count uppercase/lowercase letters
+🔗 Connection With Previous Days
+Day 16 → Palindrome String Checker
+
+You learned:
+
+text[::-1]
+
+Day 19 reuses the same technique for reversing strings.
+
+Day 17 → Word/Character Counter
+
+You practiced looping through characters:
+
+for char in text:
+
+Day 19 uses the same idea for counting letter cases.
+
+Day 18 → Vowel Counter
+
+You learned how to check characters using:
+
+if char in ...
+
+Day 19 continues building your understanding of character-by-character string processing.
+
+
+
+🧠 Key Things to Remember
+text.upper()       # UPPERCASE
+text.lower()       # lowercase
+text.title()       # Title Case
+text.swapcase()    # Swap case
+text[::-1]         # Reverse
+text.isupper()     # Check uppercase
+text.islower()     # Check lowercase
+
+
+👶 Easy Memory Trick
+
+Think:
+
+.upper()    → 🔊 SHOUT
+.lower()    → 🤫 small
+.title()    → 📝 Every Word Starts Big
+.swapcase() → 🔄 Flip
+[::-1]      → 🔙 Walk Backwards
+
+
+💡 What I Learned
+
+In Day 19, I learned several useful Python string methods and combined them into one menu-driven tool.
+
+I practiced:
+
+Reversing strings
+.upper()
+.lower()
+.title()
+.swapcase()
+.isupper()
+.islower()
+String slicing
+for loops on strings
+Counting characters
+while loops
+Menu-driven program structure
+Using break
+Working with user input
+
+This project is a good review of the string-processing skills built during Days 16–18.
+
+
+
+📂 Project Structure
+
+Following your Day 9+ naming rule:
+
+day19/
+├── day19_string_reverser_case_converter.py
+├── day19_question
+└── read.me
+
+
+▶️ How to Run
+
+Open the project directory:
+
+cd day19
+
+Run the program:
+
+python3 day19_string_reverser_case_converter.py
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
