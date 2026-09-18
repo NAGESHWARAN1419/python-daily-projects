@@ -1,0 +1,45 @@
+Day 19: String Reverser + Case Converter Tool
+
+Concepts used:
+ string methods —
+ .upper(),
+ .lower(),
+ .title(),
+ .swapcase(),
+ slicing
+
+Problem Statement
+
+Write a Python program with a menu:
+1. Reverse the string
+2. Convert to UPPERCASE
+3. Convert to lowercase
+4. Convert to Title Case
+5. Swap case (upper↔lower for each letter)
+6. Exit
+
+
+Ask the user to enter a string once, then let them apply any of these operations (looping back to the menu after each one) until they choose Exit.
+New string methods
+text = "Hello World"
+text.upper()      # → "HELLO WORLD"
+text.lower()       # → "hello world"
+text.title()       # → "Hello World"  (capitalizes first letter of each word)
+text.swapcase()    # → "hELLO wORLD"  (flips case of every letter)
+text[::-1]         # → "dlroW olleH"  (reverse, from Day 16)
+
+
+Example Run
+Enter a string: Hello World
+1. Reverse
+2. UPPERCASE
+3. lowercase
+4. Title Case
+5. Swap Case
+6. Exit
+Choose: 5
+hELLO wORLD
+
+Bonus (optional)
+1.Let the user enter a new string each time they return to the menu, instead of being stuck with the same one (i.e., add an option for that, or ask fresh each loop).
+2.Count and show how many uppercase and lowercase letters are in the string.
