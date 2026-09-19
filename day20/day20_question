@@ -1,0 +1,66 @@
+Day 20: To-Do List Using a List
+
+Concepts used:
+ Python list — creating,
+ .append(),
+ .remove(),
+ indexing,
+ for loop over a list
+
+Problem Statement
+Write a Python program that manages a to-do list using a list (not a dictionary yet — that's tomorrow). Menu:
+1. Add a task
+2. Remove a task
+3. View all tasks
+4. Exit
+
+New concept: Lists
+A list stores multiple items in order:
+tasks = []                      # empty list to start
+tasks.append("Buy groceries")   # adds an item to the end
+tasks.append("Clean house")
+print(tasks)                    # → ['Buy groceries', 'Clean house']
+
+tasks.remove("Clean house")     # removes that specific item
+print(tasks)                    # → ['Buy groceries']
+
+for task in tasks:               # loop through every item
+    print(task)
+You can also access items by position (index), starting from 0:
+tasks[0]   # → first item
+tasks[1]   # → second item
+
+
+Example Run
+1. Add Task
+2. Remove Task
+3. View Tasks
+4. Exit
+Choose: 1
+Enter task: Buy groceries
+Task added!
+
+Choose: 1
+Enter task: Clean house
+Task added!
+
+Choose: 3
+Your tasks:
+1. Buy groceries
+2. Clean house
+
+Choose: 2
+Enter task to remove: Buy groceries
+Task removed!
+
+Choose: 4
+Goodbye!
+
+Tips
+When viewing tasks, use enumerate() to show numbered items nicely:
+for index, task in enumerate(tasks, start=1):
+    print(index, task)
+Handle removing a task that doesn't exist in the list (it would normally crash with ValueError) — check with if task in tasks: before removing, or use try/except.
+
+Bonus (optional)
+Add a "Mark as done" option that doesn't remove the task, but shows it differently (e.g. with a ✅ or strikethrough-style prefix).
