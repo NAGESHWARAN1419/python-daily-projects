@@ -1,0 +1,542 @@
+📝 Day 20: To-Do List Using a List
+
+📌 Overview
+
+This is Day 20 of my Python learning journey.
+In this project, I created a simple To-Do List program using a Python list.
+
+The program allows the user to:
+
+➕ Add tasks
+❌ Remove tasks
+👀 View all tasks with numbers
+✅ Mark a task as completed
+🚪 Exit the program
+
+This project is important because it introduces the Python list data type and shows how lists can store and manage multiple values.
+
+
+
+🎯 Features
+1. ➕ Add Task
+
+The user can enter a task, and it is added to the list using .append().
+
+task.append(input("Enter task:"))
+
+Example:
+
+Enter task: Buy groceries
+Task Added!
+2. ❌ Remove Task
+
+The user enters the task they want to remove.
+
+Before removing it, the program checks whether the task exists:
+
+if task_remove in task:
+    task.remove(task_remove)
+
+If the task exists:
+
+Task removed!
+
+If it doesn't exist:
+
+Task not found!
+
+This prevents the program from crashing with a ValueError.
+
+3. 👀 View Tasks
+
+The program displays all tasks using enumerate().
+
+for index, t in enumerate(task, start=1):
+    print(index, t)
+
+Example:
+
+Your tasks
+
+1 Buy groceries
+2 Clean house
+3 Study Python
+
+The user sees task numbers starting from 1, even though Python list indexes start from 0.
+
+4. ✅ Mark Task as Done
+
+This was the optional bonus, and I implemented it.
+
+The user selects a task number:
+
+Enter your done task number: 2
+
+The program adds a ✅ to that task:
+
+task[done_task - 1] = task[done_task - 1] + "✅"
+
+Example:
+
+1 Buy groceries
+2 Clean house
+
+After marking task 2:
+
+1 Buy groceries
+2 Clean house✅
+
+The task stays in the list; it is not removed.
+
+5. 🚪 Exit
+
+Option 5 exits the program:
+
+Bye
+
+
+🧠 New Concept: Python Lists
+
+A list is like a box that can store many things in order.
+
+For example:
+
+task = []
+
+This creates an empty list.
+
+Think of it like an empty notebook:
+
+task
+ ↓
+[ ]
+
+Then:
+
+task.append("Buy groceries")
+
+The list becomes:
+
+["Buy groceries"]
+
+Add another:
+
+task.append("Clean house")
+
+Now:
+
+["Buy groceries", "Clean house"]
+
+
+🧒 List Explained Like a 5-Year-Old
+
+Imagine you have a shopping basket 🧺.
+
+At first:
+
+🧺 Empty
+
+You put an apple inside:
+
+🧺 Apple
+
+Then you put a banana:
+
+🧺 Apple
+🧺 Banana
+
+Python's list works similarly.
+
+task = []
+
+means:
+
+"Give me an empty basket."
+
+task.append("Buy groceries")
+
+means:
+
+"Put Buy groceries into my basket."
+
+task.remove("Buy groceries")
+
+means:
+
+"Take Buy groceries out of my basket."
+
+
+
+🔢 List Indexing
+
+Python starts counting list positions from 0.
+
+For example:
+
+task = ["Buy groceries", "Clean house", "Study Python"]
+
+The positions are:
+
+Index:     0                1             2
+           ↓                ↓             ↓
+        Buy groceries   Clean house   Study Python
+
+So:
+
+task[0]
+
+gives:
+
+Buy groceries
+
+And:
+
+task[1]
+
+gives:
+
+Clean house
+
+In this project, when the user enters task number 2, the program uses:
+
+task[done_task - 1]
+
+Why?
+
+Because the user sees:
+
+1 Buy groceries
+2 Clean house
+
+But Python sees:
+
+0 Buy groceries
+1 Clean house
+
+So:
+
+User number → Python index
+
+1 → 0
+2 → 1
+3 → 2
+
+
+🔄 append()
+
+.append() adds an item to the end of the list.
+
+task.append("Study Python")
+
+Example:
+
+Before:
+["Buy groceries", "Clean house"]
+
+After:
+["Buy groceries", "Clean house", "Study Python"]
+
+
+🗑️ remove()
+
+.remove() removes a specific item.
+
+task.remove("Clean house")
+
+Before:
+
+["Buy groceries", "Clean house"]
+
+After:
+
+["Buy groceries"]
+
+In this project, I first check:
+
+if task_remove in task:
+
+This means:
+
+"Is this task inside my list?"
+
+If yes → remove it.
+
+If no → show:
+
+Task not found!
+
+
+🔁 for Loop With a List
+
+A for loop can visit every item in a list.
+
+for t in task:
+    print(t)
+
+If:
+
+task = ["Buy groceries", "Clean house"]
+
+The loop does:
+
+First → Buy groceries
+Second → Clean house
+
+
+🔢 enumerate()
+
+I used:
+
+for index, t in enumerate(task, start=1):
+    print(index, t)
+
+enumerate() gives us:
+
+the number/index
+the actual item
+
+Example:
+
+1 Buy groceries
+2 Clean house
+3 Study Python
+
+The start=1 means numbering begins at 1.
+
+
+
+🔄 Program Flow
+                START
+                  │
+                  ▼
+             Show Menu
+                  │
+       ┌──────────┼──────────┐
+       ▼          ▼          ▼
+    Add Task   Remove      View Tasks
+       │        Task           │
+       │          │            │
+       │          │            │
+       └──────────┼────────────┘
+                  │
+                  ▼
+            Done Tasks
+                  │
+                  ▼
+             Mark with ✅
+                  │
+                  ▼
+              Show Menu
+                  │
+                  ▼
+               Exit?
+              /     \
+            No       Yes
+            │         │
+            └─────────►END
+
+
+
+🧪 Example Run
+1. Add Task
+2. Remove Task
+3. View Task
+4. Done Tasks
+5. Exit
+
+Choose: 1
+
+Enter task: Buy groceries
+Task Added!
+
+1. Add Task
+2. Remove Task
+3. View Task
+4. Done Tasks
+5. Exit
+
+Choose: 1
+
+Enter task: Clean house
+Task Added!
+
+1. Add Task
+2. Remove Task
+3. View Task
+4. Done Tasks
+5. Exit
+
+Choose: 3
+
+Your tasks
+1 Buy groceries
+2 Clean house
+
+1. Add Task
+2. Remove Task
+3. View Task
+4. Done Tasks
+5. Exit
+
+Choose: 4
+
+1 Buy groceries
+2 Clean house
+
+Enter your done task number: 2
+
+Done task added!
+
+1. Add Task
+2. Remove Task
+3. View Task
+4. Done Tasks
+5. Exit
+
+Choose: 3
+
+Your tasks
+1 Buy groceries
+2 Clean house✅
+
+1. Add Task
+2. Remove Task
+3. View Task
+4. Done Tasks
+5. Exit
+
+Choose: 2
+
+Enter task to remove: Buy groceries
+Task removed!
+
+1. Add Task
+2. Remove Task
+3. View Task
+4. Done Tasks
+5. Exit
+
+Choose: 5
+
+Bye
+
+
+📚 Concepts Used
+Concept	How I used it
+list	Store multiple tasks
+[]	Create an empty list
+.append()	Add a task
+.remove()	Remove a task
+in	Check whether a task exists
+Indexing	Access a task by position
+for loop	Go through all tasks
+enumerate()	Display numbered tasks
+len()	Check the number of tasks
+while True	Keep the menu running
+if / elif / else	Handle menu choices
+input()	Get tasks and choices from the user
+int()	Convert menu/task numbers to integers
+String concatenation	Add ✅ to completed tasks
+
+
+🔗 Connection With Previous Days
+Day 17 — Word/Character Counter
+
+I used:
+
+for char in ste:
+
+to loop through characters in a string.
+
+Now in Day 20, I use a for loop to go through items inside a list.
+
+Day 18 — Vowel Counter
+
+Day 18 introduced a dictionary:
+
+v_c = {"a":0, "e":0, ...}
+
+Day 20 focuses on a list:
+
+task = []
+
+The important difference:
+
+List       → ordered collection of items
+Dictionary → key + value collection
+
+Tomorrow's project can build on this by using dictionaries.
+
+Day 19 — String Methods
+
+Day 19 worked heavily with strings:
+
+.upper()
+.lower()
+.title()
+.swapcase()
+
+Day 20 introduces another important Python data structure:
+
+list
+
+
+⭐ Bonus Status
+Bonus	Status
+Mark task as done	✅ Completed
+Add ✅ without removing task	✅ Completed
+Number tasks using enumerate()	✅ Completed
+Handle task that doesn't exist	✅ Completed
+
+
+🧠 What I Learned
+
+In Day 20, I learned how to:
+
+Create an empty Python list
+Add items using .append()
+Remove items using .remove()
+Check whether an item exists using in
+Access list items using indexes
+Understand that indexes start from 0
+Loop through a list
+Use enumerate() to display numbered items
+Use len() to check list size
+Modify an item inside a list
+Build a small menu-driven application
+
+The most important idea from this project is:
+
+A Python list lets me store many related items in one variable.
+
+
+
+📁 Project Structure
+day20/
+├── day20_to_do_list_using_a_list.py
+├── day20_question
+└── read.me
+
+
+▶️ How to Run
+
+Open the terminal inside the day20 folder and run:
+
+python3 day20_to_do_list_using_a_list.py
+
+Then choose an option:
+
+1 → Add Task
+2 → Remove Task
+3 → View Task
+4 → Done Tasks
+5 → Exit
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step. 🐍💻
+
+Day 20 / Python Learning Journey
