@@ -1,0 +1,622 @@
+📱 Day 21: Simple Contact Book Using a Dictionary
+
+📌 Overview
+
+This is Day 21 of my Python learning journey.
+In this project, I created a simple Contact Book using a Python dictionary.
+
+The program allows the user to:
+
+➕ Add a contact
+👀 View a specific contact
+✏️ Update a contact
+🗑️ Delete a contact
+📋 View all contacts
+🔎 Search contacts by part of their name
+🚪 Exit the program
+
+This project goes deeper into dictionaries, which I first introduced on Day 18 with the vowel counter.
+
+
+
+🎯 Features
+1. ➕ Add Contact
+
+The program asks for a person's name and phone number.
+
+name = input("Enter name:").title()
+number = int(input(f"Enter {name} number:"))
+contact_book[name] = number
+
+Example:
+
+Enter name: Arun
+Enter Arun number: 9876543210
+
+Arun Contact added successfully!
+
+The dictionary becomes:
+
+{
+    "Arun": 9876543210
+}
+2. 👀 View Contact
+
+The user can search for a specific contact.
+
+Before accessing the dictionary, the program checks whether the name exists:
+
+if name0 in contact_book:
+
+If found:
+
+Arun Founded!
+Arun : 9876543210
+
+If the name doesn't exist:
+
+Invalid name
+
+This prevents trying to access a missing dictionary key.
+
+3. ✏️ Update Contact
+
+The user can update an existing phone number.
+
+if name0 in contact_book:
+    contact_book[name0] = new_number
+
+For example:
+
+Before:
+Arun : 9876543210
+
+After updating:
+Arun : 9999999999
+
+A dictionary makes this easy because assigning a new value to an existing key overwrites the old value.
+
+4. 🗑️ Delete Contact
+
+The user can delete an existing contact.
+
+if name0 in contact_book:
+    del contact_book[name0]
+
+Example:
+
+Before:
+Arun : 9876543210
+Ravi : 9876543211
+
+Delete Arun
+
+After:
+Ravi : 9876543211
+
+The del statement removes the entire key-value pair.
+
+5. 📋 View All Contacts
+
+The program loops through the dictionary:
+
+for name in contact_book:
+    print(name, ":", contact_book[name])
+
+Example:
+
+All Contacts:
+
+Arun : 9876543210
+Ravi : 9876543211
+Priya : 9876543212
+
+Here:
+
+name
+ ↓
+"Arun"
+
+contact_book[name]
+ ↓
+9876543210
+
+So together:
+
+print(name, ":", contact_book[name])
+
+produces:
+
+Arun : 9876543210
+
+
+🔎 6. Search Contacts
+
+This is the bonus feature, and I implemented it.
+
+The program allows partial-name searching.
+
+For example, if the contacts are:
+
+Arun Kumar
+Arun Raj
+Ravi
+
+Searching:
+
+Enter name to search: arun
+
+can find:
+
+Arun Kumar : 9876543210
+Arun Raj : 9999999999
+
+The important logic is:
+
+for name in contact_book:
+    if search_text in name.lower():
+        print(name, ":", contact_book[name])
+Why .lower()?
+
+Suppose the dictionary contains:
+
+Arun
+
+and the user enters:
+
+ARUN
+
+Converting both to lowercase makes the comparison easier:
+
+"ARUN".lower()
+    ↓
+"arun"
+
+"Arun".lower()
+    ↓
+"arun"
+
+So the search becomes case-insensitive.
+
+
+
+🧒 Dictionary Explained Like a 5-Year-Old
+
+Imagine you have a little phone book 📖.
+
+Each person's name is written on one side, and their phone number is written next to it.
+
+┌──────────┬────────────┐
+│ Name     │ Phone      │
+├──────────┼────────────┤
+│ Arun     │ 9876543210 │
+│ Ravi     │ 9876543211 │
+│ Priya    │ 9876543212 │
+└──────────┴────────────┘
+
+Python dictionary works the same way.
+
+contact_book = {}
+
+means:
+
+"My phone book is empty."
+
+Then:
+
+contact_book["Arun"] = 9876543210
+
+means:
+
+"Write Arun's phone number in the phone book."
+
+Now:
+
+{
+    "Arun": 9876543210
+}
+
+The name is the key.
+
+The phone number is the value.
+
+Key                 Value
+ ↓                    ↓
+"Arun"       →    9876543210
+
+
+🧠 Dictionary Structure
+
+The basic structure is:
+
+dictionary[key] = value
+
+In this project:
+
+contact_book[name] = number
+
+So:
+
+Key             Value
+─────────────────────────
+Arun       →    9876543210
+Ravi       →    9876543211
+Priya      →    9876543212
+
+
+🔑 Dictionary Key
+
+A key identifies the information.
+
+Here:
+
+"Arun"
+
+is the key.
+
+We can use the key to find the phone number:
+
+contact_book["Arun"]
+
+Result:
+
+9876543210
+
+Think:
+
+Name → Find the phone number
+
+
+
+📞 Updating a Dictionary
+
+One important thing about dictionaries is that the same syntax can be used for both adding and updating.
+
+Adding
+contact_book["Arun"] = 9876543210
+Updating
+contact_book["Arun"] = 9999999999
+
+The old value is replaced.
+
+Before:
+Arun → 9876543210
+
+After:
+Arun → 9999999999
+
+
+🔍 Checking Membership With in
+
+The program frequently uses:
+
+if name0 in contact_book:
+
+This asks:
+
+"Does this name exist in my contact book?"
+
+For example:
+
+if "Arun" in contact_book:
+
+If Arun exists:
+
+True
+
+Otherwise:
+
+False
+
+This is especially useful before:
+
+viewing
+updating
+deleting
+
+a contact.
+
+
+
+🗑️ del
+
+The del keyword removes a key-value pair.
+
+del contact_book["Arun"]
+
+Before:
+
+Arun → 9876543210
+Ravi → 9876543211
+
+After:
+
+Ravi → 9876543211
+
+
+🔄 Looping Through a Dictionary
+
+This code:
+
+for name in contact_book:
+
+goes through every key in the dictionary.
+
+For example:
+
+contact_book = {
+    "Arun": 9876543210,
+    "Ravi": 9876543211
+}
+
+The loop gets:
+
+First → Arun
+Second → Ravi
+
+Then:
+
+contact_book[name]
+
+gets the corresponding phone number.
+
+
+
+🏷️ Why .title() Is Used
+
+When entering a name:
+
+name = input("Enter name:").title()
+
+.title() changes the text into title case.
+
+Example:
+
+arun
+ ↓
+Arun
+ravi kumar
+ ↓
+Ravi Kumar
+
+This helps keep contact names consistent.
+
+
+
+🔄 Program Flow
+                    START
+                      │
+                      ▼
+                 Show Menu
+                      │
+        ┌─────────────┼──────────────┐
+        ▼             ▼              ▼
+    Add Contact   View Contact   Update Contact
+        │             │              │
+        └─────────────┼──────────────┘
+                      │
+                      ▼
+                Delete Contact
+                      │
+                      ▼
+               View All Contacts
+                      │
+                      ▼
+                Search Contacts
+                      │
+                      ▼
+                  Exit?
+                 /     \
+               No       Yes
+               │         │
+               └────┐    ▼
+                    │   END
+                    └──►Menu
+
+
+
+🧪 Example Run
+1. Add Contact
+2. View Contact
+3. Update Contact
+4. Delete Contact
+5. View All Contacts
+6. Search Contacts
+7. Exit
+
+Choose: 1
+
+Enter name: Arun
+Enter Arun number: 9876543210
+
+Arun Contact added successfully!
+
+Choose: 1
+
+Enter name: Ravi
+Enter Ravi number: 9876543211
+
+Ravi Contact added successfully!
+
+Choose: 5
+
+All Contacts:
+Arun : 9876543210
+Ravi : 9876543211
+
+Choose: 2
+
+Enter name to view: Arun
+
+Arun Founded!
+Arun : 9876543210
+
+Choose: 3
+
+Enter update person name: Arun
+Enter Arun updated number: 9999999999
+
+Successfully updated!
+
+Choose: 6
+
+Enter name to search: ar
+
+Arun : 9999999999
+
+Choose: 4
+
+Enter delete contact name: Ravi
+
+Ravi Deleted successfully
+
+Choose: 7
+
+Goodbye!
+
+
+📚 Concepts Used
+Concept	How I used it
+Dictionary {}	Store contacts
+Key-value pair	Name → phone number
+Dictionary assignment	Add and update contacts
+in	Check whether a name exists
+del	Delete a contact
+for loop	View/search contacts
+.title()	Format names
+.lower()	Case-insensitive search
+if / elif / else	Handle menu options
+while True	Keep the contact book running
+int()	Convert phone number/menu input to integers
+len()	Not used in this project
+String search	Find partial name matches
+
+Note: len() is not actually used in the Day 21 code, so it isn't part of the implementation.
+
+
+
+🔗 Connection With Previous Days
+Day 18 — Vowel Counter
+
+On Day 18, I first used a dictionary:
+
+v_c = {"a":0, "e":0, "i":0, "o":0, "u":0}
+
+That dictionary stored:
+
+vowel → count
+
+For example:
+
+"a" → 3
+"e" → 2
+
+Day 21 goes deeper:
+
+name → phone number
+
+So I now understand how dictionaries can be used for real-world data.
+
+Day 20 — To-Do List
+
+Day 20 used a list:
+
+task = []
+
+The list stored multiple tasks:
+
+["Buy groceries", "Clean house"]
+
+Day 21 uses a dictionary:
+
+contact_book = {}
+
+The dictionary stores relationships between two pieces of information:
+
+"Arun" → 9876543210
+Simple difference
+List:
+[Task1, Task2, Task3]
+
+Dictionary:
+{Name1: Number1, Name2: Number2}
+
+
+🧠 What I Learned
+
+In Day 21, I learned how to:
+
+Create a dictionary
+Add key-value pairs
+Access values using keys
+Update existing values
+Delete key-value pairs
+Check whether a key exists
+Loop through dictionary keys
+Search dictionary keys
+Perform partial-name searching
+Use .lower() for case-insensitive searching
+Use .title() to format names
+Build a practical contact-book application
+
+The most important idea from this project is:
+
+A dictionary connects a key to a value.
+
+For this project:
+
+Name → Phone Number
+
+
+⭐ Bonus Status
+Requirement	Status
+Add Contact	✅ Completed
+View Contact	✅ Completed
+Update Contact	✅ Completed
+Delete Contact	✅ Completed
+View All Contacts	✅ Completed
+Check missing contacts before operations	✅ Completed
+Search by partial name	✅ Completed
+Case-insensitive search	✅ Completed
+Adding an existing name
+
+The code uses:
+
+contact_book[name] = number
+
+If the same name already exists, the old number will be overwritten.
+So this behavior is intentional based on the current implementation.
+
+
+
+📁 Project Structure
+day21/
+├── day21_simple_contact_book_using_a_dictionary.py
+├── day21_question
+└── read.me
+
+
+▶️ How to Run
+
+Open the terminal inside the day21 folder:
+
+python3 day21_simple_contact_book_using_a_dictionary.py
+
+Then choose from:
+
+1 → Add Contact
+2 → View Contact
+3 → Update Contact
+4 → Delete Contact
+5 → View All Contacts
+6 → Search Contacts
+7 → Exit
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step. 🐍💻
+
+Day 21 / Python Learning Journey
