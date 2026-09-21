@@ -1,0 +1,60 @@
+Day 22: Student Marks Manager (dict of name → marks list)
+
+Concepts used: dictionaries with list values, nested data, sum(), len(), max(), min()
+
+Problem Statement
+Write a Python program that manages student marks, where each student's name maps to a list of marks (multiple subjects). Menu:
+1. Add Student
+2. Add Marks for a Student
+3. View Student Marks + Average
+4. View All Students
+5. Exit
+
+New concept: Dictionary where the value is a LIST
+students = {}
+students["Arun"] = []              # start with an empty list of marks
+students["Arun"].append(85)        # add a mark
+students["Arun"].append(90)
+print(students["Arun"])            # → [85, 90]
+
+# useful built-in functions for a list of numbers:
+sum(students["Arun"])              # → 175 (total)
+len(students["Arun"])              # → 2   (count of marks)
+max(students["Arun"])              # → 90  (highest)
+min(students["Arun"])              # → 85  (lowest)
+average = sum(students["Arun"]) / len(students["Arun"])   # → 87.5
+
+Example Run
+1. Add Student
+2. Add Marks for a Student
+3. View Student Marks + Average
+4. View All Students
+5. Exit
+Choose: 1
+Enter student name: Arun
+Student added!
+
+Choose: 2
+Enter student name: Arun
+Enter mark: 85
+Mark added!
+
+Choose: 2
+Enter student name: Arun
+Enter mark: 90
+Mark added!
+
+Choose: 3
+Enter student name: Arun
+Marks: [85, 90]
+Average: 87.5
+Highest: 90
+Lowest: 85
+
+
+Things to handle
+Adding marks for a student who doesn't exist yet — either reject it, or auto-create them (your choice, but be intentional).
+Viewing average/highest/lowest for a student with zero marks — this would cause a ZeroDivisionError on the average calculation, so guard against it.
+
+Bonus (optional)
+Add a "Class Average" option (5) that shows the average of all students' overall averages.
