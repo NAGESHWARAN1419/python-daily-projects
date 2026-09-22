@@ -1,0 +1,692 @@
+🛒 Day 23: Shopping Cart with List of Tuples
+
+📌 Overview
+
+This is Day 23 of my Python learning journey.
+In this project, I created a simple Shopping Cart using a list of tuples.
+Each shopping item is stored as a tuple containing:
+(item name, price, quantity)
+
+For example:
+("Apple", 50, 3)
+The program allows the user to:
+
+➕ Add an item
+🔄 Increase quantity when the same item is added again
+👀 View the cart
+❌ Remove an item
+💰 Calculate the total bill
+🚪 Exit
+
+This project introduces tuples, lists of tuples, and tuple unpacking.
+
+
+
+🎯 Features
+
+1. ➕ Add Item
+
+The program asks for:
+
+Item name
+Price
+Quantity
+
+Example:
+
+Enter item name: Apple
+Enter price: 50
+Enter quantity: 3
+
+The item is stored as:
+
+("Apple", 50, 3)
+
+and added to the cart:
+
+cart.append((name, price, quantity))
+
+The cart now looks like:
+
+[
+    ("Apple", 50, 3)
+]
+
+
+🔄 2. Same Item → Increase Quantity
+
+This is the bonus feature, and it has been implemented.
+
+Before adding a new item, the program checks whether the item already exists:
+
+found = False
+
+for n, p, q in cart:
+    if n == name:
+        found = True
+
+If the item already exists, the program asks for an additional quantity:
+
+Enter addtional quantity of Apple: 2
+
+Instead of creating another Apple entry, the program rebuilds the cart with the updated tuple.
+
+For example:
+
+Before
+Apple - ₹50 x 3
+
+Add 2 more:
+
+Apple - ₹50 x 5
+
+The new tuple becomes:
+
+("Apple", 50, 5)
+
+
+🧠 Why Do We Rebuild the Tuple?
+
+This is an important concept in this project.
+
+Tuples are immutable.
+
+That means after creating:
+
+item = ("Apple", 50, 3)
+
+we cannot directly do:
+
+item[2] = 5
+
+
+❌ This doesn't work because tuple values cannot be changed.
+
+Instead, the program creates a new tuple:
+
+("Apple", 50, 5)
+
+and creates a new cart:
+
+new_cart = []
+
+Then it adds the updated tuple to the new cart.
+
+🧒 Tuple Explained
+
+Imagine you have a small sealed box 📦.
+
+Inside the box:
+
+🍎 Apple
+💰 ₹50
+🔢 3
+
+Once you seal the box, you cannot change what's inside.
+
+That's similar to a tuple:
+
+("Apple", 50, 3)
+
+You can look at what's inside:
+
+item[0]
+item[1]
+item[2]
+
+But you can't directly change one of the values.
+
+If you need different information, you make a new box:
+
+("Apple", 50, 5)
+📦 What Is a Tuple?
+
+A tuple is a collection of values:
+
+item = ("Apple", 50, 3)
+
+It contains:
+
+Position 0 → Apple
+Position 1 → 50
+Position 2 → 3
+
+The positions start from 0, just like a list.
+
+🔢 Tuple Indexing
+
+You can access individual values using indexes.
+
+item = ("Apple", 50, 3)
+Item name
+item[0]
+
+Result:
+
+Apple
+Price
+item[1]
+
+Result:
+
+50
+Quantity
+item[2]
+
+Result:
+
+3
+🔓 Tuple Unpacking
+
+One of the main concepts in Day 23 is unpacking.
+
+Instead of:
+
+item[0]
+item[1]
+item[2]
+
+we can do:
+
+name, price, quantity = item
+
+Now:
+
+name     → Apple
+price    → 50
+quantity → 3
+
+The program uses this directly inside loops:
+
+for name, price, quantity in cart:
+
+This is called tuple unpacking.
+
+
+🛒 List of Tuples
+
+The cart itself is a list.
+
+cart = []
+
+Each item inside the list is a tuple.
+
+For example:
+
+cart = [
+    ("Apple", 50, 3),
+    ("Bread", 40, 2),
+    ("Milk", 60, 1)
+]
+
+Think of the structure like this:
+
+cart
+ │
+ ├── ("Apple", 50, 3)
+ │
+ ├── ("Bread", 40, 2)
+ │
+ └── ("Milk", 60, 1)
+
+So:
+
+List
+ ↓
+Many tuples
+ ↓
+Each tuple contains
+name + price + quantity
+👀 3. View Cart
+
+The program loops through every tuple:
+
+for name, price, quantity in cart:
+
+Then calculates the total for each item:
+
+total = price * quantity
+
+For example:
+
+Apple
+₹50 × 3
+= ₹150
+
+The output is:
+
+Your Cart:
+Apple - ₹50 x 3 = ₹150
+Bread - ₹40 x 2 = ₹80
+
+
+💰 Calculating Item Total
+
+The formula is:
+
+total = price * quantity
+
+Example:
+
+Price = ₹50
+Quantity = 3
+
+50 × 3 = ₹150
+
+
+💵 4. Total Bill
+
+The program adds every item's total to grant_total.
+
+grant_total = 0
+
+for name, price, quantity in cart:
+    total = price * quantity
+    grant_total += total
+
+For example:
+
+Apple  → ₹50 × 3 = ₹150
+Bread  → ₹40 × 2 = ₹80
+Milk   → ₹60 × 1 = ₹60
+
+Grand total:
+
+₹150 + ₹80 + ₹60 = ₹290
+
+Output:
+
+Total Bill: ₹290
+
+
+❌ 5. Remove Item
+
+The user enters the item name:
+
+Enter item name to remove: Apple
+
+The program creates a new list:
+
+new_cart = []
+
+Then it loops through the existing cart.
+
+If the item matches:
+
+if name == remove_item:
+    found = True
+
+it doesn't add that item to the new cart.
+
+Other items are copied:
+
+else:
+    new_cart.append((name, price, quantity))
+
+Finally:
+
+cart = new_cart
+
+The old cart is replaced by the new cart without the removed item.
+
+
+
+🧠 Why Use a New List for Removing?
+
+Imagine:
+
+Old cart:
+
+🍎 Apple
+🍞 Bread
+🥛 Milk
+
+We want to remove Apple.
+
+The program creates:
+
+New cart:
+
+🍞 Bread
+🥛 Milk
+
+Then:
+
+cart = new_cart
+
+Now the main cart contains only the remaining items.
+
+
+🔄 Program Flow
+                    START
+                      │
+                      ▼
+                 Show Menu
+                      │
+        ┌─────────────┼──────────────┐
+        ▼             ▼              ▼
+    Add Item      View Cart     Remove Item
+        │             │              │
+        │             │              │
+        │             ▼              │
+        │        Calculate Item      │
+        │            Totals          │
+        │             │              │
+        └─────────────┼──────────────┘
+                      │
+                      ▼
+                  Total Bill
+                      │
+                      ▼
+                    Exit?
+                   /     \
+                 No       Yes
+                 │         │
+                 └────┐    ▼
+                      │   END
+                      └──►Menu
+
+
+🧪 Example Run
+------------------------------------------------------
+1. Add Item
+2. View Cart
+3. Remove Item
+4. Total Bill
+5. Exit
+------------------------------------------------------
+Choose: 1
+
+Enter item name: Apple
+Enter price: 50
+Enter quantity: 3
+
+------------------------------------------------------
+Item added!
+------------------------------------------------------
+
+Choose: 1
+
+Enter item name: Bread
+Enter price: 40
+Enter quantity: 2
+
+------------------------------------------------------
+Item added!
+------------------------------------------------------
+
+Choose: 2
+
+------------------------------------------------------
+Your Cart:
+Apple - ₹50 x 3 = ₹150
+Bread - ₹40 x 2 = ₹80
+------------------------------------------------------
+
+Choose: 4
+
+------------------------------------------------------
+Apple - ₹50 x 3 = ₹150
+Bread - ₹40 x 2 = ₹80
+Total Bill: ₹230
+------------------------------------------------------
+
+Choose: 3
+
+Your Cart Items:
+Apple
+Bread
+
+Enter item name to remove: Apple
+
+------------------------------------------------------
+Item removed!
+------------------------------------------------------
+
+Choose: 2
+
+------------------------------------------------------
+Your Cart:
+Bread - ₹40 x 2 = ₹80
+------------------------------------------------------
+
+Choose: 5
+
+------------------------------------------------------
+Bye
+------------------------------------------------------
+
+
+🔄 Example of the Bonus
+
+Suppose the cart initially contains:
+
+Apple - ₹50 x 3
+
+Then the user chooses Add Item again:
+
+Enter item name: Apple
+
+The program detects that Apple already exists.
+
+It asks:
+
+Enter addtional quantity of Apple: 2
+
+The cart becomes:
+
+Apple - ₹50 x 5
+
+Instead of:
+
+Apple - ₹50 x 3
+Apple - ₹50 x 2
+
+So there is only one Apple entry.
+
+
+
+📚 Concepts Used
+Concept	How I used it
+list	Store all cart items
+tuple	Store name, price, and quantity together
+List of tuples	cart contains multiple item tuples
+Tuple indexing	Access tuple values by position
+Tuple unpacking	for name, price, quantity in cart
+.append()	Add tuples to the cart
+for loop	Process cart items
+if / else	Check items and menu options
+found flag	Detect whether an item exists
+new_cart	Rebuild cart when updating/removing
+Multiplication	Calculate item total
++=	Build the grand total
+while True	Keep the menu running
+.title()	Format item names
+int()	Convert price/quantity/menu input to integers
+
+
+🔗 Connection With Previous Days
+Day 20 — To-Do List
+
+Day 20 introduced lists:
+
+task = []
+
+The list stored individual tasks:
+
+["Buy groceries", "Clean house"]
+
+Day 23 still uses a list, but now each list item is more structured:
+
+cart = [
+    ("Apple", 50, 3),
+    ("Bread", 40, 2)
+]
+
+So:
+
+Day 20
+List → Strings
+
+Day 23
+List → Tuples
+Day 21 — Contact Book
+
+Day 21 used a dictionary:
+
+contact_book = {
+    "Arun": 9876543210
+}
+
+The dictionary connected a key to a value.
+
+Day 23 uses tuples to group related values:
+
+("Apple", 50, 3)
+
+The tuple groups:
+
+Name + Price + Quantity
+Day 22 — Student Marks Manager
+
+Day 22 used:
+
+student = {
+    "Arun": [85, 90, 78]
+}
+
+That was:
+
+Dictionary
+    ↓
+List
+
+Day 23 introduces:
+
+cart = [
+    ("Apple", 50, 3),
+    ("Bread", 40, 2)
+]
+
+That is:
+
+List
+  ↓
+Tuples
+Progression
+Day 20 → List
+Day 21 → Dictionary
+Day 22 → Dictionary + List
+Day 23 → List + Tuple
+
+This is helping me understand how different Python data structures can be combined.
+
+
+🧠 List vs Tuple
+List	                         Tuple
+[]	                         ()
+Can be changed	                Cannot be changed
+Mutable	                        Immutable
+Good for changing collections	Good for fixed groups of values
+Example: ["Apple", "Bread"]	Example: ("Apple", 50, 3)
+
+In this project:
+
+Cart → List
+Item → Tuple
+
+Why?
+
+The cart needs to change because I can:
+
+Add items
+Remove items
+Update quantities
+
+But one item can be grouped as:
+
+("Apple", 50, 3)
+
+
+⭐ Bonus & Requirement Status
+Requirement	Status
+Add Item	✅ Completed
+View Cart	✅ Completed
+Remove Item	✅ Completed
+Handle item that doesn't exist	✅ Completed
+Calculate item total	✅ Completed
+Calculate grand total	✅ Completed
+Same item updates quantity	✅ Bonus Completed
+Use list of tuples	✅ Completed
+Tuple unpacking	✅ Completed
+
+
+⚠️ Small Implementation Note
+
+When adding an existing item, the code correctly rebuilds the tuple because tuples cannot be modified directly.
+
+However, the current code doesn't validate negative or zero values for price and quantity. For example, it would accept an unusual quantity such as -2.
+
+That isn't part of the required functionality, so the current project still fulfills the main task.
+
+
+
+🧠 What I Learned
+
+In Day 23, I learned how to:
+
+Create tuples
+Access tuple values using indexes
+Understand tuple immutability
+Unpack tuples into variables
+Store tuples inside a list
+Loop through a list of tuples
+Calculate item totals
+Calculate a grand total
+Remove tuples from a collection
+Rebuild a list when tuple values need to change
+Detect duplicate items
+Increase the quantity of an existing item
+
+The most important idea from this project is:
+
+A tuple is useful for grouping related values that belong together, while a list is useful when the collection itself needs to change.
+
+In this project:
+
+🛒 Cart = List
+   │
+   ├── 🍎 ("Apple", 50, 3)
+   ├── 🍞 ("Bread", 40, 2)
+   └── 🥛 ("Milk", 60, 1)
+
+
+📁 Project Structure
+day23/
+├── day23_shopping_cart.py
+├── day23_question
+└── read.me
+
+
+▶️ How to Run
+
+Open the terminal inside the day23 folder and run:
+
+python3 day23_shopping_cart.py
+
+Then choose:
+
+1 → Add Item
+2 → View Cart
+3 → Remove Item
+4 → Total Bill
+5 → Exit
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step. 🐍💻
+
+Day 23 / Python Learning Journey
