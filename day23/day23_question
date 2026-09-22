@@ -1,0 +1,63 @@
+Day 23: Shopping Cart with List of Tuples
+
+Concepts used:
+ Python tuple,
+ list of tuples,
+ unpacking
+
+
+Problem Statement
+Write a Python program that manages a shopping cart. Each item in the cart is stored as a tuple: (item_name, price, quantity). Menu:
+1. Add Item
+2. View Cart
+3. Remove Item
+4. Total Bill
+5. Exit
+New concept: Tuples
+A tuple is like a list, but cannot be changed after creation (immutable) — perfect for grouping related, fixed values together:
+item = ("Apple", 50, 3)   # (name, price, quantity)
+
+# accessing by position:
+item[0]   # → "Apple"
+item[1]   # → 50
+item[2]   # → 3
+
+# "unpacking" a tuple into separate variables in one line:
+name, price, qty = item
+print(name)   # → "Apple"
+A list of tuples looks like this:
+cart = [("Apple", 50, 3), ("Bread", 40, 2)]
+
+for name, price, qty in cart:     # unpack each tuple directly in the loop!
+    print(name, price, qty)
+
+
+Example Run
+1. Add Item
+2. View Cart
+3. Remove Item
+4. Total Bill
+5. Exit
+Choose: 1
+Enter item name: Apple
+Enter price: 50
+Enter quantity: 3
+Item added!
+
+Choose: 2
+Your Cart:
+Apple - ₹50 x 3 = ₹150
+
+Choose: 4
+Total Bill: ₹150
+
+
+Things to handle
+Removing an item that doesn't exist.
+Calculating total per item (price * qty) and grand total across all items.
+
+
+Bonus (optional)
+If the same item is added twice, update its quantity instead of creating a duplicate entry (hint: this requires checking and rebuilding the tuple, since tuples can't be modified directly — you'd need to remove the old tuple and add a new one, or convert the cart to use a different structure for that one item).
+
+
