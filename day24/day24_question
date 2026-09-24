@@ -1,0 +1,44 @@
+Day 24: Remove Duplicates from a List
+
+Concepts used:
+ list,
+ set,
+ loops,
+ in membership check
+
+Problem Statement
+
+Write a Python program that:
+1.Asks the user to enter a list of numbers (comma-separated, e.g. 1,2,2,3,4,4,5).
+2.Removes duplicates using two different methods, and prints both results:
+       i)Method 1: Without using set — loop through manually and build a new list, only adding items not already seen.
+      ii)Method 2: Using set — Python's built-in way to instantly remove duplicates.
+
+Example Run
+Enter numbers (comma-separated): 1,2,2,3,4,4,5
+
+Method 1 (manual): [1, 2, 3, 4, 5]
+Method 2 (using set): [1, 2, 3, 4, 5]
+New concepts
+Splitting comma-separated input into a list of numbers:
+text = "1,2,2,3,4,4,5"
+parts = text.split(",")           # → ['1', '2', '2', '3', '4', '4', '5']  (still strings!)
+numbers = [int(x) for x in parts] # convert each to int — this is a "list comprehension", a new shortcut
+# OR, using a regular loop (same result, more familiar):
+numbers = []
+for x in parts:
+    numbers.append(int(x))
+
+
+Method 1 — manual duplicate removal:
+unique = []
+for num in numbers:
+    if num not in unique:
+        unique.append(num)
+Method 2 — using set:
+unique_set = set(numbers)     # a set automatically drops duplicates
+unique_list = list(unique_set) # convert back to a list to print nicely
+
+Bonus (optional)
+Note that set() doesn't preserve original order — print both results and observe if the order changed.
+Loop so the user can try multiple inputs until they type q to quit.
