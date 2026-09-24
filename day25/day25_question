@@ -1,0 +1,46 @@
+Day 25: Find Max, Min, and Average from a List of Numbers
+
+Concepts used:
+ max(),
+ min(),
+ sum(),
+ len() — built-in functions on lists (some reuse from Day 22)
+
+Problem Statement
+Write a Python program that:
+1.Asks the user to enter a list of numbers (comma-separated, same style as Day 24).
+2.Finds and prints:
+    i)The maximum value
+   ii)The minimum value
+  iii)The average (rounded to 2 decimal places)
+   iv)The sum of all numbers
+3.Also find the max and min without using max()/min() — write it manually using a loop, just to understand how these functions work internally.
+
+
+Example Run
+Enter numbers (comma-separated): 4,8,2,9,5
+
+Using built-in functions:
+Max: 9
+Min: 2
+Sum: 28
+Average: 5.6
+
+Using manual loop:
+Max: 9
+Min: 2
+
+
+Hint for manual max (do min the same way, just flip the comparison)
+numbers = [4, 8, 2, 9, 5]
+
+manual_max = numbers[0]        # start by assuming the FIRST number is the biggest
+for num in numbers:
+    if num > manual_max:       # found something bigger? update our answer
+        manual_max = num
+
+print(manual_max)   # → 9
+Why start with numbers[0]? You need some starting guess to compare against — using the first item is a safe, common starting point. Then you check every other number: "is this one bigger than what I've found so far?" If yes, that becomes the new best answer.
+
+Bonus (optional)
+Loop so the user can check multiple lists until they type q to quit.
