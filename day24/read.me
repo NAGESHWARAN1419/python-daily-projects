@@ -1,0 +1,380 @@
+🧹 Day 24: Remove Duplicates from a List
+
+📌 Project Overview
+
+In Day 24, I created a Python program that removes duplicate numbers from a list using two different methods.
+
+The user enters numbers separated by commas, such as:
+
+1,2,2,3,4,4,5
+
+The program then removes duplicates using:
+
+Manual method — using a loop and in membership checking.
+Set method — using Python's built-in set().
+
+This project also introduces splitting strings, list comprehensions, and the difference between a list and a set.
+
+✨ Features
+
+📝 Accepts comma-separated numbers
+🔄 Converts input strings into integers
+🧹 Removes duplicates manually without using set
+⚡ Removes duplicates using set()
+🔁 Allows the user to try multiple inputs
+🚪 Type q or Q to quit
+📊 Prints both duplicate-removal results for comparison
+
+
+🧠 New Concepts
+1. Splitting a String with .split()
+
+The user enters:
+
+1,2,2,3,4,4,5
+
+Python initially sees this as one string.
+
+text = "1,2,2,3,4,4,5"
+parts = text.split(",")
+
+Now:
+
+['1', '2', '2', '3', '4', '4', '5']
+
+Think of .split(",") like a scissors ✂️.
+
+The comma tells Python:
+
+"Cut the string whenever you see a comma."
+
+2. Converting Strings into Integers
+
+After .split(), the values are still strings:
+
+['1', '2', '2', '3']
+
+The program uses:
+
+numbers = [int(x) for x in parts]
+
+Now they become:
+
+[1, 2, 2, 3]
+
+This is called a list comprehension.
+
+
+
+👶 5-year-old explanation
+
+Imagine you have:
+
+"1" "2" "3"
+
+Each number is wearing a string costume.
+
+int(x) removes the costume and turns it into a real number:
+
+"1" → 1
+"2" → 2
+"3" → 3
+
+
+🔹 Method 1 — Manual Duplicate Removal
+
+The program creates an empty list:
+
+unique_manual = []
+
+Then checks every number:
+
+for num in numbers:
+    if num not in unique_manual:
+        unique_manual.append(num)
+Example
+
+Input:
+
+[1, 2, 2, 3, 4, 4, 5]
+
+Python thinks:
+
+1 → Is 1 already there? ❌ No → Add it
+2 → Is 2 already there? ❌ No → Add it
+2 → Is 2 already there? ✅ Yes → Don't add
+3 → Is 3 already there? ❌ No → Add it
+4 → Is 4 already there? ❌ No → Add it
+4 → Is 4 already there? ✅ Yes → Don't add
+5 → Is 5 already there? ❌ No → Add it
+
+Final result:
+
+[1, 2, 3, 4, 5]
+
+
+👶 Easy story
+
+Imagine you have a line of toys:
+
+🚗 🧸 🧸 🚀 🚗
+
+You have a box called unique_manual.
+
+Before putting a toy inside, you ask:
+
+"Do I already have this toy?"
+
+If No → put it in the box.
+
+If Yes → don't put another one.
+
+
+
+🔹 Method 2 — Using set()
+
+The second method is much shorter:
+
+unique_set = list(set(numbers))
+
+A set automatically removes duplicate values.
+
+For example:
+
+numbers = [1, 2, 2, 3, 4, 4, 5]
+set(numbers)
+
+becomes something like:
+
+{1, 2, 3, 4, 5}
+
+Then:
+
+list(set(numbers))
+
+converts the set back into a list.
+
+
+
+⚠️ Important Difference: List vs Set
+List
+[1, 2, 2, 3, 4]
+Allows duplicates
+Keeps order
+Set
+{1, 2, 3, 4}
+Removes duplicates
+Does not guarantee the original order
+
+So the two methods may produce different ordering.
+
+For example:
+
+Method 1: [5, 2, 1, 3]
+Method 2: [1, 2, 3, 5]
+
+The important thing is that the duplicate values are removed.
+
+
+
+🔄 Program Flow
+Start
+  ↓
+Ask for comma-separated numbers
+  ↓
+Is input q/Q?
+  ├── Yes → Exit
+  └── No
+       ↓
+Split input using ","
+       ↓
+Convert strings → integers
+       ↓
+       ├───────────────┐
+       ↓               ↓
+Manual method       Set method
+       ↓               ↓
+Check "not in"      set(numbers)
+       ↓               ↓
+Build new list      Convert to list
+       └───────┬───────┘
+               ↓
+       Print both results
+               ↓
+          Ask again
+
+
+💻 Example Run
+Enter numbers (comma-separated like 1,2,2,3, etc..): 1,2,2,3,4,4,5
+
+Method 1 (manual): [1, 2, 3, 4, 5]
+Method 2 (using set): [1, 2, 3, 4, 5]
+
+Another input:
+
+Enter numbers (comma-separated like 1,2,2,3, etc..): 10,10,20,30,30,40
+
+Method 1 (manual): [10, 20, 30, 40]
+Method 2 (using set): [10, 20, 30, 40]
+
+To quit:
+
+Enter numbers (comma-separated like 1,2,2,3, etc..): q
+
+Bye
+
+
+🧩 Concepts Used
+Concept	How it is used
+list	Stores numbers and unique results
+set	Removes duplicates automatically
+for loop	Checks every number
+while True	Keeps the program running
+in	Checks whether a number already exists
+not in	Checks whether a number does not exist
+.split()	Separates comma-separated input
+int()	Converts strings into integers
+List comprehension	Converts all parts into integers
+.append()	Adds a unique number to the list
+list()	Converts the set back into a list
+if	Controls duplicate checking and quitting
+
+
+🎁 Bonus Features
+Bonus	Status
+Compare manual and set methods	✅ Completed
+Show that set ordering may differ	✅ Results from both methods are printed
+Loop until q	✅ Completed
+
+
+The program lets you directly compare:
+
+unique_manual
+
+with:
+
+unique_set
+
+
+🔗 Connection to Previous Days
+Day 20 — To-Do List
+
+You learned how to:
+
+list
+append()
+remove()
+in
+
+Day 24 uses the same list concepts:
+
+unique_manual = []
+
+if num not in unique_manual:
+    unique_manual.append(num)
+Day 21 — Contact Book
+
+You learned about:
+
+in
+
+for checking whether something exists.
+
+Day 24 uses the same idea:
+
+if num not in unique_manual:
+Day 23 — Shopping Cart
+
+You worked with:
+
+for
+list
+
+and collections of data.
+
+Day 24 continues that idea, but now you are processing a list of numbers.
+
+
+
+🧠 The Main Idea to Remember
+
+The most important logic in this project is:
+
+unique = []
+
+for num in numbers:
+    if num not in unique:
+        unique.append(num)
+
+Remember it as:
+
+"Check → If new → Add."
+
+Number comes
+     ↓
+Already inside?
+   ↙       ↘
+ YES       NO
+  ↓         ↓
+Skip       Add
+
+And the shortcut is:
+
+set(numbers)
+
+
+
+List = keeps everything
+
+🍎 🍎 🍌 🍌 🍊
+
+Set = keeps one of each
+
+🍎 🍌 🍊
+
+
+📚 What I Learned
+
+From this project, I learned:
+
+How to split comma-separated input using .split()
+How to convert strings into integers
+How list comprehensions work
+How to manually remove duplicates
+How in and not in work
+How set() removes duplicates
+How to convert a set back into a list
+The difference between a list and a set
+How to compare two different solutions to the same problem
+How to keep a program running until the user chooses to quit
+
+
+📁 Project Structure
+day24/
+├── day24_remove_duplicates_from_a_list.py
+├── day24_question
+└── read.me
+
+
+▶️ How to Run
+
+Open the terminal inside the day24 folder and run:
+
+python3 day24_remove_duplicates_from_a_list.py
+
+Then enter numbers separated by commas:
+
+1,2,2,3,4,4,5
+
+Type:
+
+q
+
+to quit.
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
