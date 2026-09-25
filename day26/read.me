@@ -1,0 +1,414 @@
+🔤 Day 26: Anagram Checker
+
+📌 Project Overview
+
+In Day 26, I created a Python program that checks whether two words or phrases are anagrams.
+An anagram is when two words or phrases contain the same letters with the same number of occurrences, but the letters are arranged differently.
+
+For example:
+
+listen
+silent
+
+Both contain:
+
+e i l n s t
+
+So they are anagrams.
+
+This project introduces the useful sorted() function and combines it with string methods such as .lower().
+
+✨ Features
+📝 Accepts two words or phrases
+🔤 Converts input to lowercase
+🔀 Sorts the characters using sorted()
+🔍 Compares the sorted characters
+🔁 Allows multiple anagram checks
+🚪 Type q to quit
+🧩 Can work with multi-word phrases when spaces are removed
+
+
+🧠 What Is an Anagram?
+
+Two words are anagrams when they contain exactly the same letters, with the same number of each letter, but in a different order.
+
+Example
+listen
+silent
+
+Break them into letters:
+
+listen → l i s t e n
+silent → s i l e n t
+
+Sort them:
+
+listen → e i l n s t
+silent → e i l n s t
+
+The results are identical.
+
+Therefore:
+
+listen + silent → Anagram ✅
+
+
+🔤 New Concept: sorted()
+
+The most important new concept in Day 26 is:
+
+sorted()
+
+sorted() arranges items into order.
+
+For example:
+
+sorted("listen")
+
+produces:
+
+['e', 'i', 'l', 'n', 's', 't']
+
+And:
+
+sorted("silent")
+
+produces:
+
+['e', 'i', 'l', 'n', 's', 't']
+
+Both results are the same.
+
+So:
+
+sorted("listen") == sorted("silent")
+
+is:
+
+True
+
+👶 5-Year-Old Explanation of sorted()
+
+Imagine you have these blocks:
+
+🟦 🟥 🟩 🟨
+
+They are mixed up.
+
+sorted() says:
+
+"Let's put everything in order!"
+
+Now imagine:
+
+listen → 🔤🔤🔤🔤🔤🔤
+silent → 🔤🔤🔤🔤🔤🔤
+
+After sorting, both produce the same arrangement.
+
+So we know they contain the same letters.
+
+🔡 .lower()
+
+The program uses:
+
+.lower()
+
+For example:
+
+"LISTEN".lower()
+
+becomes:
+
+listen
+
+This makes the comparison case-insensitive.
+
+Without converting to lowercase:
+
+Listen
+listen
+
+could be treated differently because uppercase L and lowercase l are different characters.
+
+With .lower():
+
+Listen → listen
+listen → listen
+
+So the comparison works consistently.
+
+
+⚠️ Important Note About the Current Code
+
+The problem statement asks the program to ignore spaces so phrases such as:
+
+funeral
+real fun
+
+can be checked.
+
+However, the current code only uses:
+
+.lower()
+
+It does not use:
+
+.replace(" ", "")
+
+Therefore, the current implementation handles case-insensitivity, but spaces are not actually removed.
+
+For example:
+
+"real fun"
+
+still contains the space character.
+
+So the phrase bonus is not fully implemented yet.
+
+
+🔍 How the Current Program Works
+
+The first input is processed with:
+
+first_word = input("Enter first word: ").lower()
+
+The second input:
+
+second_word = input("Enter second word: ").lower()
+
+Then the program compares:
+
+if sorted(first_word) == sorted(second_word):
+
+
+👶 Think of it like this
+Word 1
+  ↓
+Make lowercase
+  ↓
+Sort letters
+  ↓
+        Compare
+  ↑
+Sort letters
+  ↑
+Make lowercase
+  ↑
+Word 2
+
+If both sorted results are identical:
+
+✅ Anagram
+
+Otherwise:
+
+❌ NOT anagram
+
+
+🔄 Program Flow
+Start
+  ↓
+Enter first word
+  ↓
+Is it q?
+ ├── Yes → Bye → Exit
+ └── No
+      ↓
+Enter second word
+      ↓
+Is it q?
+ ├── Yes → Bye → Exit
+ └── No
+      ↓
+Convert both to lowercase
+      ↓
+Sort characters in both
+      ↓
+Compare sorted results
+      ↓
+Same?
+ ├── Yes → Anagrams!
+ └── No  → NOT anagrams
+      ↓
+Ask for another pair
+
+
+💻 Example Run
+Anagram
+Enter first word: listen
+Enter second word: silent
+
+'listen' and 'silent' are anagrams!
+Not anagram
+Enter first word: hello
+Enter second word: world
+
+'hello' and 'world' are  NOT anagrams!
+Uppercase input
+Enter first word: LISTEN
+Enter second word: SILENT
+
+'listen' and 'silent' are anagrams!
+
+The program converts both inputs to lowercase before comparing them.
+
+
+
+🧩 Concepts Used
+Concept	How it is used
+str	Stores the two words/phrases
+input()	Gets words from the user
+.lower()	Makes comparison case-insensitive
+sorted()	Sorts the characters
+==	Compares the two sorted lists
+while True	Repeats the program
+if	Checks conditions
+break	Exits the loop
+q / Q	Quit option
+
+
+🧠 The Main Trick to Remember
+
+The entire anagram concept can be remembered as:
+
+"Same letters → sort them → compare them."
+
+For example:
+
+listen
+   ↓
+sorted()
+   ↓
+e i l n s t
+
+silent
+   ↓
+sorted()
+   ↓
+e i l n s t
+
+        ↓
+
+Same → ANAGRAM ✅
+
+
+🧒 Super-short memory trick
+ANAGRAM = SAME LETTERS
+
+SORT + COMPARE
+       ↓
+   same → YES
+   different → NO
+🔗 Connection to Previous Days
+Day 16 — Palindrome String Checker
+
+Day 16 worked with strings and used:
+
+.lower()
+
+to make string comparisons easier.
+
+Day 26 continues working with strings, but instead of reversing a string, we sort its characters.
+
+Day 19 — String Reverser + Case Converter
+
+Day 19 introduced:
+
+.lower()
+.upper()
+.title()
+.swapcase()
+
+Day 26 reuses:
+
+.lower()
+
+for case-insensitive comparison.
+
+Day 24 — Remove Duplicates
+
+Day 24 introduced set() and worked with collections of values.
+
+Day 26 introduces another way of processing a collection of characters:
+
+sorted()
+
+The important difference is:
+
+set()   → removes duplicates
+sorted() → puts items into order
+
+
+🎁 Bonus Status
+Requirement             	Status
+Check two words	                ✅
+Case-insensitive comparison	✅
+Use sorted()	                ✅
+Compare sorted characters	✅
+Loop for multiple checks	✅
+q to quit	                ✅
+Ignore spaces in phrases	❌ Not implemented
+Optional improvement
+
+To fully implement the phrase requirement, the inputs could be changed to:
+
+first_word = input("Enter first word: ").lower().replace(" ", "")
+second_word = input("Enter second word: ").lower().replace(" ", "")
+
+Then:
+
+funeral
+real fun
+
+would be processed as:
+
+funeral
+realfun
+
+and could be correctly checked as anagrams.
+
+
+📚 What I Learned
+
+From this project, I learned:
+
+What an anagram is
+How sorted() works
+How to sort the characters of a string
+How to compare two sorted lists
+How .lower() helps with case-insensitive comparisons
+How the same letters can appear in different orders
+How to use a simple comparison to solve an anagram problem
+How to build a repeating program using while True
+How to exit a loop using break
+
+
+📁 Project Structure
+day26/
+├── day26_anagram_checker.py
+├── day26_question
+└── read.me
+
+
+▶️ How to Run
+
+Open the terminal inside the day26 folder and run:
+
+python3 day26_anagram_checker.py
+
+Then enter two words:
+
+Enter first word: listen
+Enter second word: silent
+
+To quit:
+
+Enter first word: q
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
