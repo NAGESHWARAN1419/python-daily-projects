@@ -1,0 +1,41 @@
+Day 26: Anagram Checker
+
+Concepts used:
+ strings,
+ sorted(),
+ .replace(),
+ .lower()
+
+Problem Statement
+Write a Python program that:
+Asks the user to enter two words/phrases.
+Checks if they are anagrams of each other — meaning they contain exactly the same letters, just rearranged (e.g., "listen" and "silent").
+Should be case-insensitive and ignore spaces.
+Example Run
+Enter first word: listen
+Enter second word: silent
+
+'listen' and 'silent' are anagrams!
+Enter first word: hello
+Enter second word: world
+
+'hello' and 'world' are NOT anagrams.
+
+New concept: sorted()
+sorted() arranges characters (or any list) in order. For strings, this is the key trick for anagram checking:
+sorted("listen")   # → ['e', 'i', 'l', 'n', 's', 't']  (alphabetical order, as a LIST)
+sorted("silent")   # → ['e', 'i', 'l', 'n', 's', 't']  (same list!)
+If two words are anagrams, sorting their letters alphabetically gives you the exact same list — that's the whole trick. Just compare sorted(word1) == sorted(word2).
+Hint for the full solution
+word1 = input("Enter first word: ").lower().replace(" ", "")
+word2 = input("Enter second word: ").lower().replace(" ", "")
+
+if sorted(word1) == sorted(word2):
+    print("They are anagrams!")
+else:
+    print("They are NOT anagrams.")
+
+
+Bonus (optional)
+1.Loop so the user can check multiple pairs until they type q to quit.
+2.Handle phrases (multi-word), like "funeral" and "real fun" — should already work if you strip spaces correctly.
