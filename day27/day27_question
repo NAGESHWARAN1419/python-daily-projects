@@ -1,0 +1,48 @@
+Day 27: Simple Text-Based Inventory System
+
+Concepts used:
+ dictionary with numeric values,
+ combining everything from Days 20-26 (menus, dicts, validation)
+
+Problem Statement
+
+Write a Python program that manages a shop's inventory using a dictionary: {item_name: quantity}. Menu:
+1. Add New Item
+2. Restock Item (increase quantity)
+3. Sell Item (decrease quantity)
+4. View Inventory
+5. Low Stock Alert (items with quantity < 5)
+6. Exit
+
+Things to handle
+   i)Add New Item: if the item already exists, warn the user instead of overwriting (different from Day 21's contact book — here, be strict).
+  ii)Restock: item must already exist; increase its quantity by the entered amount.
+ iii)Sell: item must exist AND have enough stock — don't allow selling more than what's in stock (print "Not enough stock" instead).
+  iv)Low Stock Alert: loop through inventory, print any item with quantity < 5.
+
+Example Run
+
+1. Add New Item
+2. Restock Item
+3. Sell Item
+4. View Inventory
+5. Low Stock Alert
+6. Exit
+Choose: 1
+Enter item name: Pen
+Enter starting quantity: 10
+Item added!
+
+Choose: 3
+Enter item name: Pen
+Enter quantity to sell: 15
+Not enough stock! Only 10 available.
+
+Choose: 3
+Enter item name: Pen
+Enter quantity to sell: 7
+Sale successful! Remaining: 3
+
+Choose: 5
+Low Stock Items:
+Pen: 3
