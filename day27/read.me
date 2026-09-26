@@ -1,0 +1,639 @@
+📦 Day 27: Simple Text-Based Inventory System
+
+📌 Project Overview
+
+In Day 27, I created a simple inventory management system using Python dictionaries.
+The program helps a shop manage its items and quantities. The user can add new items, restock existing items, sell items, view the inventory, and check for low-stock items.
+
+The inventory is stored in a dictionary:
+
+item = {}
+
+Each item name is a key, and its quantity is the value.
+
+For example:
+item = {
+    "Pen": 10,
+    "Book": 20,
+    "Pencil": 3
+}
+This project combines concepts from previous days, including dictionaries, loops, conditions, menus, and input handling.
+
+
+✨ Features
+
+➕ Add new items to the inventory
+🚫 Prevent duplicate item names
+📦 Restock existing items
+🛒 Sell items and decrease their quantities
+⚠️ Prevent selling more items than are available
+📋 View all inventory items
+🔔 Find items with fewer than 5 units
+🔁 Use a menu to perform multiple operations
+🚪 Exit the program using option 6
+
+
+
+🧠 New Concepts and Important Logic
+
+1. Dictionary with Numeric Values
+
+The inventory uses a Python dictionary:
+
+item = {}
+
+A dictionary stores information as key-value pairs.
+
+For this project:
+
+Key: Item name
+Value: Quantity available
+
+Example:
+
+item = {
+    "Pen": 10,
+    "Book": 20
+}
+👶 5-year-old explanation
+
+Imagine a shop with shelves.
+
+Each shelf has a name and a number showing how many items are available.
+
+Item	Quantity
+Pen	10
+Book	20
+Pencil	5
+
+The dictionary works like a shop notebook. It remembers each item's name and quantity.
+
+
+
+2. Adding a New Item
+
+The program first asks for an item name:
+
+name = input("Enter item name: ").title()
+
+Then it checks whether the item already exists:
+
+if name in item:
+    print(f"'{name}' already exists! Use Restock instead.")
+else:
+    qty = int(input("Enter starting quantity: "))
+    item[name] = qty
+    print("Item added!")
+How it works
+
+Suppose the inventory already contains:
+
+item = {"Pen": 10}
+
+If the user tries to add another Pen, the program checks:
+
+if name in item:
+
+Since Pen already exists, it displays a warning instead of overwriting the quantity.
+
+Example:
+
+Enter item name: Pen
+'Pen' already exists! Use Restock instead.
+
+If the item is new, it asks for the starting quantity and adds it.
+
+Example:
+
+Enter item name: Book
+Enter starting quantity: 20
+
+Item added!
+🧒 Remember
+
+Before adding an item, ask:
+
+"Is this item already in my shop notebook?"
+
+Yes → Don't add it again.
+No → Add the item and its quantity.
+
+This is different from your Day 21 contact book, where adding an existing name overwrites its previous number.
+
+
+
+3. Restocking an Item
+
+Restocking means increasing the quantity of an existing item.
+
+The program checks whether the item exists:
+
+if name in item:
+    qty0 = int(input("Enter Adding quantity: "))
+    item[name] += qty0
+
+The important operator here is:
+
++=
+
+It adds a value to the existing variable.
+
+Example
+
+Initially:
+
+item = {"Pen": 10}
+
+The user adds 5 more pens.
+
+item["Pen"] += 5
+
+Now:
+
+item = {"Pen": 15}
+👶 5-year-old explanation
+
+Imagine you have 10 pens in your shop.
+
+A delivery person brings you 5 more pens.
+
+You add them to your shelf:
+
+10 pens + 5 pens = 15 pens
+
+That's exactly what += does.
+
+If the item doesn't exist, the program displays:
+
+Invalid name!
+
+
+4. Selling an Item
+
+Selling means decreasing the quantity of an item.
+
+First, the program checks whether the item exists:
+
+if name in item:
+
+Then it asks how many items the customer wants to buy:
+
+qty0 = int(input("Enter selling quantity: "))
+
+Next, it checks whether enough stock is available:
+
+if qty0 <= item[name]:
+    item[name] -= qty0
+
+If enough stock is available, the quantity is reduced.
+
+Otherwise:
+
+print(f"Not enough stock! Only {item[name]} available.")
+Example 1: Successful sale
+
+Available stock:
+
+Pen: 10
+
+Customer wants:
+
+7 pens
+
+Calculation:
+
+10 - 7 = 3
+
+Remaining inventory:
+
+Pen: 3
+Example 2: Insufficient stock
+
+Available stock:
+
+Pen: 10
+
+Customer wants:
+
+15 pens
+
+Since 15 is greater than 10, the program rejects the sale.
+
+Output:
+
+Not enough stock! Only 10 available.
+
+👶 5-year-old explanation
+
+Imagine you have 10 chocolates.
+
+Your friend asks for 15 chocolates.
+
+Can you give them 15 when you only have 10?
+
+No!
+
+The program checks the quantity before selling, so it doesn't allow a sale when there isn't enough stock.
+
+
+
+5. Viewing Inventory
+
+The program uses a for loop and enumerate() to display the inventory:
+
+for index, n in enumerate(item, start=1):
+    print(f"{index}) {n} : {item[n]}")
+
+Example inventory:
+
+item = {
+    "Pen": 10,
+    "Book": 20,
+    "Pencil": 3
+}
+
+Output:
+
+Viewing Inventory:-
+1) Pen : 10
+2) Book : 20
+3) Pencil : 3
+What does enumerate() do?
+
+enumerate() gives you both the index and the item while looping.
+
+For example:
+
+for index, n in enumerate(item, start=1):
+    print(index, n)
+
+Here:
+
+index stores the counting number.
+n stores the item name.
+start=1 makes the counting begin at 1.
+
+
+👶 5-year-old explanation
+
+Imagine a teacher calling students by number:
+
+1. Ravi
+2. Arun
+3. Kumar
+
+enumerate() helps Python give each item a number while going through the dictionary.
+
+
+
+6. Low Stock Alert
+
+The program checks whether an item's quantity is less than 5.
+
+found_low = False
+
+for n in item:
+    if item[n] < 5:
+        print(n, ":", item[n])
+        found_low = True
+
+If an item has fewer than 5 units, it is displayed.
+
+For example:
+
+item = {
+    "Pen": 10,
+    "Book": 20,
+    "Pencil": 3
+}
+
+Output:
+
+Low Stock:-
+
+Pencil : 3
+Why use found_low = False?
+
+The program needs to know whether it found any low-stock items.
+
+Initially:
+
+found_low = False
+
+When it finds an item with fewer than 5 units:
+
+found_low = True
+
+After the loop, it checks:
+
+if not found_low:
+    print("All items are above than 5 in stock")
+
+If no item was below 5, the program displays the message.
+
+
+
+👶 5-year-old explanation
+
+Imagine a shopkeeper checking shelves.
+
+The shopkeeper says:
+
+"I will look for shelves with fewer than 5 items."
+
+If the shopkeeper finds one, they remember it.
+
+If they check every shelf and find none, they say:
+
+"All items have enough stock."
+
+That's what found_low does.
+
+
+
+🔄 Program Flow
+             START
+               |
+               v
+       Display Main Menu
+               |
+               v
+         User Chooses
+               |
+     +---------+----------+
+     |         |          |
+     v         v          v
+ Add Item   Restock      Sell
+     |         |          |
+ Check      Check       Check
+ duplicate  existence   existence
+     |         |          |
+ Add if     Increase    Check stock
+ new        quantity       |
+     |         |       +---+---+
+     |         |       |       |
+     |         |    Enough?   No
+     |         |       |       |
+     |         |      Yes   Show error
+     |         |       |
+     |         |   Reduce stock
+     |         |       |
+     +---------+-------+
+               |
+       +-------+--------+
+       |                |
+       v                v
+  View Inventory   Low Stock Alert
+       |                |
+       v                v
+ Display Items    Find quantity < 5
+       |                |
+       +--------+-------+
+                |
+                v
+          Back to Menu
+                |
+                v
+             Exit?
+           /       \
+         Yes        No
+          |          |
+          v          |
+         Bye         |
+          |          |
+          v          |
+         END <-------+
+
+
+
+💻 Example Run
+Adding an item
+1. Add New Item
+2. Restock Item (increase quantity)
+3. Sell Item (decrease quantity)
+4. View Inventory
+5. Low Stock Alert (items with quantity < 5)
+6. Exit
+Choose: 1
+
+Add New Item:-
+Enter item name: Pen
+Enter starting quantity: 10
+
+Item added!
+Trying to add a duplicate item
+Choose: 1
+
+Add New Item:-
+Enter item name: Pen
+
+'Pen' already exists! Use Restock instead.
+Restocking
+Choose: 2
+
+Enter item name: Pen
+Enter Adding quantity: 5
+
+Item added successful!
+
+The inventory now contains 15 pens.
+
+Selling more than the available stock
+Choose: 3
+
+Enter item name: Pen
+Enter selling quantity: 20
+
+Not enough stock! Only 15 available.
+Selling successfully
+Choose: 3
+
+Enter item name: Pen
+Enter selling quantity: 7
+
+Item selled successful!
+
+The remaining quantity is 8.
+
+Viewing inventory
+Choose: 4
+
+Viewing Inventory:-
+1) Pen : 8
+Low stock alert
+
+Suppose you have only 3 pencils:
+
+Choose: 5
+
+Low Stock:-
+Pencil : 3
+Exiting
+Choose: 6
+
+Bye
+
+
+🧩 Concepts Used
+Concept	How it is used
+Dictionary {}	Stores item names and quantities
+Key-value pairs	Item name is the key; quantity is the value
+input()	Gets item names and quantities
+int()	Converts quantities and menu choices into integers
+.title()	Formats item names
+in	Checks whether an item exists
+if / else	Controls inventory operations
++=	Increases stock
+-=	Decreases stock
+for loop	Iterates through inventory
+enumerate()	Displays numbered inventory items
+found_low	Tracks whether low-stock items were found
+<	Checks whether quantity is below 5
+while True	Repeats the menu
+break	Exits the program
+
+
+🔗 Connection to Previous Days
+Day 20 — To-Do List
+
+You learned how to add, remove, and view items in a list.
+
+Day 27 applies similar operations to a dictionary, where each item has a quantity.
+
+Day 21 — Contact Book
+
+You learned how to store and retrieve information using dictionaries.
+
+Day 27 uses the same structure:
+
+item[name] = qty
+
+But instead of storing phone numbers, it stores inventory quantities.
+
+It also prevents duplicate item names instead of overwriting existing values.
+
+Day 22 — Student Marks Manager
+
+You learned how to use dictionaries with numeric values and calculate averages.
+
+Day 27 also uses dictionary values, but changes them when items are restocked or sold.
+
+Day 23 — Shopping Cart
+
+You learned how to manage products and quantities.
+
+Day 27 builds on that idea by tracking stock levels and preventing sales that exceed available inventory.
+
+Day 24 — Remove Duplicates
+
+You learned how to use in and not in to check whether a value exists.
+
+Day 27 uses:
+
+if name in item:
+
+to prevent duplicate inventory entries.
+
+Day 25 — Max, Min, and Average
+
+You practiced comparisons and loops.
+
+Day 27 uses similar comparison logic to identify low-stock items and check whether enough stock is available.
+
+
+🎯 Important Logic to Remember
+Add only if the item doesn't exist
+if name in item:
+    print("Item already exists!")
+else:
+    item[name] = qty
+Increase stock
+item[name] += qty0
+Decrease stock only when enough is available
+if qty0 <= item[name]:
+    item[name] -= qty0
+else:
+    print("Not enough stock!")
+Find low-stock items
+for n in item:
+    if item[n] < 5:
+        print(n, item[n])
+
+🧒 Simple memory trick
+
+Think of the inventory as a shop notebook:
+
+Add: Write a new item.
+Restock: Increase its quantity.
+Sell: Decrease its quantity, but never below zero.
+View: Read the notebook.
+Low stock: Find items with fewer than 5 units.
+
+
+🎁 Bonus and Requirement Status
+Requirement	Status
+Add new item	✅ Implemented
+Prevent duplicate items	✅ Implemented
+Restock existing items	✅ Implemented
+Sell existing items	✅ Implemented
+Prevent selling more than available stock	✅ Implemented
+View inventory	✅ Implemented
+Low stock alert for quantity < 5	✅ Implemented
+Display a message when no items are low	✅ Implemented
+Menu-based program	✅ Implemented
+Exit option	✅ Implemented
+
+
+⚠️ Possible improvements
+
+Your current code works for the main requirements. A few improvements you could make later:
+
+Reject zero or negative starting quantities.
+Reject zero or negative restock quantities.
+Reject zero or negative selling quantities.
+Handle non-numeric input without crashing.
+Display a message when the inventory is empty.
+
+These are not implemented in your current code, but they would make the inventory system more robust.
+
+
+
+📚 What I Learned
+
+From this project, I learned:
+
+How to create a dictionary for inventory management.
+How to store item names and numeric quantities.
+How to prevent duplicate dictionary keys from overwriting existing data.
+How to increase and decrease dictionary values.
+How to check whether enough stock is available before selling.
+How to loop through a dictionary.
+How to use enumerate() to display numbered items.
+How to use a Boolean variable to track whether low-stock items were found.
+How to combine dictionaries, loops, conditions, and menus in one project.
+
+
+📁 Project Structure
+day27/
+├── day27_simple_text_based_inventory_system.py
+├── day27_question
+└── read.me
+
+
+▶️ How to Run
+
+Open the terminal inside the day27 folder and run:
+
+python3 day27_simple_text_based_inventory_system.py
+
+Choose an option from the menu to manage the inventory.
+
+Select 6 to exit the program.
+
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
