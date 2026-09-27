@@ -1,0 +1,42 @@
+Day 28: Word Frequency Counter from a Paragraph
+
+Concepts used:
+ .split(),
+ dictionaries,
+ .get() method (new!)
+
+Problem Statement
+Write a Python program that:
+1.Asks the user to enter a paragraph (a few sentences).
+2.Counts how many times each word appears.
+3.Prints each word with its count, ignoring case ("The" and "the" should count as the same word).
+
+Example Run
+Enter a paragraph: the cat sat on the mat the cat ran
+
+the: 3
+cat: 2
+sat: 1
+on: 1
+mat: 1
+ran: 1
+
+New concept: .get() on a dictionary
+When counting things in a dictionary, you constantly need to check "does this key already exist? If yes, add 1. If no, start it at 1." You already know how to do this with if key in dict: — but there's a shortcut:
+word_count = {}
+word_count["the"] = word_count.get("the", 0) + 1
+.get("the", 0) means: "give me the current value for 'the' — but if it doesn't exist yet, use 0 instead of crashing." This avoids writing a separate if/else every time.
+Full hint
+paragraph = input("Enter a paragraph: ").lower()
+words = paragraph.split()   # splits on whitespace, e.g. "the cat sat" → ['the', 'cat', 'sat']
+
+word_count = {}
+for word in words:
+    word_count[word] = word_count.get(word, 0) + 1
+
+for word in word_count:
+    print(f"{word}: {word_count[word]}")
+
+Bonus (optional)
+1.Strip punctuation before counting, so "cat." and "cat" count as the same word (hint: word.replace(".", "").replace(",", "") for basic punctuation, or look into .strip(".,!?")).
+2.Sort and show the most frequent word first (hint: look up sorted() with a key= argument, or just find it manually by tracking the highest count while looping).
