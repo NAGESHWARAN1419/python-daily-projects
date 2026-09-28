@@ -1,0 +1,279 @@
+🔐 Day 29: Basic Caesar Cipher (Encode/Decode Text)
+
+📌 Project Overview
+
+This is a beginner-friendly Python project that encodes and decodes messages using a Caesar cipher.
+A Caesar cipher is a simple encryption technique in which each letter is shifted forward or backward by a fixed number of positions in the alphabet.
+
+For example, if the shift is 3:
+
+hello becomes khoor when encoded.
+khoor becomes hello when decoded.
+
+The program provides a menu to encode messages, decode messages, or exit. It also allows the user to process multiple messages until they choose to quit.
+
+🎯 Features
+
+🔐 Encode: Shift letters forward by a specified number.
+🔓 Decode: Shift letters backward by a specified number.
+🔄 Multiple Messages: Continue encoding or decoding without restarting the program.
+🔤 Case Handling: Convert input to lowercase before processing.
+🔣 Preserve Spaces and Punctuation: Keep spaces and non-letter characters unchanged.
+🔁 Alphabet Wrapping: Continue from z to a when shifting beyond the end of the alphabet.
+🚪 Exit Options: Exit using menu option 3 or by entering q.
+
+
+🧠 New Concepts Explained
+1. What Is a Caesar Cipher?
+
+Imagine you have an alphabet:
+
+a b c d e f g h i j k l m n o p q r s t u v w x y z
+
+If you shift every letter forward by 3 positions:
+
+Original: a b c d e f g h i j k l m n o p q r s t u v w x y z
+Encoded:  d e f g h i j k l m n o p q r s t u v w x y z a b c
+
+For example:
+
+Original: hello
+Shift:    3
+Encoded:  khoor
+
+Each letter moves three positions forward.
+
+2. What Are ord() and chr()?
+
+Python gives every character a numeric code.
+
+ord() converts a character into its numeric code.
+chr() converts a numeric code back into a character.
+
+Example:
+
+print(ord('a'))  # 97
+print(chr(97))   # a
+
+Think of it like a secret dictionary where every letter has a number.
+
+3. How Does % 26 Work?
+
+There are 26 letters in the English alphabet.
+
+What happens if you shift z forward by 1?
+
+Without wrapping, you would go beyond the alphabet. The modulo operator % helps you return to the beginning.
+
+shifted = chr((ord(letter) - 97 + shift) % 26 + 97)
+
+Let's break it down:
+
+Code	Meaning
+ord(letter)	Convert the letter into a number
+- 97	Convert the lowercase ASCII code into a position from 0 to 25
++ shift	Move forward by the specified number
+% 26	Wrap around the alphabet
++ 97	Convert the position back to an ASCII code
+chr()	Convert the number back into a letter
+
+For example, shifting z forward by 1:
+
+z = position 25
+25 + 1 = 26
+26 % 26 = 0
+0 = a
+
+Therefore, z becomes a.
+
+4. How Does Decoding Work?
+
+Decoding is the reverse of encoding.
+
+Encoding shifts letters forward.
+Decoding shifts letters backward.
+
+For encoding:
+
+shifted = chr((ord(letter) - 97 + shift) % 26 + 97)
+
+For decoding:
+
+shifted = chr((ord(letter) - 97 - shift) % 26 + 97)
+
+The only difference is + shift versus - shift.
+
+5. Why Use isalpha()?
+
+The isalpha() method checks whether a character is a letter.
+
+For example:
+
+'a'.isalpha()  # True
+'7'.isalpha()  # False
+' '.isalpha()  # False
+
+Your program uses this to shift letters while leaving spaces and punctuation unchanged.
+
+Note: The program converts the message to lowercase first, so uppercase letters are not preserved.
+
+
+⚙️ How the Program Works
+Display the menu:
+Encode
+Decode
+Exit
+Ask the user to choose an option.
+If the user selects Encode:
+Ask for a message and shift value.
+Convert the message to lowercase.
+Loop through each character.
+Shift letters forward and preserve non-letters.
+Display the encoded message.
+If the user selects Decode:
+Ask for a message and shift value.
+Convert the message to lowercase.
+Loop through each character.
+Shift letters backward and preserve non-letters.
+Display the decoded message.
+If the user selects Exit or enters q, stop the program.
+Otherwise, display an invalid-option message.
+
+
+💻 Example Runs
+Example 1: Encoding a Message
+1. Encode
+2. Decode
+3. Exit
+Choose: 1
+
+Enter message: hello
+
+Enter shift: 3
+
+Encoded: khoor
+
+Example 2: Decoding a Message
+1. Encode
+2. Decode
+3. Exit
+Choose: 2
+
+Enter message: khoor
+
+Enter shift: 3
+
+Decoded: hello
+
+Example 3: Preserving Spaces and Punctuation
+1. Encode
+2. Decode
+3. Exit
+Choose: 1
+
+Enter message: hello world!
+Enter shift: 3
+
+Encoded: khoor zruog!
+
+The letters are shifted, but the space and exclamation mark remain unchanged.
+
+Example 4: Alphabet Wrapping
+1. Encode
+2. Decode
+3. Exit
+Choose: 1
+
+Enter message: xyz
+Enter shift: 3
+
+Encoded: abc
+
+When a letter reaches the end of the alphabet, it wraps around to the beginning.
+
+Example 5: Exiting the Program
+1. Encode
+2. Decode
+3. Exit
+Choose: 3
+
+Bye
+
+You can also enter q at the menu to exit.
+
+
+📚 Python Concepts Used
+Concept	Explanation
+while True	Repeats the menu until the program exits
+input()	Gets input from the user
+int()	Converts the shift value into an integer
+if, elif, else	Selects the operation
+for loop	Processes each character in the message
+ord()	Converts a character into its numeric code
+chr()	Converts a numeric code into a character
+%	Wraps letter positions around the alphabet
+.lower()	Converts the message to lowercase
+.isalpha()	Checks whether a character is a letter
+String concatenation (+=)	Builds the encoded or decoded message
+break	Exits the loop
+
+
+🧩 Bonus Features
+Bonus	Status
+Encode messages	✅ Completed
+Decode messages	✅ Completed
+Handle spaces and punctuation	✅ Completed
+Support uppercase input	⚠️ Input is converted to lowercase
+Process multiple messages	✅ Completed
+Quit using q	✅ Completed
+
+Note: The program does not preserve uppercase letters. It also does not validate non-numeric menu choices or shift values.
+
+
+
+🔗 Connection to Previous Days
+Previous Day	Connection
+Day 9: Sum of Digits	Used loops and arithmetic operators
+Day 10: Reverse Number	Practiced processing values step by step
+Day 13: Pattern Printing	Used loops to repeat operations
+Day 19: String Reverser and Case Converter	Practiced string manipulation
+Day 28: Word Frequency Counter	Processed text character by character
+
+
+Day 29 combines loops, strings, conditions, and arithmetic to create a simple encryption tool.
+
+
+📝 What I Learned
+How a Caesar cipher works.
+How to encode and decode messages using a fixed shift.
+How to use ord() and chr() to convert between characters and numbers.
+How ASCII values represent lowercase letters.
+How % 26 wraps letters around the alphabet.
+How to process a string one character at a time.
+How to preserve spaces and punctuation while changing letters.
+How encoding and decoding use opposite shifts.
+
+
+📂 Project Structure
+day29/
+├── day29_basic_caesar_cipher.py
+├── day29_question
+└── read.me
+
+
+▶️ How to Run
+Open the project folder in your terminal.
+Run the Python file:
+python3 day29_basic_caesar_cipher.py
+Choose an operation:
+1 to encode
+2 to decode
+3 to exit
+Enter the message and shift value when prompted.
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
