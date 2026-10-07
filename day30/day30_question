@@ -1,0 +1,73 @@
+Day 30: Address Book App (Phase 2 Review Project)
+
+This is your Phase 2 milestone. No big new concepts except one: a dictionary inside a dictionary. Everything else is what you've already practiced (menus, dicts, validation, loops, search).
+
+Problem Statement
+Build an address book where each person's name maps to a dictionary of details:
+address_book = {
+    "Arun": {"phone": "9876543210", "email": "arun@gmail.com", "city": "Chennai"},
+    "Priya": {"phone": "9123456780", "email": "priya@gmail.com", "city": "Madurai"}
+}
+
+Menu:
+1. Add Contact
+2. Search Contact
+3. Update Contact
+4. Delete Contact
+5. View All Contacts
+6. Exit
+What each option should do
+Add: ask for name, phone, email, city. If the name already exists, warn instead of overwriting.
+Search: partial, case-insensitive match on the name (like your Day 21 search). Show all the details of each match.
+Update: ask which field to change (phone / email / city), then the new value. The name must exist.
+Delete: the name must exist. Ask for confirmation (y/n) before deleting.
+View All: show every contact with all their details, nicely formatted.
+New concept: nested dictionary
+address_book = {}
+
+# adding a person: the VALUE is another dictionary
+address_book["Arun"] = {"phone": "9876543210", "email": "arun@gmail.com", "city": "Chennai"}
+
+# reading one detail: two square brackets, outer key first, then inner key
+print(address_book["Arun"]["phone"])     # → 9876543210
+
+# updating one detail:
+address_book["Arun"]["city"] = "Coimbatore"
+
+# looping through everything:
+for name in address_book:
+    print(name)
+    print("  Phone:", address_book[name]["phone"])
+    print("  Email:", address_book[name]["email"])
+    print("  City:", address_book[name]["city"])
+Think of it like a cupboard. The outer dictionary is the cupboard, each person is a drawer (the name is the label), and inside each drawer there are three small boxes: phone, email, city.
+
+
+Example Run
+Choose: 1
+Enter name: Arun
+Enter phone: 9876543210
+Enter email: arun@gmail.com
+Enter city: Chennai
+Contact added!
+
+Choose: 3
+Enter name to update: Arun
+Which field? (phone/email/city): city
+Enter new city: Coimbatore
+Contact updated!
+
+Choose: 5
+Arun
+  Phone: 9876543210
+  Email: arun@gmail.com
+  City: Coimbatore
+
+
+Watch out for
+1.Store the phone number as a string, not int. Phone numbers can start with 0 and you never do math on them.
+2.In Update, check that the field the user types is one of phone, email, city. Otherwise address_book[name][field] = ... would quietly create a new, wrong field.
+
+
+Bonus (optional)
+1.In Search, let the user also search by city (show everyone living in that city).
