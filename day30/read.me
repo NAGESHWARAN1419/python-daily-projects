@@ -1,0 +1,629 @@
+📒 Day 30: Address Book App — Phase 2 Review Project
+
+📌 Project Overview
+
+Day 30 is the Phase 2 milestone of the Python learning journey.
+This project combines many concepts practiced in previous days:
+
+Dictionaries
+Nested dictionaries
+Loops
+Menus
+Searching
+Updating data
+Deleting data
+Validation
+String methods
+User input
+
+The main new concept is a dictionary inside another dictionary, also called a nested dictionary.
+
+Instead of storing only one value for each person, each contact now contains multiple details:
+
+address_book = {
+    "arun": {
+        "phone": "9876543210",
+        "email": "arun@gmail.com",
+        "city": "Chennai"
+    }
+}
+
+The application allows the user to add, search, update, delete, and view contacts.
+
+🎯 Features
+➕ Add new contacts
+🔍 Search contacts by name
+🏙️ Search contacts by city
+✏️ Update phone, email, or city
+🗑️ Delete contacts with confirmation
+📋 View all contacts
+🚫 Prevent duplicate contact names
+🔎 Case-insensitive searching
+📱 Store phone numbers as strings
+🔐 Validate update fields
+🔄 Continue using the menu until exit
+
+
+🧠 New Concept: Nested Dictionary
+
+The biggest new concept in Day 30 is a dictionary inside a dictionary.
+
+Think of it like a cupboard.
+
+Address Book
+│
+├── arun
+│   ├── phone
+│   ├── email
+│   └── city
+│
+└── priya
+    ├── phone
+    ├── email
+    └── city
+
+The outer dictionary stores the contacts.
+
+The inner dictionary stores the details of each contact.
+
+address_book = {
+    "arun": {
+        "phone": "9876543210",
+        "email": "arun@gmail.com",
+        "city": "Chennai"
+    }
+}
+Reading a value
+
+You use two pairs of square brackets:
+
+address_book["arun"]["phone"]
+
+Result:
+
+9876543210
+
+The first key:
+
+["arun"]
+
+finds the person.
+
+The second key:
+
+["phone"]
+
+finds the person's phone number.
+
+📦 Think Like a 5-Year-Old
+
+Imagine a big cupboard:
+
+📦 Address Book
+
+Inside the cupboard are drawers:
+
+🗄️ Arun
+🗄️ Priya
+
+Inside Arun's drawer are three small boxes:
+
+📱 Phone
+📧 Email
+🏙️ City
+
+So:
+
+address_book["arun"]["phone"]
+
+basically means:
+
+"Go to the address book → open Arun's drawer → get the phone box."
+
+That's the idea of a nested dictionary.
+
+➕ Adding a Contact
+
+When the user chooses option 1, the program asks for:
+
+Name
+Phone
+Email
+City
+
+First, it checks whether the name already exists:
+
+if name in address_book:
+    print("name is exits.")
+
+If the name does not exist, a new nested dictionary is created:
+
+address_book[name] = {
+    "phone": phone,
+    "email": email,
+    "city": city
+}
+
+For example:
+
+Enter name: Arun
+Enter phone: 9876543210
+Enter email: arun@gmail.com
+Enter city: Chennai
+
+The dictionary becomes:
+
+{
+    "arun": {
+        "phone": "9876543210",
+        "email": "arun@gmail.com",
+        "city": "Chennai"
+    }
+}
+
+
+🚫 Duplicate Protection
+
+If the name already exists, the program does not overwrite the existing contact.
+
+This is important because accidentally adding the same person should not destroy their old information.
+
+📱 Why Is the Phone Number a String?
+
+The program uses:
+
+phone = input("Enter phone: ")
+
+instead of:
+
+phone = int(input(...))
+
+This is the correct approach for phone numbers.
+
+Why?
+
+Because phone numbers are not numbers for mathematical calculations.
+
+For example:
+
+0987654321
+
+If you store it as an integer, the leading 0 can disappear.
+
+A phone number should therefore be treated as text:
+
+"0987654321"
+
+🔍 Searching Contacts
+
+The search system supports:
+
+Search by name
+Search by city
+
+The user first chooses the search type:
+
+search_type = input("Search by name or city: ").lower()
+
+Then enters the search text.
+
+Name Search
+
+The program uses:
+
+if search_text in name:
+
+This allows partial matching.
+
+For example, if the address book contains:
+
+arun
+aravind
+priya
+
+Searching:
+
+aru
+
+can find:
+
+arun
+
+Searching:
+
+a
+
+can find multiple matching names.
+
+
+🏙️ City Search
+
+The program also searches inside the nested dictionary:
+
+if search_text in address_book[name]["city"]:
+
+For example:
+
+Search by name or city: city
+Enter search text: chennai
+
+The program checks each person's city and displays matching contacts.
+
+This is an extra bonus feature that you successfully implemented.
+
+🔎 The found Variable
+
+The program uses:
+
+found = False
+
+This is like a small flag.
+
+Think:
+
+"Have I found anyone yet?"
+
+When a matching contact is found:
+
+found = True
+
+After searching, the program checks:
+
+if not found:
+    print("No matching contacts found")
+
+So the program can tell the user when there are no results.
+
+
+✏️ Updating a Contact
+
+Option 3 allows an existing contact to be changed.
+
+First, the program checks whether the name exists:
+
+if name in address_book:
+
+Then it asks which field should change:
+
+Which field? (phone/email/city):
+
+The program validates the field:
+
+if field in ["phone", "email", "city"]:
+
+This is important.
+
+Without this check, someone could accidentally type:
+
+age
+
+and Python would create a new field:
+
+"age": "25"
+
+Your validation prevents that.
+
+Updating the value
+
+The program uses:
+
+address_book[name][field] = new_value
+
+For example:
+
+address_book["arun"]["city"] = "coimbatore"
+
+Only the city changes.
+
+The phone and email remain unchanged.
+
+
+
+🗑️ Deleting a Contact
+
+Option 4 deletes an existing contact.
+
+First, the program checks:
+
+if delete_name in address_book:
+
+Then it asks for confirmation:
+
+Are you sure you want to delete arun? (y/n):
+
+If the user enters:
+
+y
+
+the contact is deleted using:
+
+del address_book[delete_name]
+
+If the user enters anything other than y, the program displays:
+
+Delete cancelled.
+
+This confirmation is a good safety feature because deletion cannot happen accidentally with a single menu selection.
+
+
+
+📋 Viewing All Contacts
+
+Option 5 loops through the entire dictionary:
+
+for name in address_book:
+
+Then it accesses each person's details:
+
+address_book[name]["phone"]
+address_book[name]["email"]
+address_book[name]["city"]
+
+The output is formatted like:
+
+Arun
+ Phone: 9876543210
+ Email: arun@gmail.com
+ City: Chennai
+
+This makes the nested dictionary easier for the user to understand.
+
+
+
+⚙️ Program Flow
+             START
+                │
+                ▼
+        Display Main Menu
+                │
+       ┌────────┼────────┐
+       ▼        ▼        ▼
+     Add     Search    Update
+       │        │        │
+       └────────┼────────┘
+                │
+       ┌────────┼────────┐
+       ▼        ▼        ▼
+     Delete   View All   Exit
+       │        │
+       └────────┘
+                │
+                ▼
+        Show Menu Again
+                │
+                └──────► Repeat
+
+The while True loop keeps the application running until option 6 is selected.
+
+
+
+💻 Example Run
+Adding a Contact
+Menu:
+1. Add Contact
+2. Search Contact
+3. Update Contact
+4. Delete Contact
+5. View All Contacts
+6. Exit
+
+Choose: 1
+
+Enter name: Arun
+Enter phone: 9876543210
+Enter email: arun@gmail.com
+Enter city: Chennai
+
+Detail added!
+Updating a Contact
+Choose: 3
+
+Enter the name to update: arun
+Which field? (phone/email/city): city
+Enter new city: Coimbatore
+
+Contact update!
+Viewing the Contact
+Choose: 5
+
+Arun
+ Phone: 9876543210
+ Email: arun@gmail.com
+ City: Coimbatore
+Searching by City
+Choose: 2
+
+Search by name or city: city
+Enter search text: coimbatore
+
+Arun
+ Phone: 9876543210
+ Email: arun@gmail.com
+ City: coimbatore
+Deleting a Contact
+Choose: 4
+
+Enter delete address name: arun
+
+Are you sure you want to delete arun? (y/n): y
+
+Arun Deleted Successfully!
+
+
+📚 Python Concepts Used
+Concept	How it is used
+Dictionary	Stores contacts
+Nested dictionary	Stores multiple details for each contact
+while True	Keeps the menu running
+if / elif / else	Handles menu choices
+for loop	Searches and displays contacts
+in	Checks whether a contact or search text exists
+.lower()	Makes input/search case-insensitive
+.title()	Formats names for display
+del	Removes a contact
+input()	Gets information from the user
+int()	Converts the menu choice to an integer
+List	Stores allowed update fields
+Boolean flag	found tracks whether a search found anything
+String matching	Supports partial searches
+
+
+🏆 Phase 2 Review
+
+Day 30 is a great review because it brings together many concepts from Phase 2.
+
+Earlier concepts reused
+
+Day 20 — To-Do List
+
+Menu + list + add/remove/view
+
+Day 21 — Contact Book
+
+Dictionary + search + update + delete
+
+Day 22 — Student Marks Manager
+
+Dictionary + nested data + searching
+
+Day 24 — Remove Duplicates
+
+Lists and dictionary-related thinking
+
+Day 28 — Word Frequency Counter
+
+Dictionary + .get() + string processing
+
+Day 29 — Caesar Cipher
+
+String processing + loops + conditions
+
+Day 30 combines these skills into one larger application.
+
+
+🎁 Bonus Status
+Requirement	Status
+Add contacts	✅ Completed
+Prevent duplicate names	✅ Completed
+Search by name	✅ Completed
+Partial name search	✅ Completed
+Case-insensitive search	✅ Completed
+Update contact	✅ Completed
+Validate update field	✅ Completed
+Delete contact	✅ Completed
+Delete confirmation	✅ Completed
+View all contacts	✅ Completed
+Search by city	✅ Bonus completed
+
+You actually implemented the optional city search bonus too. 🎉
+
+⚠️ Possible Improvements
+
+The main requirements are implemented, but there are a few things you could improve later.
+
+1. Handle invalid menu input
+
+Currently:
+
+opt = int(input("Choose: "))
+
+If the user types:
+
+abc
+
+the program will produce an error.
+
+A future version could use try/except.
+
+2. Make update name handling consistently lowercase
+
+When adding and deleting, names are converted using .lower().
+
+However, in the update option:
+
+name = input("Enter the name to update: ")
+
+the input is not converted to lowercase.
+
+So entering:
+
+Arun
+
+instead of:
+
+arun
+
+may result in:
+
+Name not found.
+
+You could later use:
+
+name = input("Enter the name to update: ").lower()
+3. Validate phone/email/city
+
+The current program accepts whatever text the user enters. Later, you could add validation for:
+
+Phone number length
+Digits in phone number
+Basic email format
+Empty names
+Empty city
+
+These are improvements for a future version, not missing core requirements.
+
+
+📝 What I Learned
+
+Through this project, I learned:
+
+How to create a nested dictionary.
+How to access values using two dictionary keys.
+How to update a specific value inside a nested dictionary.
+How to loop through nested dictionary data.
+How to search using partial text.
+How to search using multiple criteria.
+How to use a Boolean variable as a search flag.
+Why phone numbers should be stored as strings.
+How to validate user input against allowed values.
+How to safely delete data using confirmation.
+How to combine many previously learned Python concepts into one complete application.
+
+
+🚀 Phase 2 Milestone Complete!
+
+Day 30 is more than just another small Python exercise. It is a review project that shows how individual concepts can be combined into a useful application.
+
+The biggest new step is:
+
+Dictionary
+     ↓
+Nested Dictionary
+     ↓
+Complete Address Book
+
+This is an important foundation for working with structured data in Python.
+
+
+📂 Project Structure
+day30/
+├── day30_address_book_app_phase_2_review_project.py
+├── day30_question
+└── read.me
+
+
+▶️ How to Run
+Open the day30 project folder.
+Run the Python file:
+python3 day30_address_book_app_phase_2_review_project.py
+Choose an option from the menu.
+Follow the prompts.
+Continue using the application until you select:
+6. Exit
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
