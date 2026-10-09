@@ -1,0 +1,251 @@
+🔢 Day 34: Prime Number Checker + List Primes in a Range
+
+📌 Project Overview
+
+This is my Day 34 Python project, where I learned how to check whether a number is prime and find all prime numbers within a given range.
+
+The program uses two functions, is_prime() and primes_in_range(), to organize the logic and make the code reusable. A menu allows users to check individual numbers, list prime numbers in a range, or exit the program.
+
+This project helped me practise functions, for loops, return, if-else conditions, lists, and menu-driven programming.
+
+🎯 Features
+✅ Check whether a number is prime.
+✅ Find all prime numbers within a range, including the start and end values.
+✅ Reject numbers less than 2 as prime numbers.
+✅ Display a message when no prime numbers are found.
+✅ Display a message when the start value is greater than the end value.
+✅ Repeat the menu until the user chooses Exit.
+✅ Handle invalid menu choices.
+✅ Reuse the is_prime() function inside primes_in_range().
+
+
+🧠 What Is a Prime Number?
+
+A prime number is a whole number greater than 1 that can be divided evenly by only two numbers: 1 and itself.
+
+Examples of prime numbers:
+
+2, 3, 5, 7, 11, 13, 17, 19
+
+Examples of non-prime numbers:
+
+1 — not prime because it is less than 2.
+4 — divisible by 2.
+6 — divisible by 2 and 3.
+9 — divisible by 3.
+15 — divisible by 3 and 5.
+
+Think of it like this: if a number greater than 1 has another number that divides it evenly besides 1 and itself, it is not prime.
+
+
+
+⚙️ How the Program Works
+1. The is_prime(n) Function
+
+This function checks whether a number is prime and returns either True or False.
+
+def is_prime(n):
+    if n < 2:
+        return False
+
+    for i in range(2, n):
+        if n % i == 0:
+            return False
+
+    return True
+
+How it works:
+
+If the number is less than 2, return False.
+Try dividing the number by every integer from 2 to n - 1.
+If the remainder is 0, the number has a divisor, so return False immediately.
+If no divisor is found, return True.
+
+Example: is_prime(9)
+
+Divisor (i)	9 % i	Result
+2	1	Not divisible evenly; continue
+3	0	Divisible evenly; return False
+
+Therefore, 9 is not a prime number.
+
+Example: is_prime(7)
+
+The function tries the divisors 2, 3, 4, 5, 6. None divides 7 evenly, so the function returns True.
+
+2. The primes_in_range(start, end) Function
+
+This function collects every prime number between the start and end values into a list.
+
+def primes_in_range(start, end):
+    primes = []
+
+    for num in range(start, end + 1):
+        if is_prime(num):
+            primes.append(num)
+
+    return primes
+
+How it works:
+
+Create an empty list called primes.
+Loop through each number in the given range.
+Call is_prime() to check each number.
+If the number is prime, add it to the list using append().
+Return the completed list.
+
+Why use end + 1?
+
+Python's range() excludes its ending value. Adding 1 allows the program to check the end value too.
+
+For example:
+
+primes_in_range(10, 30)
+
+Returns:
+
+[11, 13, 17, 19, 23, 29]
+3. The Menu System
+
+The program repeatedly displays three options:
+
+Check if a number is prime.
+List all primes in a range.
+Exit.
+
+A while True loop keeps the program running. When the user chooses option 3, break stops the loop.
+
+The program also checks whether the range is valid and whether the resulting list is empty before displaying the results.
+
+
+
+💻 Example Runs
+Example 1: Check a Prime Number
+1. Check if a number is prime
+2. List all primes in a range
+3. Exit
+Choose: 1
+
+Enter a number: 17
+
+17 is a prime number.
+Example 2: Check a Non-Prime Number
+Choose: 1
+
+Enter a number: 15
+
+15 is NOT a prime number.
+Example 3: List Prime Numbers in a Range
+Choose: 2
+
+Enter start: 10
+Enter end: 30
+
+Primes between 10 to 30: [11, 13, 17, 19, 23, 29]
+Example 4: No Primes Found
+Choose: 2
+
+Enter start: 8
+Enter end: 10
+
+No primes found.
+Example 5: Invalid Range
+Choose: 2
+
+Enter start: 30
+Enter end: 10
+
+'Start' is greater than 'end'
+Example 6: Exit the Program
+Choose: 3
+
+Bye
+
+
+📚 Python Concepts Used
+Concept	How I Used It
+Functions	Created is_prime() and primes_in_range()
+Parameters	Passed numbers and range boundaries into functions
+return	Returned True, False, or a list
+Boolean values	Used True and False to represent prime-checking results
+for loop	Checked divisors and numbers within a range
+if-else	Made decisions based on the result
+Modulo operator (%)	Checked whether a number divides evenly
+Lists	Stored prime numbers found in a range
+append()	Added prime numbers to the list
+range()	Generated numbers to check
+while True	Repeated the menu
+break	Exited the menu loop
+continue	Returned to the menu after an invalid choice
+Nested function calls	Used is_prime() inside primes_in_range()
+Input and type conversion	Read user input and converted it using int()
+
+
+⭐ Bonus Feature Status
+Bonus	Status
+Faster prime checking using the square root	❌ Not implemented
+Display the total number of primes found	❌ Not implemented
+
+The current is_prime() function checks every possible divisor from 2 to n - 1. This is correct, but it can be slow for large numbers.
+
+
+
+🚀 Possible Improvement: Make Prime Checking Faster
+
+The loop can check only up to the square root of the number:
+
+for i in range(2, int(n ** 0.5) + 1):
+
+Why does this work? If a number has a factor larger than its square root, it must also have a matching factor smaller than its square root. Therefore, checking beyond the square root is unnecessary.
+
+Another improvement would be to display the number of primes found:
+
+print(f"Total primes found: {len(result)}")
+
+These are optional improvements and are not part of my current implementation.
+
+
+
+🔗 Connection to My Previous Projects
+Day 20 — To-Do List: Practised storing and managing data using lists.
+Day 24 — Remove Duplicates from a List: Practised list creation and iteration.
+Day 25 — Find Max, Min, and Average: Practised looping through numbers and processing lists.
+Day 31 — Calculator Using Functions: Practised creating reusable functions.
+Day 32 — Factorial Calculator: Compared different approaches to solving a problem with functions.
+Day 33 — Fibonacci Series Generator: Practised loops and functions to generate number sequences.
+
+
+🏆 What I Learned
+How to determine whether a number is prime.
+How to return Boolean values from a function.
+How return immediately ends a function, even when used inside a loop.
+How to reuse one function inside another.
+How to collect matching numbers in a list.
+How to include both endpoints when looping through a range.
+How to handle empty results and invalid ranges.
+How to build a menu-driven program using a loop.
+
+
+📁 Project Structure
+day34/
+├── day34_prime_number_checker_list_primes_in_a_range.py
+├── day34_question
+└── read.me
+
+
+▶️ How to Run
+Open the day34 project folder.
+
+Run the Python file:
+
+python day34_prime_number_checker_list_primes_in_a_range.py
+Choose an option from the menu.
+Check individual numbers or list primes within a range.
+Choose option 3 to exit.
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.

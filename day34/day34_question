@@ -1,0 +1,71 @@
+Day 34: Prime Number Checker + List Primes in a Range
+
+Concepts used: functions, for loop, break, returning True/False, lists
+
+What is a prime number?
+A prime number is a number greater than 1 that can only be divided evenly by 1 and itself.
+Primes:      2, 3, 5, 7, 11, 13, ...
+Not primes:  1 (special rule), 4 (2×2), 6 (2×3), 9 (3×3), 15 (3×5)
+
+Problem Statement
+
+Write a program with two functions:
+1.is_prime(n) returns True if n is prime, otherwise False.
+2.primes_in_range(start, end) returns a list of all prime numbers from start to end (including both), using is_prime() inside it.
+
+The main program shows a menu:
+1. Check if a number is prime
+2. List all primes in a range
+3. Exit
+
+Example Run
+Choose: 1
+Enter a number: 17
+17 is a prime number.
+
+Choose: 1
+Enter a number: 15
+15 is NOT a prime number.
+
+Choose: 2
+Enter start: 10
+Enter end: 30
+Primes between 10 and 30: [11, 13, 17, 19, 23, 29]
+
+The idea behind is_prime
+To test whether n is prime, try dividing it by every number from 2 up to n - 1. If any of them divides evenly (remainder 0), then n is not prime.
+def is_prime(n):
+    if n < 2:                    # 0, 1 and negatives are not prime
+        return False
+    for i in range(2, n):
+        if n % i == 0:           # found a number that divides evenly
+            return False         # so n is NOT prime, stop right here
+    return True                  # nobody divided it evenly, so it IS prime
+
+Why does return False inside the loop work so well? The moment return runs, the function ends immediately. You don't need a break or a flag. If the loop finishes without ever finding a divisor, the last line return True runs.
+Trace is_prime(9):
+
+i     9 % i      Result
+2      1         not a divisor, continue
+3      0         divides evenly → return False
+
+Trace is_prime(7): it tries 2, 3, 4, 5, 6, none divide evenly, so the loop ends and return True runs.
+The idea behind primes_in_range
+def primes_in_range(start, end):
+    primes = []
+    for num in range(start, end + 1):    # end + 1 so that end is included
+        if is_prime(num):                # calling your own function
+            primes.append(num)
+    return primes
+
+Notice how one function calls another. This is the real power of functions: is_prime is written once and reused.
+
+Things to handle
+1.If start is greater than end, print a message instead of returning an empty list silently.
+2.If no primes are found in the range, print "No primes found" instead of [].
+3.Loop with the menu until the user picks Exit.
+4.Take the menu choice as text and convert it to a number afterwards, as you did in earlier days.
+
+Bonus (optional)
+1.Make it faster: you don't need to check all the way up to n - 1. It's enough to check up to the square root of n. Change the loop to for i in range(2, int(n ** 0.5) + 1):. The answers stay the same, but checking a big number like 1000003 becomes far faster. Think about why this works: if n had a divisor larger than its square root, it would also have a matching divisor smaller than it.
+2.Print how many primes were found along with the list.
