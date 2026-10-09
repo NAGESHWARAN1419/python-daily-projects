@@ -1,0 +1,95 @@
+Day 35: Password Strength Checker
+
+Concepts used: functions, string methods (.isupper(), .islower(), .isdigit()), flags, returning two values from a function (new)
+
+Problem Statement
+
+Write a function check_password(password) that gives a password a score out of 5, one point for each rule it meets:
+1.At least 8 characters long
+2.Has an uppercase letter
+3.Has a lowercase letter
+4.Has a digit (0-9)
+5.Has a special character from !@#$%^&*()_+-=?
+
+Then it decides the strength:
+1.Score 0-2 → Weak
+2.Score 3-4 → Medium
+3.Score 5 → Strong
+The main program asks for a password, calls the function, and prints the strength and a list of the rules that are missing, so the user knows how to improve it.
+
+
+Example Run
+Enter a password (or q to quit): hello
+
+Strength: Weak (score 2/5)
+Tips to improve:
+- Use at least 8 characters
+- Add an uppercase letter
+- Add a digit
+- Add a special character
+
+Enter a password (or q to quit): Hello@123
+
+Strength: Strong (score 5/5)
+
+New tools
+Checking one character at a time (you used isupper and islower on Day 19):
+"A".isupper()    # → True
+"a".islower()    # → True
+"7".isdigit()    # → True
+"@" in "!@#$"    # → True (the `in` check from Day 17)
+
+Flags: start each rule as False, loop through the password, and switch it to True the moment you find a matching character (the same found pattern from earlier days).
+Returning two values from a function. You've already unpacked tuples on Day 23. A function can send back two things at once:
+def check_password(password):
+    score = 0
+    tips = []
+    # ... your checks here ...
+    return score, tips          # two values, separated by a comma
+
+score, tips = check_password("hello")   # unpack them into two variables
+
+Structure hint
+def check_password(password):
+    has_upper = False
+    has_lower = False
+    has_digit = False
+    has_special = False
+    specials = "!@#$%^&*()_+-=?"
+
+    for char in password:
+        if char.isupper():
+            has_upper = True
+        elif char.islower():
+            has_lower = True
+        elif char.isdigit():
+            has_digit = True
+        elif char in specials:
+            has_special = True
+
+    score = 0
+    tips = []
+    if len(password) >= 8:
+        score += 1
+    else:
+        tips.append("Use at least 8 characters")
+    # ... do the same for has_upper, has_lower, has_digit, has_special ...
+
+    return score, tips
+
+Then, in the main loop, decide Weak, Medium or Strong from the score and print the tips with a for loop.
+
+
+Things to handle
+1.An empty password should print a message instead of being scored.
+2.Take the input as text and check for q before doing anything else.
+3.If the score is 5 there are no tips, so don't print an empty "Tips" heading.
+
+
+Bonus (optional)
+Use getpass so the password isn't shown while typing, like a real login:
+ import getpasspassword = getpass.getpass("Enter a password: ")
+1.Note: with getpass the letters don't appear at all, so it's best for the final polished version.
+2.Add a rule that rejects very common passwords like password and 123456 (hint: keep a list of them and use in).
+
+Try Hello@123 by hand first and tick off which of the five rules it meets (it should be all five).

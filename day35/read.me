@@ -1,0 +1,284 @@
+🔐 Day 35: Password Strength Checker
+
+📌 Project Overview
+
+This is my Day 35 Python project, where I built a Password Strength Checker to evaluate a password based on five security rules.
+
+The program checks whether a password contains enough characters, uppercase letters, lowercase letters, digits, and special characters. It calculates a score out of 5 and classifies the password as Weak, Medium, or Strong.
+
+It also provides tips to help improve a password and uses Python's getpass module to hide the password while typing.
+
+This project helped me practise functions, string methods, Boolean flags, loops, lists, returning multiple values, and password validation.
+
+🎯 Features
+
+✅ Check password length.
+✅ Detect uppercase letters.
+✅ Detect lowercase letters.
+✅ Detect digits.
+✅ Detect special characters.
+✅ Calculate a password strength score out of 5.
+✅ Classify passwords as Weak, Medium, or Strong.
+✅ Display tips for missing password requirements.
+✅ Hide password input using Python's getpass module.
+✅ Reject empty password input.
+✅ Repeat the program until the user enters q or Q.
+✅ Avoid displaying the “Tips to improve” heading when no tips are needed.
+
+
+🔑 The Five Password Rules
+
+The program awards one point for each rule satisfied.
+
+Rule	Requirement	Example
+1	At least 8 characters	Hello123
+2	Contains an uppercase letter	H
+3	Contains a lowercase letter	e
+4	Contains a digit	1
+5	Contains a special character	@
+
+The special characters checked by the program are:
+
+!@#$%^&*()_+-=?
+
+
+📊 Password Strength Levels
+Score	Strength
+0–2 out of 5	Weak
+3–4 out of 5	Medium
+5 out of 5	Strong
+
+Important: This is a beginner-friendly rule-based checker. A Strong result means the password meets all five rules; it does not guarantee that the password is secure against every type of attack.
+
+
+⚙️ How the Program Works
+1. Import the getpass Module
+import getpass
+
+The getpass module lets the program request a password without displaying the typed characters in a typical terminal.
+
+For example:
+
+password = getpass.getpass("Enter a password (or q to quit): ")
+
+Unlike ordinary input(), the password is hidden while typing in supported terminals.
+
+2. The check_password(password) Function
+
+This function checks the password and returns two values:
+
+score — the total number of rules satisfied.
+tips — a list of rules that the password is missing.
+def check_password(password):
+    has_upper = False
+    has_lower = False
+    has_digit = False
+    has_special = False
+
+    specials = "!@#$%^&*()_+-=?"
+
+    for char in password:
+        if char.isupper():
+            has_upper = True
+        elif char.islower():
+            has_lower = True
+        elif char.isdigit():
+            has_digit = True
+        elif char in specials:
+            has_special = True
+
+How it works:
+
+Set each flag to False at the beginning.
+Examine the password one character at a time.
+Use .isupper() to detect uppercase letters.
+Use .islower() to detect lowercase letters.
+Use .isdigit() to detect digits.
+Use in to check whether a character belongs to the special-character collection.
+
+When a matching character is found, its flag becomes True.
+
+The program then checks all five rules, increases the score for every satisfied rule, and adds a helpful tip for every missing rule.
+
+3. Returning Two Values
+
+One of the new concepts in this project is returning two values from a function.
+
+return score, tips
+
+The main program receives both values using:
+
+score, tips = check_password(password)
+
+This is called tuple unpacking. Python returns the two values together, and the program assigns them to separate variables.
+
+4. Determine the Strength
+
+The program classifies the score using conditional statements:
+
+if score <= 2:
+    strength = "Weak"
+elif score <= 4:
+    strength = "Medium"
+else:
+    strength = "Strong"
+
+This means:
+
+A score of 0, 1, or 2 is Weak.
+A score of 3 or 4 is Medium.
+A score of 5 is Strong.
+5. Display Improvement Tips
+
+The program checks whether the tips list contains anything before printing its heading.
+
+if len(tips) > 0:
+    print("Tips to improve:")
+    for tip in tips:
+        print("--", tip)
+
+If all five rules are satisfied, the list is empty and no tips heading appears.
+
+
+💻 Example Runs
+Example 1: Weak Password
+Enter a password (or q to quit): 
+------------------------------------------------
+Strength: Weak (score 2/5)
+------------------------------------------------
+
+Tips to improve:
+-- Add an uppercase letter
+-- Add a digit
+-- Add a special character
+
+Example password: hello
+
+Actual result for hello: Score 2/5, because it contains lowercase letters and has at least five characters but does not meet the eight-character requirement. Therefore, the score is actually 1/5, not 2/5.
+
+The correct output for hello is:
+
+Strength: Weak (score 1/5)
+
+Tips to improve:
+-- Use at least 8 characters
+-- Add an uppercase letter
+-- Add a digit
+-- Add a special character
+Example 2: Strong Password
+
+Example password: Hello@123
+
+It satisfies all five rules:
+
+Length: 9 characters.
+Uppercase: H.
+Lowercase: ello.
+Digits: 123.
+Special character: @.
+
+Expected result:
+
+Strength: Strong (score 5/5)
+
+No improvement tips are displayed.
+
+Example 3: Empty Password
+
+If the user submits an empty password, the program displays:
+
+Password cannot be empty.
+
+The program then returns to the password prompt.
+
+Example 4: Exit the Program
+Enter a password (or q to quit): q
+
+Bye
+
+The program also accepts uppercase Q to exit.
+
+
+📚 Python Concepts Used
+Concept	How I Used It
+Functions	Created check_password() to evaluate passwords
+String methods	Used .isupper(), .islower(), and .isdigit()
+Boolean flags	Tracked whether each character type was found
+for loop	Checked each character and displayed tips
+Lists	Stored improvement tips
+append()	Added missing requirements to the tips list
+return	Returned the score and tips
+Tuple unpacking	Stored the returned values in score and tips
+if-elif-else	Classified password strength
+len()	Checked password length and whether tips existed
+Membership operator (in)	Checked special characters
+while True	Repeated the password checker
+break	Exited when the user entered q or Q
+continue	Skipped scoring an empty password
+getpass	Hid the password while typing
+Input validation	Rejected empty strings and a single-space password
+
+
+⭐ Bonus Feature Status
+Bonus	Status
+Hide password input using getpass	✅ Implemented
+Reject common passwords such as password and 123456	❌ Not implemented
+
+The program currently checks the five password rules but does not check whether a password appears on a list of common passwords.
+
+
+
+🚀 Possible Future Improvements
+Reject commonly used passwords such as password and 123456.
+Treat passwords containing only spaces as empty by checking password.strip().
+Add clearer error handling for unsupported terminal environments where getpass may not hide input.
+Improve password feedback by explaining which specific rules were satisfied.
+
+These are future improvements and are not implemented in the current version.
+
+
+
+🔗 Connection to My Previous Projects
+Day 17 — Word/Character Counter: Practised examining characters in a string.
+Day 18 — Vowel Counter: Practised checking characters and updating counts.
+Day 19 — String Reverser + Case Converter: Used uppercase and lowercase string methods.
+Day 23 — Shopping Cart with List of Tuples: Practised working with multiple values and tuples.
+Day 31 — Calculator Using Functions: Practised organizing code into reusable functions.
+Day 34 — Prime Number Checker: Practised returning values from functions and using Boolean logic.
+
+
+🏆 What I Learned
+How to check different character types in a password.
+How Boolean flags track whether a condition has been met.
+How to calculate a score based on multiple rules.
+How to return two values from a function.
+How to unpack returned values into separate variables.
+How to generate helpful feedback using a list.
+How to hide password input with getpass.
+How to classify a result using if-elif-else.
+How to validate empty input and repeat a program using a loop.
+
+
+📁 Project Structure
+day35/
+├── day35_password_strength_checker.py
+├── day35_question
+└── read.me
+
+
+▶️ How to Run
+Open the day35 project folder.
+
+Run the Python file:
+
+python day35_password_strength_checker.py
+Enter a password to check its strength.
+Read the score and any improvement tips.
+Enter another password or type q to exit.
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
