@@ -1,0 +1,85 @@
+Day 33: Fibonacci Series Generator (Loop + Recursive)
+
+Concepts used: functions, for loop, recursion, lists
+
+What is the Fibonacci series?
+
+Each number is the sum of the two numbers before it, starting with 0 and 1:
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
+
+0 + 1 = 1
+1 + 1 = 2
+1 + 2 = 3
+2 + 3 = 5
+3 + 5 = 8
+
+Problem Statement
+
+Write a program with two functions:
+
+1.fib_loop(n) returns a list of the first n Fibonacci numbers, using a loop.
+2.fib_recursive(n) returns the n-th single Fibonacci number, using recursion.
+The main program asks for n, prints the whole series using fib_loop, and then shows the n-th number using fib_recursive.
+
+
+Example Run
+How many terms? 8
+
+Series (loop): [0, 1, 1, 2, 3, 5, 8, 13]
+The 8th number (recursion): 13
+
+Version 1: Loop
+You keep track of two numbers at a time and slide them forward:
+def fib_loop(n):
+    series = []
+    a = 0
+    b = 1
+    for i in range(n):
+        series.append(a)
+        a, b = b, a + b      # slide forward: new a is old b, new b is old a + old b
+    return series
+
+The new trick a, b = b, a + b updates both variables at once. (Without it, you'd need a temporary variable.) Trace it for n = 5:
+i
+a (appended)
+a, b after the update
+0
+0
+a=1, b=1
+1
+1
+a=1, b=2
+2
+1
+a=2, b=3
+3
+2
+a=3, b=5
+4
+3
+a=5, b=8
+
+Series so far: [0, 1, 1, 2, 3] ✅
+
+
+Version 2: Recursion
+Each Fibonacci number is the sum of the two before it, so the function can ask itself for those two:
+def fib_recursive(n):
+    if n == 1:          # base case 1: the 1st number is 0
+        return 0
+    if n == 2:          # base case 2: the 2nd number is 1
+        return 1
+    return fib_recursive(n - 1) + fib_recursive(n - 2)
+
+This one has two base cases, because every call needs the previous two numbers, and the first two have nothing before them.
+
+
+Things to handle
+1.If n is 0 or negative, print a message instead of running the functions.
+2.Loop so the user can try many values until they type q (use the same pattern as Day 32: take input as text, check for q, then convert).
+
+
+Bonus (optional)
+1.Try fib_recursive(35) and then fib_recursive(40). Notice how it gets very slow, much slower than the loop. This recursive version recalculates the same values again and again (fib(3) is computed many times inside fib(6)). That's another trade-off between recursion and loops.
+
+Trace fib_recursive(4) on paper first and write out every call. Then code it and paste your solution when ready.
