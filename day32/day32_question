@@ -1,0 +1,80 @@
+Day 32: Factorial Calculator (Loop + Recursive Versions)
+
+Concepts used: functions, for loop, recursion (new)
+
+What is a factorial?
+The factorial of a number n (written n!) is all the whole numbers from 1 up to n multiplied together:
+5! = 5 × 4 × 3 × 2 × 1 = 120
+3! = 3 × 2 × 1 = 6
+1! = 1
+0! = 1   (this is a special rule in maths)
+
+Problem Statement
+
+Write a Python program with two functions that both calculate the factorial:
+1.factorial_loop(n) uses a for loop.
+2.factorial_recursive(n) calls itself (new idea, explained below).
+
+The main program asks for a number, calls both functions, and prints both answers. They should always match.
+
+
+Example Run
+Enter a number: 5
+
+Using loop: 5! = 120
+Using recursion: 5! = 120
+
+
+Version 1: Loop (you already know the tools)
+def factorial_loop(n):
+    result = 1
+    for i in range(1, n + 1):
+        result = result * i
+    return result
+
+Trace it for n = 4:
+i
+result (before)
+result = result × i
+1
+1
+1
+2
+1
+2
+3
+2
+6
+4
+6
+24
+
+Final answer is 24, which is 4!.
+
+
+Version 2: Recursion (new concept)
+Recursion means a function calls itself. It works because of this observation:
+5! = 5 × 4!
+4! = 4 × 3!
+3! = 3 × 2!
+2! = 2 × 1!
+1! = 1        ← we stop here
+
+Each factorial is a number times the next smaller factorial. So the function can ask itself to solve the smaller problem:
+def factorial_recursive(n):
+    if n == 0 or n == 1:      # base case: the stopping point
+        return 1
+    return n * factorial_recursive(n - 1)   # call itself with a smaller number
+
+Think of it like a line of children passing a question back. You ask child 5, "What is 5!?" Child 5 says, "I don't know, let me ask child 4." Child 4 asks child 3, and so on, until child 1 says, "I know that one, it's 1." Then the answers travel back: child 2 says 2 × 1 = 2, child 3 says 3 × 2 = 6, child 4 says 4 × 6 = 24, child 5 says 5 × 24 = 120.
+The base case is essential. Without if n == 0 or n == 1: return 1, the function would keep calling itself forever and crash with a RecursionError. Every recursive function needs a stopping point.
+
+
+Things to handle
+1.Negative numbers: factorial isn't defined for them. Print a message instead of calling the functions.
+2.Loop so the user can try many numbers until they type q.
+
+
+Bonus (optional)
+1.Try a big number like 20 and 500 in the loop version. Notice how fast the numbers grow. Python handles huge integers easily.
+2.Try 5000 in the recursive version. You'll likely see a RecursionError, because Python limits how deep recursion can go. That's one reason loops are often preferred for this kind of problem.

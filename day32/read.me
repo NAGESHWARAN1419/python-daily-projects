@@ -1,0 +1,260 @@
+🔢 Day 32: Factorial Calculator — Loop + Recursive Versions
+
+📌 Project Overview
+
+Day 32 is part of Phase 3: Functions, File Handling, and Exceptions in my Python learning journey.
+
+In this project, I built a factorial calculator using two different approaches:
+
+Loop version: Uses a for loop to calculate the factorial.
+Recursive version: Uses a function that calls itself to calculate the factorial.
+
+Both functions calculate the factorial of the same number, allowing me to compare their results and understand the difference between loops and recursion.
+
+The program also handles negative numbers and allows the user to calculate factorials repeatedly until they enter q to quit.
+
+🎯 Features
+🔢 Calculate factorial using a for loop.
+🔁 Calculate factorial using recursion.
+✅ Display both results for comparison.
+🚫 Reject negative numbers with an explanatory message.
+🔄 Allow multiple calculations in one session.
+🚪 Exit the program by entering q.
+🧮 Correctly handle 0! and 1!.
+
+🧠 What Is a Factorial?
+
+The factorial of a non-negative integer is the product of all positive integers from 1 up to that number.
+
+It is written using the exclamation mark !.
+
+For example:
+
+5! = 5 × 4 × 3 × 2 × 1 = 120
+
+4! = 4 × 3 × 2 × 1 = 24
+
+3! = 3 × 2 × 1 = 6
+
+2! = 2 × 1 = 2
+
+1! = 1
+
+0! = 1
+
+Important: The factorial of 0 is 1 by mathematical definition.
+
+
+🧠 New Concept: Recursion
+
+Recursion means a function calls itself to solve a smaller version of the same problem.
+
+Imagine five children standing in a line. Child 5 asks, "What is my factorial?" Instead of calculating everything alone, child 5 asks child 4, who asks child 3, and so on until child 1 knows the answer.
+
+The answers then travel back through the line.
+
+Think Like a 5-Year-Old
+
+For 5!:
+
+5! = 5 × 4!
+4! = 4 × 3!
+3! = 3 × 2!
+2! = 2 × 1!
+1! = 1
+
+Now the answers return:
+
+1! = 1
+2! = 2 × 1   = 2
+3! = 3 × 2   = 6
+4! = 4 × 6   = 24
+5! = 5 × 24  = 120
+
+The final answer is 120.
+
+What Is a Base Case?
+
+A base case is the stopping point of a recursive function.
+
+In my program:
+
+def factorial_recursion(n):
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial_recursion(n - 1)
+
+The condition if n == 0 or n == 1 is the base case.
+
+When the function reaches 0 or 1, it returns 1 and stops making recursive calls.
+
+Without a base case, the function could keep calling itself until Python raises a RecursionError.
+
+
+⚙️ How the Program Works
+Define the loop-based factorial function.
+Define the recursive factorial function.
+Ask the user to enter a number.
+If the user enters q, display a goodbye message and exit.
+Convert the input into an integer.
+If the number is negative, display an error message and restart the loop.
+Calculate the factorial using the loop function.
+Calculate the factorial using the recursive function.
+Display both results.
+Repeat the process for another number.
+
+
+🔄 Version 1: Factorial Using a Loop
+
+The loop version starts with result = 1 and multiplies it by every integer from 1 to n.
+
+def factorial_loop(n):
+    result = 1
+    for i in range(1, n + 1):
+        result = result * i
+    return result
+Example: Calculate 4!
+i	Result before multiplication	Result after multiplication
+1	1	1
+2	1	2
+3	2	6
+4	6	24
+
+The final result is 24.
+
+Why start with 1?
+
+Because 1 is the multiplication identity. Multiplying by 1 does not change the value.
+
+Also, when n = 0, range(1, n + 1) produces no iterations. The result stays 1, so the function correctly returns 0! = 1.
+
+
+🔁 Version 2: Factorial Using Recursion
+
+The recursive version multiplies the current number by the factorial of the next smaller number.
+
+def factorial_recursion(n):
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial_recursion(n - 1)
+
+For example:
+
+factorial_recursion(4)
+= 4 × factorial_recursion(3)
+= 4 × 3 × factorial_recursion(2)
+= 4 × 3 × 2 × factorial_recursion(1)
+= 4 × 3 × 2 × 1
+= 24
+
+The two versions produce the same answer for valid non-negative integers within the recursive version's supported depth.
+
+
+
+💻 Example Runs
+Example 1: Factorial of 5
+Enter a number: 5
+
+Using loop: 5! = 120
+Using recursion: 5! =120
+Example 2: Factorial of 0
+Enter a number: 0
+
+Using loop: 0! = 1
+Using recursion: 0! =1
+Example 3: Negative Number
+Enter a number: -4
+
+Factorial is not defined for negative numbers.
+
+The program skips the factorial functions and asks for another number.
+
+Example 4: Factorial of 10
+Enter a number: 10
+
+Using loop: 10! = 3628800
+Using recursion: 10! =3628800
+Example 5: Exit
+Enter a number: q
+
+Bye
+
+
+📚 Python Concepts Used
+Concept	How it is used
+def	Defines reusable functions
+Parameters	Pass the number to each factorial function
+return	Sends the calculated factorial back
+for loop	Calculates factorial through repeated multiplication
+Recursion	Calls the factorial function from itself
+Base case	Stops recursive calls at 0 or 1
+if statement	Checks base cases and negative numbers
+while True	Allows repeated calculations
+continue	Skips negative input and starts the next iteration
+break	Exits the main loop
+input()	Collects the user's input
+int()	Converts the input into an integer
+
+
+🎁 Bonus Learning
+1. Try a Large Number
+
+Python supports very large integers, so the loop version can calculate factorials such as 20! and 500! without the fixed-size integer overflow that occurs in some other programming languages.
+
+Try entering 20 and 500 to observe how quickly the result grows.
+
+2. Understand the Recursion Limit
+
+Try entering 5000.
+
+The recursive function will likely raise a RecursionError because Python limits the depth of recursive calls. Since your program calls both functions for each valid input, this error can interrupt the program before both results are displayed.
+
+The loop version avoids this recursion-depth limitation and is generally the better choice for calculating large factorials in this exercise.
+
+Bonus status: The two calculation methods, negative-number handling, and repeated-input loop are implemented. The large-number and recursion-limit experiments are optional manual tests, not extra features in the code.
+
+
+🔗 Connection to Previous Days
+Previous Day	Connection
+Day 2: Basic Calculator	Reuses mathematical calculations
+Day 7: Multiplication Table Generator	Uses loops and repeated operations
+Day 10: Reverse Number	Breaks a problem into smaller steps
+Day 31: Calculator Using Functions	Reuses functions, parameters, and return
+
+Day 31 introduced functions, and Day 32 takes the next step by teaching how a function can call itself.
+
+
+📝 What I Learned
+How to calculate factorials using a for loop.
+How to define and call functions.
+How to return values from functions.
+What recursion means.
+How a recursive function breaks a problem into smaller problems.
+Why a base case is essential.
+How to handle negative numbers before performing calculations.
+How to compare two different approaches to the same problem.
+Why recursion can have depth limitations even when loops can continue.
+
+
+📂 Project Structure
+day32/
+├── day32_factorial_calculator_loop_recursive.py
+├── day32_question
+└── read.me
+
+
+▶️ How to Run
+Open the day32 project folder in your terminal.
+Run the Python file:
+python3 day32_factorial_calculator_loop_recursive.py
+Enter a non-negative integer.
+Compare the loop and recursion results.
+Enter another number to continue.
+Type q to quit.
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
