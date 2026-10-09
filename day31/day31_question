@@ -1,0 +1,81 @@
+Phase 3 begins: Functions, File Handling, Exceptions
+
+Day 31: Rewrite the Day 2 Calculator Using Functions
+
+Concepts used: def, parameters, return, calling a function
+Why functions?
+
+So far, all your code has been one long block. In bigger programs, you'll repeat the same logic in many places (like your inventory and cart code). A function lets you write something once, give it a name, and use it whenever you want.
+
+Think of a function like a tea machine. You put in milk and tea powder (the inputs), press the button, and get tea (the output). You don't need to know how it works inside each time you use it.
+
+
+The basics
+
+def add(a, b):        # def = "define a function", add = its name, (a, b) = inputs
+    return a + b      # return = the output that comes back
+
+result = add(5, 3)    # calling the function: a=5, b=3
+print(result)         # → 8
+
+    def add(a, b): creates the function. The code inside doesn't run yet.
+    a and b are parameters, which are empty boxes that get filled when you call the function.
+    return sends the answer back to wherever the function was called.
+    add(5, 3) runs the function with those values, and the returned value can be stored in a variable.
+
+Everything inside the function must be indented, just like loops and if.
+
+
+Problem Statement
+Rebuild your Day 2 calculator, but split it into functions:
+
+1.add(a, b), subtract(a, b), multiply(a, b) each return the result.
+2.divide(a, b) returns the result, but if b is 0, it returns the text "Cannot divide by zero" instead of crashing.
+3.A main loop that asks for two numbers and an operation, calls the right function, and prints the result.
+4.Typing q as the operation quits (you already did this on Day 2).
+
+
+Example Run
+
+Enter first number: 10
+Enter second number: 5
+Choose operation (+, -, *, /) or 'q' to quit: *
+
+Result: 10.0 * 5.0 = 50.0
+
+
+Structure hint
+
+Put the functions at the top of the file, before the loop. Python has to read def before you can call the function.
+python
+
+def add(a, b):
+    return a + b
+
+# ... subtract, multiply, divide here ...
+
+while True:
+    first = float(input("Enter first number: "))
+    second = float(input("Enter second number: "))
+    operation = input("Choose operation (+, -, *, /) or 'q' to quit: ")
+
+    if operation == "q":
+        break
+    elif operation == "+":
+        result = add(first, second)
+    # ... other operations here ...
+
+    print("Result:", result)
+
+
+Things to think about
+
+    What should happen if the user types an invalid operation? result would never get assigned, and print(result) would crash. How will you handle that?
+    Notice the divide function doesn't use try/except. A simple if b == 0: check inside the function works too.
+
+
+Bonus (optional)
+
+Add a power(a, b) function for a ** b, and a modulus(a, b) function for a % b, as new menu operations.
+
+This is a big mindset shift (writing code to be reused), so take your time. Try it yourself first and paste your code when ready, or ask if the return idea feels confusing.

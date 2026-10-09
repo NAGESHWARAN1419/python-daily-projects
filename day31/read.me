@@ -1,0 +1,649 @@
+🧮 Day 31: Calculator Using Functions — Phase 3 Begins!
+
+📌 Project Overview
+
+Welcome to Phase 3: Functions, File Handling, and Exceptions! 🎉
+
+In Day 31, I rewrote the Day 2 calculator using Python functions. Instead of writing all calculation logic inside one long block, each mathematical operation has its own reusable function.
+
+The calculator supports addition, subtraction, multiplication, division, exponentiation, and modulus. It also handles division by zero and prevents invalid menu choices from crashing the program.
+
+This project introduces an important programming habit: write code once and reuse it whenever needed.
+
+
+🎯 Features
+
+➕ Addition using add()
+
+➖ Subtraction using sub()
+
+✖️ Multiplication using mult()
+
+➗ Division using div()
+
+⚡ Exponentiation using power()
+
+% Modulus using modules()
+
+🛡️ Division-by-zero protection
+
+🛡️ Modulus-by-zero protection
+
+🔄 Repeated calculations using a loop
+
+❌ Invalid-operation handling
+
+🚪 Exit using q or Q
+
+
+🧠 New Concepts Explained
+1. What Is a Function?
+
+Think of a function like a tea machine.
+
+Inputs
+
+Milk + Tea Powder
+
+Function: make_tea()
+
+Performs the work
+
+Output
+
+A cup of tea ☕
+
+In Python, a function works similarly: you provide inputs, it performs a task, and it can return a result.
+
+def add(first, second):
+    return first + second
+
+result = add(5, 3)
+print(result)
+
+Output:
+
+8
+2. Understanding def, Parameters, and return
+
+Concept
+
+	
+
+Simple explanation
+
+
+
+
+def
+
+	
+
+Creates a function
+
+
+
+
+add
+
+	
+
+The function's name
+
+
+
+
+first, second
+
+	
+
+Parameters that receive input values
+
+
+
+
+return
+
+	
+
+Sends the result back to the caller
+
+
+
+
+add(5, 3)
+
+	
+
+Calls the function with two values
+
+The important difference is that return gives a value back so the rest of the program can use it.
+
+For example:
+
+def add(first, second):
+    return first + second
+
+answer = add(10, 5)
+
+Now answer contains 15.
+
+3. The Six Calculator Functions
+
+Your program defines six functions.
+
+Function
+
+	
+
+Operation
+
+	
+
+Example
+
+
+
+
+add(first, second)
+
+	
+
+Addition
+
+	
+
+10 + 5 = 15
+
+
+
+
+sub(first, second)
+
+	
+
+Subtraction
+
+	
+
+10 - 5 = 5
+
+
+
+
+mult(first, second)
+
+	
+
+Multiplication
+
+	
+
+10 * 5 = 50
+
+
+
+
+div(first, second)
+
+	
+
+Division
+
+	
+
+10 / 5 = 2.0
+
+
+
+
+power(first, second)
+
+	
+
+Exponentiation
+
+	
+
+2 ** 3 = 8
+
+
+
+
+modules(first, second)
+
+	
+
+Modulus
+
+	
+
+10 % 3 = 1
+
+Each function handles one specific operation, making the code easier to understand and reuse.
+
+4. Handling Division by Zero
+
+Your division function checks whether the second number is zero:
+
+def div(first, second):
+    if second == 0:
+        return "Cannot divide by zero"
+    return first / second
+
+If the user enters 10 / 0, the program returns a message instead of attempting an invalid division.
+
+Your modulus function uses the same idea:
+
+def modules(first, second):
+    if second == 0:
+        return "Cannot calculate modulus by zero"
+    return first % second
+
+This is a simple example of handling an error through a condition without needing try/except.
+
+5. Why Use continue?
+
+Your program handles an invalid operation like this:
+
+else:
+    print(f"'{opt}' Invaild Input")
+    continue
+
+Think of continue as saying:
+
+"This choice is invalid. Skip the rest of this round and start again."
+
+Without it, the program might try to print a result that was never assigned.
+
+
+⚙️ How the Program Works
+
+Define all six functions at the top of the file.
+
+Start the main loop.
+
+Ask for the first and second numbers.
+
+Ask the user to choose an operation.
+
+If the user enters q or Q, exit the program.
+
+Otherwise, call the corresponding function.
+
+If the operation is invalid, display a message and restart the loop.
+
+Display the result and repeat.
+
+
+💻 Example Runs
+Example 1: Addition
+Enter first number: 10
+Enter second number: 5
+Choose operation(+, -, *, /, **, %) or 'q' to quit: +
+
+Result: 10.0 + 5.0 = 15.0
+Example 2: Multiplication
+Enter first number: 10
+Enter second number: 5
+Choose operation(+, -, *, /, **, %) or 'q' to quit: *
+
+Result: 10.0 * 5.0 = 50.0
+Example 3: Exponentiation
+Enter first number: 2
+Enter second number: 3
+Choose operation(+, -, *, /, **, %) or 'q' to quit: **
+
+Result: 2.0 ** 3.0 = 8.0
+Example 4: Modulus
+Enter first number: 10
+Enter second number: 3
+Choose operation(+, -, *, /, **, %) or 'q' to quit: %
+
+Result: 10.0 % 3.0 = 1.0
+Example 5: Division by Zero
+Enter first number: 10
+Enter second number: 0
+Choose operation(+, -, *, /, **, %) or 'q' to quit: /
+
+Result: 10.0 / 0.0 = Cannot divide by zero
+Example 6: Invalid Operation
+Enter first number: 10
+Enter second number: 5
+Choose operation(+, -, *, /, **, %) or 'q' to quit: @
+
+'@' Invaild Input
+
+The program skips printing a result for the invalid operation and returns to the loop.
+
+Example 7: Exit
+Enter first number: 10
+Enter second number: 5
+Choose operation(+, -, *, /, **, %) or 'q' to quit: q
+
+Bye
+
+
+📚 Python Concepts Used
+
+Concept
+
+	
+
+How it is used
+
+
+
+
+def
+
+	
+
+Defines reusable functions
+
+
+
+
+Parameters
+
+	
+
+Receive the numbers passed to each function
+
+
+
+
+return
+
+	
+
+Sends calculation results back
+
+
+
+
+Function calls
+
+	
+
+Run the required calculation
+
+
+
+
+if / elif / else
+
+	
+
+Selects the operation
+
+
+
+
+while True
+
+	
+
+Repeats calculations
+
+
+
+
+break
+
+	
+
+Exits the loop
+
+
+
+
+continue
+
+	
+
+Skips an invalid operation's result
+
+
+
+
+input()
+
+	
+
+Collects user input
+
+
+
+
+float()
+
+	
+
+Converts input into decimal-capable numbers
+
+
+
+
+**
+
+	
+
+Calculates powers
+
+
+
+
+%
+
+	
+
+Calculates remainders
+
+
+🎁 Bonus Status
+
+Requirement
+
+	
+
+Status
+
+
+
+
+add() function
+
+	
+
+✅ Completed
+
+
+
+
+subtract() function
+
+	
+
+✅ Completed as sub()
+
+
+
+
+multiply() function
+
+	
+
+✅ Completed as mult()
+
+
+
+
+divide() function
+
+	
+
+✅ Completed
+
+
+
+
+Handle division by zero
+
+	
+
+✅ Completed
+
+
+
+
+Invalid-operation handling
+
+	
+
+✅ Completed
+
+
+
+
+power() function
+
+	
+
+✅ Bonus completed
+
+
+
+
+modulus() function
+
+	
+
+✅ Bonus completed
+
+
+
+
+Repeat until q or Q
+
+	
+
+✅ Completed
+
+Both optional bonus operations are implemented!
+
+Small naming note: The functions sub(), mult(), and modules() work correctly, although names such as subtract(), multiply(), and modulus() would make their purposes clearer. The required behavior matters more than the exact function names for this exercise.
+
+
+🔗 Connection to Previous Days
+
+Previous Project
+
+	
+
+What You Reused
+
+
+
+
+Day 2: Basic Calculator
+
+	
+
+Calculator logic and repeated calculations
+
+
+
+
+Day 4: Simple Interest Calculator
+
+	
+
+Arithmetic operations
+
+
+
+
+Day 7: Multiplication Table Generator
+
+	
+
+Loops and numeric calculations
+
+
+
+
+Day 15: Unit Converter
+
+	
+
+Menu-based program structure
+
+
+
+
+Day 19: String Converter
+
+	
+
+String input and processing
+
+
+
+
+Day 30: Address Book
+
+	
+
+Conditions, validation, and structured code
+
+The main difference is that the calculation logic now lives in separate functions instead of being written directly inside the main loop.
+
+
+📝 What I Learned
+
+How to define functions using def.
+
+How to pass values through parameters.
+
+How to return results using return.
+
+How to call different functions from a menu.
+
+How to make code reusable.
+
+How to handle division and modulus by zero.
+
+How to prevent invalid operations from causing a result-printing error.
+
+How to organize a program into smaller, understandable pieces.
+
+
+📂 Project Structure
+day31/
+├── day31_calculator_using_functions.py
+├── day31_question
+└── read.me
+
+
+▶️ How to Run
+
+Open the day31 project folder in your terminal.
+
+Run the Python file:
+
+python3 day31_calculator_using_functions.py
+
+Enter two numbers.
+
+Choose an operation: +, -, *, /, **, or %.
+
+Repeat calculations or enter q to quit.
+
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
