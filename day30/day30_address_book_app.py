@@ -1,6 +1,6 @@
 address_book = {
-    "arun": {"phone": "9876543210", "email": "arun@gmail.com", "city": "Chennai"},
-    "priya": {"phone": "9123456780", "email": "priya@gmail.com", "city": "Madurai"}
+    "arun": {"phone": "9876543210", "email": "arun@gmail.com", "city": "chennai"},
+    "priya": {"phone": "9123456780", "email": "priya@gmail.com", "city": "madurai"}
 }
 print ()
 while True:
@@ -60,11 +60,11 @@ while True:
 
    elif opt == 3:
       print ()
-      name = input("Enter the name to update: ")
+      name = input("Enter the name to update: ").lower()
       if name in address_book:
          field = input ("Which field? (phone/email/city): ").lower()
          if field in ["phone","email","city"]:
-            new_value = input(f"Enter new {field}: ")
+            new_value = input(f"Enter new {field}: ").lower()
             address_book[name][field] = new_value
             print ()
             print ("Contact update!")
