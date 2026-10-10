@@ -1,0 +1,81 @@
+Day 36: Expense Tracker That Saves to a File
+
+Concepts used: file handling with open(), with, write/append/read modes, try/except
+
+Why files?
+Every program you've written so far forgets everything the moment it closes. Your contact book, cart, and inventory all disappear, because they only lived in variables. A file stays on your computer after the program ends. From today, your programs can have memory.
+
+The basics of file handling
+Writing a line to a file (append mode):
+with open("expenses.txt", "a") as file:
+    file.write("Tea,20\n")
+
+Reading all lines from a file:
+with open("expenses.txt", "r") as file:
+    for line in file:
+        print(line.strip())
+
+Here is what each part means:
+1.open("expenses.txt", "a") opens the file. The second part is the mode)
+    i."a" = append: add to the end, keep what's already there (creates the file if it doesn't exist)
+   ii."r" = read: only read it (crashes if the file doesn't exist)
+  iii."w" = write: erase everything and start fresh. Be careful with this one.
+2.with ... as file: opens the file and closes it automatically when the indented block ends. Always use with so you don't forget to close it.
+3.file.write("Tea,20\n") writes text. The \n means "new line". Without it, everything would be squashed onto one line, because write() doesn't add a line break like print() does.
+4.line.strip() removes the \n that comes at the end of every line you read.
+
+Think of it like a notebook. "a" means writing on the next empty line. "r" means just reading it. "w" means tearing out all the pages first.
+Problem Statement
+Build an expense tracker where every expense is saved in a file called expenses.txt. Each line holds one expense in the format description,amount, for example Tea,20. Menu:
+
+1. Add Expense
+2. View All Expenses
+3. Total Spent
+4. Exit
+
+Example Run
+Choose: 1
+Enter description: Tea
+Enter amount: 20
+Expense saved!
+
+Choose: 1
+Enter description: Bus ticket
+Enter amount: 35
+Expense saved!
+
+Choose: 2
+1. Tea - ₹20.0
+2. Bus ticket - ₹35.0
+
+Choose: 3
+Total spent: ₹55.0
+
+Choose: 4
+Bye
+
+Then close the program and run it again and choose option 2. Your expenses should still be there. That's the whole point of today.
+Hints
+Add Expense: ask for both values, then append one line:
+with open("expenses.txt", "a") as file:
+    file.write(f"{description},{amount}\n")
+
+View and Total: read each line and split it with .split(",") (you used this on Day 24):
+with open("expenses.txt", "r") as file:
+    for line in file:
+        description, amount = line.strip().split(",")
+        # amount is still text here, so convert it with float(amount)
+
+Total is the same loop, but you add each float(amount) to a running total instead of printing.
+Things to handle
+The file doesn't exist yet. The very first time someone chooses View or Total, open(..., "r") crashes with FileNotFoundError. Wrap the reading code in try/except FileNotFoundError and print "No expenses yet."
+An amount that isn't a number. Convert with float() before saving, so bad input never gets into the file. Reject negative amounts too.
+Commas in the description. If someone types Tea, biscuits as the description, the extra comma breaks the description, amount split on reading. A simple fix is to replace commas in the description with spaces before saving: description.replace(",", " ").
+
+Where is the file?
+Python creates expenses.txt in the folder you run the program from. You're in ~/daily-python-projects/day36, so run it from there and the file will appear next to your .py file. You can open it any time to see your data:
+cat expenses.txt
+
+Bonus (optional)
+1.Add an option to clear all expenses. This is a good use of "w" mode (open the file and write nothing). Ask y/n for confirmation first, since it can't be undone.
+2.Show the expense with the highest amount.

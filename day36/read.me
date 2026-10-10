@@ -1,0 +1,275 @@
+Day 36: Expense Tracker That Saves to a File
+
+📌 Project Overview
+
+This is my Day 36 Python project, where I built an Expense Tracker that saves expenses to a text file so they remain available even after the program closes.
+
+The program allows users to add expenses, view all saved expenses, calculate the total amount spent, and exit the application.
+
+Unlike my earlier projects that stored data only in variables, this project introduces file handling, allowing my program to keep data between runs.
+
+🎯 Features
+✅ Add expenses with a description and amount.
+✅ Save expenses permanently in expenses.txt.
+✅ View all saved expenses with numbered entries.
+✅ Display expense descriptions in title case.
+✅ Calculate the total amount spent.
+✅ Reject negative expense amounts.
+✅ Prevent commas in descriptions from breaking the file format by replacing them with spaces.
+✅ Handle a missing expense file using try/except FileNotFoundError.
+✅ Keep the menu running until the user chooses Exit.
+✅ Display a message when no expense file exists.
+
+
+🧠 Why Is File Handling Important?
+
+Before this project, most of my programs stored information in variables. When the program stopped, that information was lost.
+
+A file works like a notebook on your computer. The program can write information into it and read that information later.
+
+For example, an expense saved as:
+
+Tea, 20.0
+Bus ticket, 35.0
+
+remains in expenses.txt after the program closes. When I run the program again, I can read those saved expenses.
+
+
+⚙️ How the Program Works
+1. Adding an Expense
+
+The program asks for a description and amount, then saves the expense in append mode.
+
+description = input("Enter description: ").replace(",", " ")
+amount = float(input("Enter amount: "))
+
+if amount < 0:
+    print("Amount cannot be negative.")
+else:
+    with open("expenses.txt", "a") as file:
+        file.write(f"{description}, {amount}\n")
+
+How it works:
+
+Read the expense description.
+Replace commas in the description with spaces.
+Convert the amount to a floating-point number using float().
+Reject the amount if it is negative.
+Open the file in append mode ("a").
+Write the expense to a new line.
+Display a confirmation message.
+
+Why use append mode?
+
+Append mode adds new information at the end of the file without deleting existing expenses. If the file does not exist, Python creates it.
+
+2. Viewing All Expenses
+
+The program opens the file in read mode and processes each line.
+
+with open("expenses.txt", "r") as file:
+    number = 1
+
+    for line in file:
+        description, amount = line.strip().split(",")
+        print(f"{number}.{description.title()} -₹{float(amount)}")
+        number += 1
+
+How it works:
+
+"r" opens the file for reading.
+line.strip() removes surrounding whitespace, including the newline character.
+.split(",") separates the description from the amount.
+float(amount) converts the stored amount back into a number.
+.title() capitalizes the first letter of each word in the displayed description.
+number += 1 increases the entry number after each expense.
+
+The program uses try/except FileNotFoundError to display No expenses yet. if the file does not exist.
+
+3. Calculating Total Expenses
+
+The program starts with a total of zero and adds each saved expense amount.
+
+total = 0
+
+with open("expenses.txt", "r") as file:
+    for line in file:
+        description, amount = line.strip().split(",")
+        total += float(amount)
+
+print(f"Total spent: ₹{total}")
+
+For example:
+
+Tea: ₹20
+Bus ticket: ₹35
+
+Total:
+
+[
+20 + 35 = 55
+]
+
+The output is:
+
+Total spent: ₹55.0
+
+The program also handles a missing file by displaying No expenses yet..
+
+4. Exiting the Program
+
+The while True loop repeatedly displays the menu. When the user selects option 4, the program prints Bye and uses break to stop the loop.
+
+
+📂 Understanding File Modes
+Mode	Meaning	Used in This Project?
+"r"	Read existing file contents	✅ Yes
+"a"	Append new contents without deleting existing data	✅ Yes
+"w"	Write from scratch, replacing existing contents	❌ Not used
+Why use with open()?
+
+The with statement automatically closes the file when the indented block finishes. This helps manage files safely without manually calling file.close().
+
+
+💻 Example Run
+Example 1: Add Expenses
+1. Add Expense
+2. View All Expense
+3. Total Spent
+4. Exit
+Choose: 1
+
+Enter description: Tea
+Enter amount: 20
+Expenses saved!
+
+Add another expense:
+
+Choose: 1
+
+Enter description: Bus ticket
+Enter amount: 35
+Expenses saved!
+Example 2: View All Expenses
+Choose: 2
+
+1.Tea -₹20.0
+2.Bus Ticket -₹35.0
+Example 3: Calculate Total Spent
+Choose: 3
+
+Total spent: ₹55.0
+Example 4: Reject a Negative Amount
+Choose: 1
+
+Enter description: Snacks
+Enter amount: -50
+Amount cannot be negative.
+
+The negative expense is not saved.
+
+Example 5: No Expenses Yet
+
+If expenses.txt does not exist and the user chooses View All Expenses or Total Spent:
+
+No expenses yet.
+Example 6: Exit
+Choose: 4
+
+Bye
+
+
+📚 Python Concepts Used
+Concept	How I Used It
+File handling	Saved and retrieved expense records
+open()	Opened the expense file
+with statement	Managed file opening and closing
+Append mode ("a")	Added expenses without erasing previous records
+Read mode ("r")	Read saved expenses
+file.write()	Wrote each expense as a line
+for loop	Processed every saved expense
+strip()	Removed surrounding whitespace and newline characters
+split(",")	Separated descriptions and amounts
+float()	Converted amounts between text and numeric values
+try/except	Handled a missing expense file
+FileNotFoundError	Identified when the file does not exist
+replace()	Replaced commas in descriptions with spaces
+title()	Formatted descriptions for display
+Accumulator variable	Added expense amounts to calculate the total
+while True	Repeated the menu
+break and continue	Controlled menu execution
+
+
+⭐ Bonus Feature Status
+Bonus	Status
+Clear all expenses with confirmation	❌ Not implemented
+Show the expense with the highest amount	❌ Not implemented
+
+
+🚀 Possible Future Improvements
+Add an option to clear all expenses after asking for confirmation.
+Display the highest individual expense.
+Reject empty descriptions and zero-value expenses if desired.
+Handle non-numeric amounts gracefully using try/except ValueError.
+Handle malformed file records more safely.
+Improve the currency display to use two decimal places.
+
+These improvements are not included in the current implementation.
+
+
+🔗 Connection to My Previous Projects
+Day 21 — Simple Contact Book: Stored and retrieved information using a dictionary.
+Day 22 — Student Marks Manager: Processed stored data and calculated averages.
+Day 23 — Shopping Cart: Managed items and calculated totals.
+Day 27 — Inventory System: Updated quantities and checked stored values.
+Day 30 — Address Book App: Built a menu-driven application for managing records.
+
+Those projects mainly stored data in memory. Day 36 introduces file persistence, allowing data to remain after the program closes.
+
+
+🏆 What I Learned
+How to save information to a text file.
+The difference between append mode and read mode.
+How to use with open() to manage files.
+How to read and process a file line by line.
+How to convert stored text into numeric values.
+How to handle a missing file with try/except.
+How to calculate a total from saved records.
+Why persistent storage is useful for real-world applications.
+
+
+📁 Project Structure
+day36/
+├── day36_expense_tracker_that_saves_to_a_file.py
+├── day36_question
+└── read.me
+
+When the program runs, it also creates expenses.txt in the working directory if at least one expense is successfully saved.
+
+Example after adding expenses:
+
+day36/
+├── day36_expense_tracker_that_saves_to_a_file.py
+├── day36_question
+├── expenses.txt
+└── read.me
+
+
+▶️ How to Run
+Open the day36 project folder.
+
+Run the Python file:
+
+python day36_expense_tracker_that_saves_to_a_file.py
+Select option 1 to add expenses.
+Select option 2 to view saved expenses.
+Select option 3 to calculate the total spent.
+Select option 4 to exit.
+Run the program again to verify that your saved expenses are still available.
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
