@@ -1,0 +1,77 @@
+Day 37: Read a .txt File and Count Words, Lines, and Characters
+
+Concepts used: reading files, .read(), .split(), len(), try/except
+
+Problem Statement
+
+Write a program that:
+
+1.Asks the user for a file name (for example story.txt).
+2.Opens the file and reads it.
+3.Prints:
+    o Number of lines
+    o Number of words
+    o Number of characters (including spaces)
+4.If the file doesn't exist, prints a friendly message instead of crashing.
+
+
+Example Run
+Enter file name (or q to quit): story.txt
+
+Lines: 3
+Words: 14
+Characters: 78
+
+Enter file name (or q to quit): hello.txt
+
+File 'hello.txt' not found.
+
+
+Step 1: Make a file to test with
+
+Create a small text file in your day37 folder from the terminal:
+nano story.txt
+
+Type a few lines, for example:
+I love learning Python.
+Every day I build one project.
+Practice makes me better.
+
+Save it (Ctrl+O, Enter, then Ctrl+X to exit).
+
+
+Step 2: Three ways to read a file
+
+Last time you read a file line by line with for line in file:. There are two more ways, and today you need both:
+with open("story.txt", "r") as file:
+    text = file.read()          # the WHOLE file as one long string
+
+with open("story.txt", "r") as file:
+    lines = file.readlines()    # a LIST, where each item is one line
+
+For the example file, text would be:
+"I love learning Python.\nEvery day I build one project.\nPractice makes me better.\n"
+
+and lines would be:
+["I love learning Python.\n", "Every day I build one project.\n", "Practice makes me better.\n"]
+
+Step 3: How to count each thing
+1.Characters: len(text) (you used len() on strings on Day 17)
+2.Words: len(text.split()) (also from Day 17)
+3.Lines: len(lines), or use text.count("\n") if you only read once
+
+The simplest approach is to read the file once with .read(), then use text.split("\n")... but be careful, a final newline creates an extra empty item. Using .readlines() for the line count avoids that, so for this task read the file once and use .splitlines():
+text = file.read()
+line_count = len(text.splitlines())
+
+.splitlines() breaks the text at every line break and doesn't leave an empty item at the end.
+
+Things to handle
+1.File not found: wrap the reading code in try/except FileNotFoundError.
+2.Empty file: it should show 0 for everything, not crash.
+3.Loop so the user can check many files until they type q.
+
+Bonus (optional)
+1.Also show the number of non-empty lines (hint: a line that is empty after .strip() is blank).
+2.Show the longest word in the file.
+3.Show the most common word (reuse your Day 28 word counter).
