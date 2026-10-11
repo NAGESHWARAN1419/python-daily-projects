@@ -1,0 +1,3 @@
+I love learning Python.
+Every day I build one project.
+Practice makes me better.
