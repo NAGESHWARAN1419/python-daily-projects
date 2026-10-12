@@ -1,0 +1,414 @@
+📄 Day 37: Read a Text File and Count Words, Lines, and Characters
+
+📌 Project Overview
+
+This is my Day 37 Python project, where I built a program that reads a .txt file and analyses its contents.
+
+The program asks the user for a file name, reads the file, and calculates the number of lines, words, and characters. It also counts non-empty lines, finds the longest word, and identifies the most common word.
+
+If the requested file does not exist, the program displays a friendly error message instead of crashing.
+
+This project helped me practise file handling, string methods, lists, dictionaries, exception handling, and basic text analysis.
+
+🎯 Features
+
+✅ Ask the user for a text file name.
+
+✅ Read the entire file using file.read().
+
+✅ Count the total number of lines.
+
+✅ Count the total number of words.
+
+✅ Count characters, including spaces and line breaks.
+
+✅ Handle missing files using try/except FileNotFoundError.
+
+✅ Handle empty files without crashing.
+
+✅ Count non-empty lines.
+
+✅ Find the longest word.
+
+✅ Find the most common word.
+
+✅ Ignore letter case when counting word frequencies.
+
+✅ Remove selected punctuation from the beginning and end of words.
+
+✅ Check multiple files until the user enters q or Q.
+
+🧠 Why Is File Reading Important?
+
+In Day 36, I learned how to save expenses to a file and read them later. In this project, I use file reading to analyse information stored in a text document.
+
+For example, a file named story.txt might contain:
+
+I love learning Python.
+Every day I build one project.
+Practice makes me better.
+
+My program can analyse this text and report its lines, words, characters, and other details without manually counting them.
+
+⚙️ How the Program Works
+
+1. Ask for a File Name
+
+The program repeatedly asks the user to enter a file name.
+
+file_name = input("Enter file name (or q to quit): ")
+
+if file_name.lower() == "q":
+    print("Bye")
+    break
+
+The .lower() method converts the input to lowercase, allowing both q and Q to exit the program.
+
+2. Read the File
+
+The program opens the requested file in read mode.
+
+try:
+    with open(file_name, "r") as file:
+        text = file.read()
+
+except FileNotFoundError:
+    print(f"File '{file_name}' not found.")
+    print("Enter a valid file name.")
+    continue
+
+How it works:
+
+open(file_name, "r") opens the file for reading.
+
+with automatically closes the file after reading.
+
+file.read() reads the entire file into one string.
+
+try/except handles the situation where the requested file does not exist.
+
+continue skips the remaining calculations and asks for another file.
+
+3. Count Lines, Words, and Characters
+
+lines = text.splitlines()
+words = text.split()
+characters = len(text)
+
+Variable
+
+Purpose
+
+lines
+
+Stores the lines returned by splitlines()
+
+words
+
+Stores the words returned by split()
+
+characters
+
+Stores the total number of characters
+
+Lines: text.splitlines() separates the text into lines. The program uses len(lines) to count them.
+
+Words: text.split() separates text using whitespace, including spaces, tabs, and newlines. The program uses len(words) to count the resulting words.
+
+Characters: len(text) counts all characters, including spaces and line breaks.
+
+For an empty file, these calculations return zero for lines, words, and characters.
+
+4. Count Non-Empty Lines
+
+This is the first bonus feature.
+
+non_empty_lines = sum(1 for line in lines if line.strip())
+
+The program checks each line after removing surrounding whitespace with .strip().
+
+If the line contains text, it contributes 1.
+
+If the line is empty or contains only whitespace, it contributes 0.
+
+The sum() function adds the results to calculate the number of non-empty lines.
+
+5. Find the Longest Word
+
+This is the second bonus feature.
+
+if words:
+    longest_word = max(words, key=len)
+    print(f"Longest word: {longest_word}")
+else:
+    print("Longest word: No words found.")
+
+The max() function uses key=len to select the word with the greatest length.
+
+If the file contains no words, the program displays No words found. instead.
+
+6. Count Word Frequencies
+
+This is the third bonus feature and reuses the dictionary technique from Day 28.
+
+word_counts = {}
+
+for word in words:
+    word = word.lower().strip(".,!?;:\"'()[]{}")
+
+    if word:
+        word_counts[word] = word_counts.get(word, 0) + 1
+
+How it works:
+
+Create an empty dictionary called word_counts.
+
+Loop through each word in the file.
+
+Convert each word to lowercase.
+
+Remove selected punctuation from the beginning and end of each word.
+
+Use .get() to retrieve the existing count, defaulting to zero.
+
+Increase the count by one.
+
+For example, Python, python, and PYTHON are counted as the same word after conversion to lowercase.
+
+7. Find the Most Common Word
+
+if word_counts:
+    most_common = max(word_counts, key=word_counts.get)
+    print(
+        f"Most common word: {most_common} "
+        f"({word_counts[most_common]} times)"
+    )
+else:
+    print("Most common word: No words found.")
+
+The program uses max() with key=word_counts.get to find the dictionary key with the highest frequency.
+
+If multiple words share the highest frequency, this code returns the first one encountered in dictionary iteration order.
+
+💻 Example Runs
+
+Example 1: Analyse a Text File
+
+Suppose story.txt contains:
+
+I love learning Python.
+Every day I build one project.
+Practice makes me better.
+
+The program displays the counts for the file:
+
+Enter file name (or q to quit): story.txt
+
+----------------------------------------
+Lines: 3
+Words: 14
+Characters: 78
+Non-empty lines: 3
+Longest word: learning
+Most common word: i (2 times)
+----------------------------------------
+
+The exact character count depends on the file's actual line endings and whether there is a final newline. The most common word shown is based on the code's lowercase and punctuation-cleaning rules.
+
+Example 2: File Not Found
+
+Enter file name (or q to quit): hello.txt
+
+File 'hello.txt' not found.
+Enter a valid file name.
+
+The program continues and asks for another file.
+
+Example 3: Empty File
+
+For an existing file with no contents:
+
+Lines: 0
+Words: 0
+Characters: 0
+Non-empty lines: 0
+Longest word: No words found.
+Most common word: No words found.
+
+Example 4: Exit the Program
+
+Enter file name (or q to quit): q
+
+Bye
+
+📚 Python Concepts Used
+
+Concept
+
+How I Used It
+
+File handling
+
+Read text from files
+
+open()
+
+Opened a file in read mode
+
+with statement
+
+Managed the file's lifecycle
+
+file.read()
+
+Read the entire file into a string
+
+splitlines()
+
+Separated text into lines
+
+split()
+
+Separated text into words
+
+len()
+
+Counted lines, words, and characters
+
+try/except
+
+Handled a missing file
+
+FileNotFoundError
+
+Identified when a file could not be found
+
+continue
+
+Returned to the prompt after a missing file
+
+sum()
+
+Counted non-empty lines
+
+strip()
+
+Removed whitespace and selected punctuation
+
+max()
+
+Found the longest and most frequent words
+
+Dictionaries
+
+Stored word frequencies
+
+.get()
+
+Retrieved the current word count
+
+.lower()
+
+Made word-frequency counting case-insensitive
+
+Generator expression
+
+Counted non-empty lines efficiently
+
+while True and break
+
+Repeated the program and handled exit
+
+⭐ Bonus Feature Status
+
+Bonus
+
+Status
+
+Count non-empty lines
+
+✅ Implemented
+
+Find the longest word
+
+✅ Implemented
+
+Find the most common word
+
+✅ Implemented
+
+All three optional bonus features are included in my current code.
+
+
+🔗 Connection to My Previous Projects
+
+Day 17 — Word/Character Counter: Practised counting characters, words, and vowels in a sentence.
+
+Day 24 — Remove Duplicates from a List: Practised working with lists.
+
+Day 28 — Word Frequency Counter: Used dictionaries to count how often words appear.
+
+Day 36 — Expense Tracker That Saves to a File: Practised opening, reading, and handling files.
+
+Day 37 combines these earlier skills to create a reusable text-analysis program.
+
+
+🏆 What I Learned
+
+How to read an entire file using file.read().
+
+How to split text into lines and words.
+
+How to count characters, including whitespace.
+
+How to handle files that do not exist.
+
+How to analyse empty files safely.
+
+How to count non-empty lines using sum().
+
+How to find the longest word using max().
+
+How to count word frequencies using a dictionary.
+
+How to find the most common word in a text file.
+
+How to combine file handling with string processing.
+
+
+📁 Project Structure
+
+day37/
+├── day37_read_txt_file_count_words_lines_characters.py
+├── day37_question
+├── story.txt
+└── read.me
+
+story.txt is an example input file that you can create to test the program. Other text files can be analysed by entering their names.
+
+
+▶️ How to Run
+
+Open the day37 project folder.
+
+Create a sample text file named story.txt, or use another existing .txt file.
+
+Run the Python file:
+
+python day37_read_txt_file_count_words_lines_characters.py
+
+Enter the file name when prompted.
+
+Review the counts and word-analysis results.
+
+Enter another file name to analyse another file.
+
+Type q to exit.
+
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
