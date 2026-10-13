@@ -1,0 +1,72 @@
+Day 38: Notes App (Write, Read, Append)
+
+Concepts used: file modes "w", "a", "r", .readlines(), confirmation before destructive actions
+
+Why this project?
+On Day 36 you used "a" (append) and "r" (read). Today you'll use all three modes in one program, including "w", the dangerous one that erases the file before writing. A notes app is the best way to see the difference between them.
+The three modes side by side
+open("notes.txt", "w")   # write: erases everything, starts a fresh file
+open("notes.txt", "a")   # append: keeps old content, adds at the end
+open("notes.txt", "r")   # read: only reads, crashes if the file doesn't exist
+
+A quick experiment to try in a separate file first:
+with open("test.txt", "w") as file:
+    file.write("First\n")
+with open("test.txt", "w") as file:
+    file.write("Second\n")
+
+Run it, then cat test.txt. It will only show Second, because the second "w" erased First. Now change the second one to "a" and run it again from scratch. This time both lines survive.
+
+Problem Statement
+Build a notes app that stores everything in notes.txt. Menu:
+1. Write New Notes (replaces everything)
+2. Add a Note
+3. Read Notes
+4. Exit
+
+Write New Notes: ask the user to type a note, then save it using "w" mode. Because this erases all old notes, ask Are you sure? (y/n) first.
+Add a Note: save one more note at the end of the file using "a" mode.
+Read Notes: show every note with a number in front.
+Exit: quit the program.
+Example Run
+Choose: 2
+Enter your note: Buy milk
+Note added!
+
+Choose: 2
+Enter your note: Call Arun
+Note added!
+
+Choose: 3
+Your Notes:
+1. Buy milk
+2. Call Arun
+
+Choose: 1
+This will erase all existing notes. Are you sure? (y/n): y
+Enter your note: Start fresh
+Notes replaced!
+
+Choose: 3
+Your Notes:
+1. Start fresh
+
+Close the program and run it again. Your notes should still be there.
+Hints
+Read with numbers. .readlines() gives a list of lines, and enumerate (from Day 20) numbers them:
+with open("notes.txt", "r") as file:
+    notes = file.readlines()
+for number, note in enumerate(notes, start=1):
+    print(f"{number}. {note.strip()}")
+
+Write the confirmation first, then open the file in "w" mode only if the answer is y. The same idea as your address book delete in Day 30.
+
+Things to handle
+1.File doesn't exist yet: Read should print "No notes yet." instead of crashing (try/except FileNotFoundError, as on Day 36).
+2.File exists but is empty: notes will be an empty list. Check len(notes) == 0 and print the same "No notes yet." message.
+3.Empty note: don't save a note that is blank (note.strip() == "").
+
+
+Bonus (optional)
+1.Add option 5: Delete a Note by its number. You can't delete one line from a file directly, so read all lines into a list, remove the one you want (notes.pop(index) or rebuild the list as you did with your cart on Day 23), then write the whole list back with "w".
+2.Show how many notes you have in the Read menu.
