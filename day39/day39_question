@@ -1,0 +1,67 @@
+Day 39: Student Database Using File Storage
+
+Concepts used: records with several fields per line, functions that load and save data, searching inside file data
+
+Problem Statement
+
+Build a student database that stores every student in students.txt. Each line is one record in the format roll,name,marks, for example 101,Arun,85. Menu:
+1. Add Student
+2. View All Students
+3. Search by Roll Number
+4. Class Average and Topper
+5. Exit
+
+Example Run
+Choose: 1
+Enter roll number: 101
+Enter name: Arun
+Enter marks (0-100): 85
+Student saved!
+
+Choose: 1
+Enter roll number: 101
+Roll number 101 already exists!
+
+Choose: 2
+101 | Arun | 85.0
+
+Choose: 3
+Enter roll number: 101
+Found: Arun, marks 85.0
+
+Choose: 4
+Class average: 85.0
+Topper: Arun (85.0)
+
+Structure hint: load once, use everywhere
+Options 2, 3, 4 and the duplicate check all need to read the file. Instead of repeating the reading code four times, write it once as a function (this is what functions are for):
+def load_students():
+    students = []
+    try:
+        with open("students.txt", "r") as file:
+            for line in file:
+                roll, name, marks = line.strip().split(",")
+                students.append((roll, name, float(marks)))
+    except FileNotFoundError:
+        pass            # no file yet means an empty list, not an error
+    return students
+
+
+It returns a list of tuples (the same idea as your Day 23 cart). Each tuple is (roll, name, marks).
+Then every option starts with students = load_students() and works with the list:
+for roll, name, marks in students:
+    print(f"{roll} | {name} | {marks}")
+
+For Add, load first and loop through the list to check whether the roll number already exists. Only if it's new do you append the line to the file with "a" mode.
+For Topper, use the same "start with the first item and compare" idea from your Day 25 manual max.
+
+Things to handle
+1.Duplicate roll number: reject it.
+2.Marks outside 0-100: reject them (convert with float() first).
+3.Commas in the name: replace them with spaces before saving, as on Day 36.
+4.Empty database: options 2, 3 and 4 should print "No students yet." when the list is empty. This also prevents a divide-by-zero in the average.
+5.Roll number as text: keep it as a string (like phone numbers on Day 30), and compare it as a string.
+
+Bonus (optional)
+1.Delete a student by roll number, using the Day 38 pattern: load the list, rebuild it without that student, and write everything back with "w".
+2.Update marks: the same pattern, but change one student's marks instead of removing them.
