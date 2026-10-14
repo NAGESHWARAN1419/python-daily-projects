@@ -1,0 +1,576 @@
+
+
+🎓 Day 39: Student Database Using File Storage
+
+
+📌 Project Overview
+
+
+This is my Day 39 Python project, where I built a Student Database that stores student records in a text file called students.txt.
+
+The program allows users to add students, view all student records, search by roll number, calculate the class average, find the topper, delete student records, and update marks.
+
+Each student record is stored in this format:
+
+roll,name,marks
+
+Example:
+
+101,Arun,85.0
+102,Priya,92.0
+103,Kumar,78.0
+
+Unlike programs that store information only in variables, this project uses file storage to keep student records available after the program closes.
+
+It also introduces functions for loading and saving records, lists of tuples, searching, and calculating results.
+
+
+🎯 Features
+
+✅ Add a student with a roll number, name, and marks.
+
+✅ Prevent duplicate roll numbers.
+
+✅ Reject empty roll numbers and names.
+
+✅ Validate marks between 0 and 100.
+
+✅ Replace commas in student names with spaces.
+
+✅ View all saved student records.
+
+✅ Search for a student by roll number.
+
+✅ Calculate the class average.
+
+✅ Find the student with the highest marks.
+
+✅ Delete a student after confirmation.
+
+✅ Update a student's marks.
+
+✅ Store student records in students.txt.
+
+✅ Handle a missing student file by returning an empty list.
+
+✅ Display a message when the database has no student records.
+
+
+🧠 Why Use File Storage?
+
+A normal Python list exists in memory while the program is running. If the program closes, its contents disappear unless they are saved somewhere.
+
+A text file allows the program to store information permanently between runs.
+
+For example, students.txt may contain:
+
+101,Arun,85.0
+102,Priya,92.0
+
+When the program starts again, it can read these records and convert them into Python data.
+
+
+⚙️ How the Program Works
+
+1. Loading Student Records
+
+The load_students() function reads records from students.txt.
+
+def load_students():
+    students = []
+
+    try:
+        with open("students.txt", "r") as file:
+            for line in file:
+                roll, name, marks = line.strip().split(",")
+                students.append((roll, name, float(marks)))
+    except FileNotFoundError:
+        pass
+
+    return students
+
+How it works:
+
+Create an empty list called students.
+
+Open students.txt in read mode ("r").
+
+Read the file one line at a time.
+
+Use .strip() to remove surrounding whitespace, including the newline.
+
+Use .split(",") to separate the roll number, name, and marks.
+
+Convert marks into a floating-point number using float().
+
+Store each record as a tuple in the list.
+
+If the file does not exist, pass allows the function to continue without crashing.
+
+Return the list of student records.
+
+Each student is stored as a tuple:
+
+("101", "Arun", 85.0)
+
+The roll number remains a string, the name is a string, and marks are stored as a number.
+
+2. Saving Student Records
+
+The save_students() function writes a list of student records back to the file.
+
+def save_students(students):
+    with open("students.txt", "w") as file:
+        for roll, name, marks in students:
+            file.write(f"{roll},{name},{marks}\n")
+
+How it works:
+
+Open the file in "w" mode.
+
+Loop through each student tuple.
+
+Write the roll number, name, and marks separated by commas.
+
+Add a newline after each record.
+
+Important: Write mode replaces the entire file. This is useful when deleting a student or updating marks because the program saves the complete updated list.
+
+3. Adding a Student
+
+The program asks for a roll number, name, and marks.
+
+roll = input("Enter roll number: ").strip()
+name = input("Enter name: ").replace(",", " ")
+marks = float(input("Enter marks (0-100): "))
+
+Before saving, it checks whether the roll number already exists.
+
+exists = False
+
+for r, n, m in students:
+    if r == roll:
+        exists = True
+
+If the roll number is already present, the program rejects the new record.
+
+It also checks that the roll number and name are not blank and that marks are between 0 and 100.
+
+New records are saved using append mode ("a"), so existing students are not erased.
+
+4. Viewing All Students
+
+The program loads the records and displays each student.
+
+students = load_students()
+
+if len(students) == 0:
+    print("No students yet.")
+else:
+    for roll, name, marks in students:
+        print(f"{roll} | {name} | {marks}")
+
+Example output:
+
+101 | Arun | 85.0
+102 | Priya | 92.0
+103 | Kumar | 78.0
+
+If the list is empty, the program displays No students yet..
+
+5. Searching by Roll Number
+
+The program asks for a roll number and compares it with the roll number of each student.
+
+for roll, name, marks in students:
+    if roll == search_roll:
+        print(f"Found: {name}, marks {marks}")
+
+Because roll numbers are stored as strings, the comparison is also performed using strings.
+
+For example, searching for "101" finds the student whose roll number is "101".
+
+If no matching record is found, the program displays Student not found..
+
+6. Calculating Class Average and Finding the Topper
+
+The program calculates the average by adding all student marks and dividing by the number of students.
+
+total = 0
+top_name = students[0][1]
+top_marks = students[0][2]
+
+for roll, name, marks in students:
+    total += marks
+
+    if marks > top_marks:
+        top_marks = marks
+        top_name = name
+
+average = total / len(students)
+
+How the topper is found:
+
+Start by treating the first student as the topper.
+
+Compare each student's marks with the current highest marks.
+
+If a student has higher marks, update the topper's name and marks.
+
+After checking all students, the highest marks identify the topper.
+
+The program checks whether the student list is empty before calculating the average, preventing division by zero.
+
+7. Deleting a Student — Bonus Feature
+
+The program asks for a roll number and builds a new list without the selected student.
+
+new_students = []
+
+for roll, name, marks in students:
+    if roll != del_roll:
+        new_students.append((roll, name, marks))
+
+If the student exists, the program asks for confirmation. When the user enters y, it saves the updated list using save_students().
+
+This approach preserves all the other student records.
+
+8. Updating Marks — Bonus Feature
+
+The program searches for a student by roll number and asks for the new marks.
+
+If the marks are between 0 and 100, it builds an updated list:
+
+new_students = []
+
+for roll, name, marks in students:
+    if roll == up_roll:
+        new_students.append((roll, name, new_marks))
+    else:
+        new_students.append((roll, name, marks))
+
+The selected student's marks are replaced while the other records remain unchanged.
+
+Finally, save_students() writes the updated records to the file.
+
+
+
+💻 Example Runs
+
+Example 1: Add a Student
+
+Choose: 1
+
+Enter roll number: 101
+Enter name: Arun
+Enter marks (0-100): 85
+
+Student saved!
+
+Example 2: Reject a Duplicate Roll Number
+
+Choose: 1
+
+Enter roll number: 101
+Enter name: Arun Kumar
+Enter marks (0-100): 90
+
+Roll number 101 already exists!
+
+The duplicate record is not saved.
+
+Example 3: View All Students
+
+Choose: 2
+
+101 | Arun | 85.0
+102 | Priya | 92.0
+103 | Kumar | 78.0
+
+Example 4: Search by Roll Number
+
+Choose: 3
+
+Enter roll number: 101
+Found: Arun, marks 85.0
+
+If the roll number does not exist:
+
+Enter roll number: 999
+Student not found.
+
+Example 5: Class Average and Topper
+
+For the following records:
+
+Student
+
+Marks
+
+Arun
+
+85
+
+Priya
+
+92
+
+Kumar
+
+78
+
+The class average is:
+
+[
+\frac{85+92+78}{3}=85
+]
+
+Output:
+
+Choose: 4
+
+Class average: 85.0
+Topper: Priya (92.0)
+
+Example 6: Delete a Student
+
+Choose: 5
+
+Enter roll number to delete: 101
+Delete Arun? (y/n): y
+Arun deleted.
+
+The student's record is removed from the saved database.
+
+Example 7: Update Marks
+
+Choose: 6
+
+Enter roll number to update: 102
+Enter new marks (0-100): 95
+Marks updated!
+
+The student's marks are updated in students.txt.
+
+Example 8: Empty Database
+
+When the database contains no student records, options 2 and 4 display:
+
+No students yet.
+
+Searching for a student or attempting to delete or update a nonexistent student displays:
+
+Student not found.
+
+Example 9: Exit
+
+Choose: 7
+
+Bye
+
+
+
+📚 Python Concepts Used
+
+Concept
+
+How I Used It
+
+Functions
+
+Created reusable functions to load and save records
+
+load_students()
+
+Read student records from the file
+
+save_students()
+
+Rewrote the file with updated records
+
+File handling
+
+Stored student information permanently
+
+Read mode ("r")
+
+Read existing records
+
+Append mode ("a")
+
+Added a new student without replacing existing records
+
+Write mode ("w")
+
+Saved the complete updated list after deletion or modification
+
+try/except
+
+Handled a missing student file
+
+FileNotFoundError
+
+Detected when the file does not exist
+
+List
+
+Stored all student records in memory
+
+Tuple
+
+Stored each student's roll number, name, and marks together
+
+.append()
+
+Added a student tuple to a list
+
+.split(",")
+
+Separated fields in a saved record
+
+.replace()
+
+Replaced commas in names with spaces
+
+.strip()
+
+Removed surrounding whitespace
+
+float()
+
+Converted marks into numeric values
+
+for loop
+
+Processed student records
+
+if/elif/else
+
+Controlled menu options and validation
+
+String comparison
+
+Checked roll numbers for duplicates and matches
+
+Accumulator
+
+Added marks to calculate the class average
+
+Manual maximum
+
+Found the student with the highest marks
+
+len()
+
+Counted students and calculated the average
+
+while True
+
+Repeated the menu until Exit was selected
+
+
+⭐ Bonus Feature Status
+
+Bonus
+
+Status
+
+Delete a student by roll number    ✅ Implemented
+
+Update a student's marks           ✅ Implemented
+
+Both bonus features are implemented in my current code.
+
+
+🔗 Connection to My Previous Projects
+
+Day 21 — Simple Contact Book: Used a dictionary to store and search records.
+
+Day 22 — Student Marks Manager: Managed student marks and calculated averages.
+
+Day 23 — Shopping Cart: Used a list of tuples to store related information.
+
+Day 25 — Find Max, Min, and Average: Practised manual comparisons and calculations.
+
+Day 30 — Address Book App: Worked with structured records and confirmation before deleting.
+
+Day 36 — Expense Tracker: Saved and read information using text files.
+
+Day 38 — Notes App: Read records, rebuilt lists, and rewrote a file after deleting an item.
+
+Day 39 combines these concepts to create a file-based student database with reusable functions and record management.
+
+
+🏆 What I Learned
+
+How to store multiple fields in one text-file record.
+
+How to use functions to avoid repeating file-reading code.
+
+How to return a list of tuples from a function.
+
+How to add new records without erasing existing data.
+
+How to search for a record using a string identifier.
+
+How to calculate an average and find the highest value manually.
+
+How to delete a record by rebuilding a list.
+
+How to update a record and save the changes.
+
+How to use "w" mode to rewrite a complete file.
+
+Why checking for an empty list is important before calculating an average.
+
+How to combine functions, lists, tuples, loops, and file handling in one application.
+
+
+📁 Project Structure
+
+day39/
+├── day39_student_database_using_file_storage.py
+├── day39_question
+└── read.me
+
+After the program saves its first student, the folder will also contain students.txt:
+
+day39/
+├── day39_student_database_using_file_storage.py
+├── day39_question
+├── students.txt
+└── read.me
+
+The students.txt file stores the student records and remains available when the program is closed.
+
+
+▶️ How to Run
+
+Open the day39 project folder.
+
+Run the Python file:
+
+python day39_student_database_using_file_storage.py
+
+Select option 1 to add a student.
+
+Select option 2 to view all students.
+
+Select option 3 to search by roll number.
+
+Select option 4 to calculate the class average and find the topper.
+
+Select option 5 to delete a student.
+
+Select option 6 to update marks.
+
+Select option 7 to exit.
+
+Run the program again to confirm that the saved records remain available.
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
