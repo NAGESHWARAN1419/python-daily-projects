@@ -1,0 +1,477 @@
+
+
+🧮 Day 40: Safe Calculator (Exception Handling)
+
+📌 Project Overview
+
+This is my Day 40 Python project, where I improved my calculator by adding exception handling to manage invalid inputs and calculation errors safely.
+
+The calculator supports addition, subtraction, multiplication, division, power, and remainder operations. It also allows users to view their calculation history and check how many calculations have been attempted.
+
+Instead of stopping unexpectedly when an error occurs, the program catches specific exceptions and displays helpful messages.
+
+This project builds on Day 31 — Calculator Using Functions and introduces more advanced error handling with try, except, else, and finally.
+
+🎯 Features
+
+✅ Addition (+)
+
+✅ Subtraction (-)
+
+✅ Multiplication (*)
+
+✅ Division (/)
+
+✅ Power (**)
+
+✅ Remainder (%)
+
+✅ Reject invalid numeric input.
+
+✅ Retry the first number until valid input is entered.
+
+✅ Handle division by zero.
+
+✅ Handle remainder by zero.
+
+✅ Handle very large results that raise OverflowError.
+
+✅ Reject invalid operations.
+
+✅ Keep a history of successful calculations.
+
+✅ Display calculation history with numbering.
+
+✅ Count calculation attempts using finally.
+
+✅ Exit the program by entering q.
+
+✅ View history by entering h.
+
+🧠 What Is an Exception?
+
+An exception is an error that occurs while a Python program is running.
+
+For example:
+
+number = float("abc")
+
+Python cannot convert "abc" into a number, so it raises a ValueError.
+
+Another example:
+
+result = 10 / 0
+
+Python raises a ZeroDivisionError because division by zero is not allowed.
+
+Without exception handling, these errors can stop a program unexpectedly. With try and except, we can catch specific errors and decide what the program should do next.
+
+Think of exception handling as a safety net: when something goes wrong, the program can respond instead of crashing.
+
+⚙️ Understanding try, except, else, and finally
+
+Keyword
+
+Purpose
+
+try
+
+Runs code that might raise an exception.
+
+except
+
+Handles a matching exception.
+
+else
+
+Runs when the try block completes without an exception.
+
+finally
+
+Runs whether an exception occurred or not.
+
+Example
+
+try:
+    number = float(input("Enter a number: "))
+    result = 10 / number
+
+except ValueError:
+    print("That is not a valid number.")
+
+except ZeroDivisionError:
+    print("Cannot divide by zero.")
+
+else:
+    print("Result:", result)
+
+finally:
+    print("Thanks for using the calculator.")
+
+The program handles invalid numbers and division by zero separately. The else block only displays the result if the calculation succeeds, while finally displays its message regardless of success or failure.
+
+⚙️ How the Program Works
+
+1. Enter the First Number
+
+The program repeatedly asks for the first number until the user enters a valid number.
+
+while True:
+    first_number0 = input("Enter first number (q = quit, h = history): ")
+
+    if first_number0.lower() == "q":
+        print("Bye")
+        quit()
+
+    if first_number0.lower() == "h":
+        # Display calculation history
+        continue
+
+    try:
+        first_number = float(first_number0)
+        break
+
+    except ValueError:
+        print("That is not a valid number. Try again.")
+
+How it works:
+
+Read the user's input as text.
+
+If the user enters q, exit the program.
+
+If the user enters h, display the calculation history.
+
+Otherwise, try converting the input into a floating-point number.
+
+If conversion succeeds, break exits the inner loop.
+
+If conversion fails, ValueError is caught and the program asks again.
+
+This is an implemented bonus feature: retry until the first number is valid.
+
+2. Perform the Calculation
+
+After accepting the first number, the program asks for the second number and the desired operation.
+
+second_number = float(input("Enter second number: "))
+opt = input("Choose operation (+, -, *, /, **, %): ")
+
+if opt == "+":
+    result = first_number + second_number
+elif opt == "-":
+    result = first_number - second_number
+elif opt == "*":
+    result = first_number * second_number
+elif opt == "/":
+    result = first_number / second_number
+elif opt == "**":
+    result = first_number ** second_number
+elif opt == "%":
+    result = first_number % second_number
+else:
+    print("Invalid operation.")
+    continue
+
+The program uses conditional statements to select the correct calculation.
+
+If the user enters an unsupported operator, it displays Invalid operation. and returns to the start of the outer loop.
+
+3. Handle Specific Errors
+
+The calculation is protected by multiple except blocks.
+
+except ValueError:
+    print("That is not a valid number. Try again.")
+
+except ZeroDivisionError:
+    print("Error: cannot divide by zero.")
+
+except OverflowError:
+    print("Error: the result is too large.")
+
+Each block handles a different problem:
+
+ValueError — the second number cannot be converted into a float.
+
+ZeroDivisionError — the user attempts division or remainder by zero.
+
+OverflowError — a calculation produces a result that exceeds the supported floating-point range.
+
+For example, 10 / 0 and 10 % 0 both raise ZeroDivisionError.
+
+4. Display and Save Successful Results
+
+The else block runs only if the calculation completes without raising an exception.
+
+else:
+    line = f"{first_number} {opt} {second_number} = {result}"
+    print(f"Result: {line}")
+    history.append(line)
+
+For example:
+
+Result: 10.0 % 3.0 = 1.0
+
+The result is also appended to the history list.
+
+Important: The history is stored in memory, so it is available only while the program is running. It is not saved to a file.
+
+5. View Calculation History
+
+The program lets users enter h at the first-number prompt.
+
+if len(history) == 0:
+    print("No calculations yet.")
+else:
+    for number, entry in enumerate(history, start=1):
+        print(f"{number}. {entry}")
+
+print(f"Attempts so far: {attempts}")
+
+The enumerate() function displays each successful calculation with a number starting at 1.
+
+The program also displays the current attempt count.
+
+6. Count Attempts with finally
+
+finally:
+    attempts += 1
+
+The finally block runs after the calculation's try/except/else structure finishes.
+
+It increments attempts whether the calculation succeeds or raises a handled exception.
+
+In the current program, this counter specifically tracks passes through the calculation block, not every invalid first-number entry or history request.
+
+💻 Example Runs
+
+Example 1: Invalid First Number
+
+Enter first number (q = quit, h = history): abc
+
+That is not a valid number. Try again.
+
+Enter first number (q = quit, h = history): 10
+
+The program does not crash. It keeps asking for the first number.
+
+Example 2: Division by Zero
+
+Enter first number (q = quit, h = history): 10
+Enter second number: 0
+Choose operation (+, -, *, /, **, %): /
+
+Error: cannot divide by zero.
+
+Example 3: Remainder
+
+Enter first number (q = quit, h = history): 10
+Enter second number: 3
+Choose operation (+, -, *, /, **, %): %
+
+Result: 10.0 % 3.0 = 1.0
+
+Example 4: Invalid Operation
+
+Enter first number (q = quit, h = history): 10
+Enter second number: 5
+Choose operation (+, -, *, /, **, %): x
+
+Invalid operation.
+
+Example 5: Calculation History
+
+After completing two successful calculations:
+
+Enter first number (q = quit, h = history): h
+
+1. 10.0 + 5.0 = 15.0
+2. 10.0 % 3.0 = 1.0
+Attempts so far: 2
+
+Example 6: Empty History
+
+Enter first number (q = quit, h = history): h
+
+No calculations yet.
+Attempts so far: 0
+
+Example 7: Exit
+
+Enter first number (q = quit, h = history): q
+
+Bye
+
+📚 Python Concepts Used
+
+Concept
+
+How I Used It
+
+try
+
+Protected numeric input and calculations
+
+except
+
+Handled errors without stopping the program
+
+ValueError
+
+Handled invalid numeric input
+
+ZeroDivisionError
+
+Handled division and remainder by zero
+
+OverflowError
+
+Handled excessively large calculation results
+
+else
+
+Displayed and saved successful calculations
+
+finally
+
+Incremented the attempt counter
+
+float()
+
+Converted user input into numbers
+
+while True
+
+Repeated input and calculation loops
+
+break
+
+Exited the first-number input loop
+
+continue
+
+Returned to the next iteration when appropriate
+
+if/elif/else
+
+Selected the arithmetic operation
+
+List
+
+Stored successful calculations in memory
+
+.append()
+
+Added a successful result to history
+
+enumerate()
+
+Numbered history entries
+
+len()
+
+Checked whether history was empty
+
+.lower()
+
+Accepted uppercase or lowercase q and h
+
+Counter variable
+
+Counted calculation-block attempts
+
+f-strings
+
+Formatted results and messages
+
+⭐ Bonus Feature Status
+
+Bonus
+
+Status
+
+Retry until the first number is valid
+
+✅ Implemented
+
+Count attempts with finally
+
+✅ Implemented
+
+Keep a history of successful calculations
+
+✅ Implemented
+
+Display history through an input command
+
+✅ Implemented
+
+All four bonus features are implemented in my current code.
+
+🔗 Connection to My Previous Projects
+
+Day 2 — Basic Calculator: Practised arithmetic operations and division by zero.
+
+Day 31 — Calculator Using Functions: Built a calculator with addition, subtraction, multiplication, division, power, and remainder.
+
+Day 32 — Factorial Calculator: Worked with input validation and mathematical calculations.
+
+Day 36 — Expense Tracker: Used try/except to handle missing files.
+
+Day 39 — Student Database: Used structured data, loops, and input validation.
+
+Day 40 improves my calculator by adding more reliable error handling and keeping a history of successful calculations.
+
+🏆 What I Learned
+
+What exceptions are and why they occur.
+
+How to handle specific errors instead of letting the program crash.
+
+How try, except, else, and finally work together.
+
+How to catch invalid numeric input with ValueError.
+
+How to handle division and remainder by zero.
+
+How to catch OverflowError for very large calculations.
+
+How to retry input until a valid number is entered.
+
+How to maintain a history list.
+
+How to use finally to count calculation-block attempts.
+
+Why specific exception handling is better than catching every possible error indiscriminately.
+
+📁 Project Structure
+
+day40/
+├── day40_safe_calculator_exception_handling.py
+├── day40_question
+└── read.me
+
+No external file is required. The calculation history is stored in memory and disappears when the program exits.
+
+▶️ How to Run
+
+Open the day40 project folder.
+
+Run the Python file:
+
+python day40_safe_calculator_exception_handling.py
+
+Enter the first number.
+
+Enter the second number and select an operation.
+
+Enter h at the first-number prompt to view history.
+
+Enter q at the first-number prompt to exit.
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
