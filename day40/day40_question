@@ -1,0 +1,98 @@
+Day 40: Safe Calculator (Exception Handling)
+
+Concepts used: try, except, else, finally, handling specific errors
+
+What is an exception?
+You've already seen many crashes: ValueError when you typed q into int(), ZeroDivisionError when dividing by 0, and FileNotFoundError on Day 36. Each one is an exception. Normally the program stops and shows a red error message. With try/except, you catch the problem and decide what happens instead.
+Think of a safety net under a trapeze artist. If something goes wrong, the net catches it, and the show goes on.
+The basics
+try:
+    number = int(input("Enter a number: "))     # risky code goes here
+    print(10 / number)
+except ValueError:                              # runs only if int() fails
+    print("That is not a number!")
+except ZeroDivisionError:                       # runs only if number is 0
+    print("Cannot divide by zero!")
+else:                                           # runs only if NOTHING went wrong
+    print("Calculation finished successfully.")
+finally:                                        # runs ALWAYS, error or not
+    print("Thanks for using the calculator.")
+
+1.try: the code that might fail.
+2.except ValueError: catches that one specific error type. You can have several except blocks, and Python runs the first one that matches.
+3.else: runs only if the try block finished with no error.
+4.finally: runs every time, whatever happened. It's good for goodbye messages or cleanup.
+
+Catch specific errors (ValueError, ZeroDivisionError), not everything. A catch-all hides real bugs in your code.
+
+Problem Statement
+Build a calculator that never crashes, whatever the user types. It should handle:
+1.Invalid numbers: typing abc instead of a number.
+2.Division by zero.
+3.Invalid operations: typing x instead of + - * /.
+4.Quit: typing q at the first prompt exits.
+Operations: +, -, *, /, plus ** (power) and % (remainder).
+
+
+Example Run
+Enter first number (or q to quit): abc
+That is not a valid number. Try again.
+
+Enter first number (or q to quit): 10
+Enter second number: 0
+Choose operation (+, -, *, /, **, %): /
+Error: cannot divide by zero.
+
+Enter first number (or q to quit): 10
+Enter second number: 3
+Choose operation (+, -, *, /, **, %): %
+Result: 10.0 % 3.0 = 1.0
+
+
+Structure hint
+Reuse your Day 31 functions, but this time let div raise the problem naturally and catch it in the main loop:
+while True:
+    first0 = input("Enter first number (or q to quit): ")
+    if first0.lower() == "q":
+        break
+
+    try:
+        first = float(first0)
+        second = float(input("Enter second number: "))
+        op = input("Choose operation (+, -, *, /, **, %): ")
+
+        if op == "+":
+            result = first + second
+        elif op == "/":
+            result = first / second          # may raise ZeroDivisionError
+        # ... the other operations ...
+        else:
+            print("Invalid operation.")
+            continue
+
+    except ValueError:
+        print("That is not a valid number. Try again.")
+    except ZeroDivisionError:
+        print("Error: cannot divide by zero.")
+    else:
+        print(f"Result: {first} {op} {second} = {result}")
+Notice the print of the result is in the else: block. It only runs when the calculation worked, so you never try to print a result that doesn't exist.
+Watch out: % with 0 also raises ZeroDivisionError (10 % 0), so your except ZeroDivisionError catches that too.
+
+
+Things to handle
+1.Typing nothing (just pressing Enter) at a number prompt: float("") raises ValueError, so it should already be caught.
+2.Very large power results like 9999 ** 9999: floats can overflow and raise OverflowError. Add one more except OverflowError: with a friendly message.
+
+
+Bonus (optional)
+Retry until valid: instead of going back to the top when the number is invalid, keep asking for that same number until the user types a valid one. A helper function makes this neat:
+def get_number(prompt):
+    while True:
+        try:
+            return float(input(prompt))
+        except ValueError:
+            print("That is not a valid number. Try again.")
+Then use first = get_number("Enter first number: ") in the main loop. (return inside a loop inside a function ends the whole function the moment a valid number arrives.)
+1.Add a finally: block that counts how many calculations were attempted.
+2.Keep a history list of the successful results and add a menu option to show it.
