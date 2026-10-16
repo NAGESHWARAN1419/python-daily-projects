@@ -1,0 +1,350 @@
+🔐 Day 41: Login System with Retry Limit
+
+📌 Project Overview
+
+This is a simple Python login system that allows users to register an account and log in using a username and password.
+The program stores registered users in a dictionary and saves their information to a file named users.txt. This means registered accounts remain available even after the program closes.
+Users have 3 attempts to enter the correct password. If all attempts fail, the account becomes locked for the rest of the current session.
+This project practices functions, dictionaries, file handling, exception handling, counters, and the getpass module.
+
+✨ Features
+
+📝 Register a new user.
+🔑 Log in with a username and password.
+🔒 Allow up to 3 password attempts.
+🚫 Lock an account for the rest of the current session after 3 failed attempts.
+💾 Save registered users in users.txt.
+📂 Load saved users when the program starts.
+👤 Reject duplicate usernames.
+🔍 Display an error for unknown usernames.
+🔐 Require passwords to contain at least 6 characters.
+⌨️ Hide password input using getpass.
+🛡️ Handle non-numeric menu input using try/except.
+❌ Reject empty usernames.
+🚫 Prevent commas in usernames to protect the file's comma-separated format.
+🔠 Normalize usernames using .title() and remove spaces using .replace().
+
+
+
+🧠 Concepts Explained Simply
+
+1. Dictionary
+
+A dictionary stores information using a key and a value.
+
+users = {
+    "Arun": "mypassword",
+    "Priya": "hello123"
+}
+
+"Arun" is the username (key).
+
+"mypassword" is the password (value).
+
+Simple example: Think of a school register where each student's name is connected to their information.
+
+2. Functions
+
+Functions allow us to reuse code without writing it repeatedly.
+
+This project uses:
+
+load_users() — loads saved accounts from a file.
+
+save_users(users) — saves accounts to a file.
+
+login(username) — checks the password and controls the 3 login attempts.
+
+3. try/except
+
+The menu converts user input into an integer:
+
+try:
+    opt = int(input("Choose: "))
+except ValueError:
+    print("Please enter a number.")
+
+If someone enters abc instead of 1, 2, or 3, Python catches the error instead of crashing the menu.
+
+4. getpass
+
+password = getpass.getpass("Enter password: ")
+
+This hides the password while the user types it in a supported terminal.
+
+5. Retry Counter
+
+for attempt in range(3):
+    password = getpass.getpass("Enter password: ")
+
+The loop allows up to three password attempts. If the password is correct, the function returns True. Otherwise, after all attempts, it returns False.
+
+6. File Handling
+
+The program uses users.txt to store registered accounts.
+
+"r" reads saved users.
+
+"w" writes the current users to the file.
+
+FileNotFoundError is handled when the file does not exist yet.
+
+7. Session Lockout
+
+locked = []
+
+This list stores usernames that have failed all three login attempts.
+
+Before allowing another login, the program checks whether the username is in the locked list. The lockout lasts only until the program closes.
+
+
+⚙️ How the Program Works
+
+Start Program
+      |
+      v
+Load Users from users.txt
+      |
+      v
+Display Menu
+      |
+      +------ 1. Register
+      |           |
+      |           v
+      |     Validate Username
+      |           |
+      |           v
+      |     Check Password Length
+      |           |
+      |           v
+      |     Save User to File
+      |
+      +------ 2. Login
+      |           |
+      |           v
+      |     Check Username Exists
+      |           |
+      |           v
+      |     Check Session Lockout
+      |           |
+      |           v
+      |     Allow 3 Password Attempts
+      |           |
+      |      +----+----+
+      |      |         |
+      |   Correct   3 Failures
+      |      |         |
+      |      v         v
+      |   Welcome   Account Locked
+      |
+      +------ 3. Exit
+                  |
+                  v
+              End Program
+
+
+▶️ Example Runs
+
+Example 1: Register a User
+
+1.Register
+2.Login
+3.Exit
+Choose: 1
+
+Enter username: arun
+Enter password:
+Registered successfully!
+
+The password is hidden while typing.
+
+Example 2: Successful Login
+
+Choose: 2
+
+Enter username: arun
+Enter password:
+Login successful. Welcome, Arun!
+
+Example 3: Incorrect Password
+
+Choose: 2
+
+Enter username: arun
+Enter password:
+Wrong password. 2 attempts left.
+Enter password:
+Wrong password. 1 attempts left.
+Enter password:
+Wrong password. 0 attempts left.
+
+Account locked.
+
+The account cannot be used to log in again during the current program session.
+
+Example 4: Unknown Username
+
+Choose: 2
+
+Enter username: unknown
+User not found.
+
+Example 5: Invalid Menu Input
+
+Choose: abc
+
+Please enter a number.
+
+The program returns to the menu instead of crashing.
+
+
+📚 Concepts Used
+
+Concept
+
+Purpose
+
+Functions
+
+Separate loading, saving, and login logic
+
+Dictionaries
+
+Store usernames and passwords
+
+Lists
+
+Track locked accounts
+
+for loop
+
+Limit password attempts
+
+while loop
+
+Keep the menu running
+
+if/elif/else
+
+Handle menu choices and validation
+
+try/except
+
+Handle invalid menu input and missing files
+
+getpass
+
+Hide password input
+
+File handling
+
+Save and load registered users
+
+.title()
+
+Normalize username capitalization
+
+.replace()
+
+Remove spaces from usernames
+
+len()
+
+Check password length
+
+return
+
+Send the login result back to the menu
+
+
+🎁 Bonus Features
+
+Bonus
+
+Status
+
+Save users to users.txt
+
+✅ Completed
+
+Load users when the program starts
+
+✅ Completed
+
+Lock accounts after 3 failed attempts
+
+✅ Completed
+
+Keep accounts locked for the current session
+
+✅ Completed
+
+
+🔗 Connection to Previous Days
+
+Day 21 — Contact Book: Used a dictionary to store information.
+
+Day 31 — Calculator Using Functions: Organized a program using functions.
+
+Day 36 — Expense Tracker: Saved information in a file.
+
+Day 39 — Student Database: Used separate load and save functions for persistent data.
+
+Day 40 — Safe Calculator: Practiced exception handling and managing repeated attempts.
+
+Day 41 combines these skills into a small account-management program.
+
+
+🎯 What I Learned
+
+After completing this project, I practised how to:
+
+Register users and prevent duplicate usernames.
+
+Check usernames and passwords during login.
+
+Limit the number of login attempts.
+
+Lock accounts after repeated failed attempts.
+
+Handle invalid menu input with try/except.
+
+Save and load dictionary data using a text file.
+
+Organize a program using reusable functions.
+
+Hide password input with Python's getpass module.
+
+
+📁 Project Structure
+
+day41/
+├── day41_login_system_with_retry_limit.py
+├── day41_question
+├── users.txt
+└── read.me
+
+Note: users.txt is created when a user registers successfully. You do not need to create it manually.
+
+
+🚀 How to Run
+
+Open a terminal in the day41 folder.
+
+Run the Python file:
+
+python3 day41_login_system_with_retry_limit.py
+
+Choose 1 to register, 2 to log in, or 3 to exit.
+
+
+⚠️ Important Security Note
+
+This is a beginner learning project, not a secure real-world login system. Passwords are saved as plain text in users.txt, so anyone who can read the file can see them. A real application should use an appropriate password-hashing method, protect stored data, and apply stronger authentication and account-lockout controls.
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
