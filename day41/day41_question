@@ -1,0 +1,52 @@
+Day 41: Login System with Retry Limit
+
+Concepts used: functions, dictionaries, try/except, counters, getpass
+
+Problem Statement
+Build a small login system with registered users. Menu:
+1. Register
+2. Login
+3. Exit
+
+Register: ask for a username and password. Reject a username that already exists, and reject a password shorter than 6 characters.
+Login: ask for username and password. The user gets 3 attempts. If all 3 fail, print "Account locked" and go back to the menu.
+On success, print Welcome, <username>!.
+
+Example Run
+Choose: 1
+Enter username: arun
+Enter password: 
+Registered successfully!
+
+Choose: 2
+Enter username: arun
+Enter password: 
+Wrong password. 2 attempts left.
+Enter password: 
+Login successful. Welcome, arun!
+
+Structure hint
+Keep the users in a dictionary: {username: password}. Put the login check in its own function so the menu code stays short:
+users = {}
+
+def login(username):
+    for attempt in range(3):
+        password = getpass.getpass("Enter password: ")
+        if users[username] == password:
+            return True
+        print(f"Wrong password. {2 - attempt} attempts left.")
+    return False
+
+range(3) gives attempts 0, 1, 2, so 2 - attempt counts down 2, 1, 0 attempts left. If the loop finishes without a return True, the last line returns False, meaning the account is locked.
+In the menu, check that the username exists before calling login(), because users[username] would crash with a KeyError for an unknown name.
+Things to handle
+Unknown username: print "User not found" instead of crashing.
+Empty username or password: reject it.
+Menu input that isn't a number: wrap int(input(...)) in try/except ValueError so typing abc doesn't crash the menu. This is today's try/except practice.
+Case: decide whether usernames are case-sensitive, and be consistent. .lower() on the username in both Register and Login is the simplest choice.
+
+Bonus (optional)
+Save users to a file (users.txt, one username,password per line), using the load/save function pattern from Day 39, so registered users survive after the program closes.
+Lock a user out for the rest of the session after 3 failed attempts. Keep a locked list, and check it before allowing a login.
+One thing to know for later
+Real websites never store passwords as plain text like this. They store a scrambled version called a hash, so a stolen file doesn't reveal anyone's password. That's beyond this course for now, but it's good to know that today's program is a learning exercise and not secure.
