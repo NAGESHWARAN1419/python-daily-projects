@@ -1,0 +1,104 @@
+Day 42: CSV-Based Marks Manager
+
+Concepts used: the csv module, csv.writer, csv.reader, csv.DictReader, header rows
+
+Why CSV?
+
+On Day 39 you saved records as roll,name,marks and split each line yourself with .split(","). That works until a value contains a comma, and then your split breaks. CSV (Comma-Separated Values) is the standard format for tables. Excel and Google Sheets open it directly, and Python's built-in csv module handles all the awkward cases for you, including commas inside values.
+
+The basics
+
+Writing rows:
+import csv
+
+with open("marks.csv", "a", newline="") as file:
+    writer = csv.writer(file)
+    writer.writerow(["101", "Arun", 85])      # one row = one list
+
+Reading rows:
+with open("marks.csv", "r", newline="") as file:
+    reader = csv.reader(file)
+    for row in reader:
+        print(row)            # → ['101', 'Arun', '85']
+
+Reading with column names (very handy):
+with open("marks.csv", "r", newline="") as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        print(row["name"], row["marks"])
+
+
+DictReader uses the first row as headers, and gives you each row as a dictionary, like the nested dictionaries on Day 30.
+
+Things to know:
+1.newline="" is always added when opening files for the csv module. It stops blank lines appearing between rows on some systems.
+2.Everything read from a CSV is text, even numbers. Convert with float(row["marks"]), as you did on Day 39.
+3.A header row is the first line, e.g. roll,name,marks. Write it once when the file is created.
+
+Problem Statement
+Build a marks manager that stores students in marks.csv. The file has a header row: roll,name,marks. Menu:
+1. Add Student
+2. View All Students
+3. Search by Name
+4. Class Average and Topper
+5. Export Toppers Report
+6. Exit
+
+
+Example Run
+Choose: 1
+Enter roll number: 101
+Enter name: Arun
+Enter marks (0-100): 85
+Student saved!
+
+Choose: 2
+Roll | Name | Marks
+101  | Arun | 85.0
+
+Choose: 3
+Enter name to search: aru
+101 | Arun | 85.0
+
+Choose: 5
+Report saved to toppers.csv
+
+
+Hints
+Write the header only when needed. When adding a student, check whether the file exists and has content. The simplest way is to try opening it for reading first:
+import os
+
+file_is_new = not os.path.exists("marks.csv")
+with open("marks.csv", "a", newline="") as file:
+    writer = csv.writer(file)
+    if file_is_new:
+        writer.writerow(["roll", "name", "marks"])
+    writer.writerow([roll, name, marks])
+
+os.path.exists("marks.csv") returns True or False. It's the cleaner alternative to try/except FileNotFoundError when you just want to ask "does it exist?".
+Load with DictReader, as a function (the same idea as load_students() on Day 39):
+def load_students():
+    students = []
+    try:
+        with open("marks.csv", "r", newline="") as file:
+            for row in csv.DictReader(file):
+                students.append((row["roll"], row["name"], float(row["marks"])))
+    except FileNotFoundError:
+        pass
+    return students
+
+
+Search by name is a substring match, like your Day 21 contact search: search_text in name.lower().
+
+Export (option 5): write a second CSV file, toppers.csv, containing only students scoring 75 or above, with its own header row. It's the same writer code with a loop and an if.
+
+Things to handle
+1.Duplicate roll number: reject it, as on Day 39.
+2.Marks outside 0-100 or not a number: reject (use try/except ValueError from Day 40).
+3.Names with commas (Kumar, Arun): thanks to the csv module you don't need to strip them. Test it. Add a student named Kumar, Arun and open marks.csv with cat marks.csv. You'll see the name wrapped in quotes, and it reads back correctly.
+4.Empty database: options 2, 3, 4 and 5 should say "No students yet." instead of crashing or dividing by zero.
+
+Bonus (optional)
+1.Subject columns: use headers roll,name,maths,science,english, and calculate each student's total and average.
+2.Open it in a spreadsheet: copy marks.csv to a folder you can open in LibreOffice Calc or Excel and see that your Python program created a real spreadsheet file.
+3.Sort the view by marks, highest first. Hint: students.sort(key=lambda s: s[2], reverse=True) is one way, but you can also find the maximum repeatedly if lambda is new to you. Ask me if you'd like it explained.
