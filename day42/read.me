@@ -1,0 +1,315 @@
+📊 Day 42: CSV-Based Marks Manager
+📌 Project Overview
+
+This is a Python-based Student Marks Manager that stores student records in a CSV file named marks.csv.
+
+Instead of manually splitting each line with .split(","), this project uses Python's built-in csv module to read and write structured data. This makes it possible to store names containing commas, such as Kumar, Arun, correctly.
+
+The program allows users to add students, view all records, search by name, calculate the class average, find the topper, and export a report of students who scored 75 or above.
+✨ Features
+
+    ➕ Add student records with roll number, name, and marks.
+
+    💾 Save student information in marks.csv.
+
+    📂 Load student records using csv.DictReader.
+
+    📋 Display all registered students.
+
+    🔍 Search for students using a partial name match.
+
+    📈 Calculate the class average.
+
+    🏆 Find the student with the highest marks.
+
+    📤 Export students scoring 75 or above to toppers.csv.
+
+    🛡️ Reject duplicate roll numbers.
+
+    ✅ Validate marks between 0 and 100.
+
+    🔢 Handle non-numeric marks using try/except.
+
+    ⌨️ Handle non-numeric menu choices.
+
+    🚫 Reject empty roll numbers and names.
+
+    📑 Automatically write the CSV header when the database file is new or empty.
+
+    📭 Handle an empty student database without crashing.
+
+🧠 Concepts Explained Simply
+1. What Is a CSV File?
+
+CSV stands for Comma-Separated Values. It stores table-like information as rows of text.
+
+Example of marks.csv:
+
+roll,name,marks
+101,Arun,85.0
+102,Priya,92.0
+103,"Kumar, Arun",78.0
+
+The first row contains column names, called the header row.
+
+The CSV module automatically handles commas inside quoted names, so Kumar, Arun can be read as one name instead of two separate columns.
+2. The csv Module
+
+import csv
+
+Python's built-in csv module helps read and write CSV files without manually separating each value.
+
+This project uses two important tools:
+
+    csv.writer() — writes rows to a CSV file.
+
+    csv.DictReader() — reads each row as a dictionary using the column headers.
+
+3. csv.writer()
+
+writer = csv.writer(file)
+writer.writerow(["101", "Arun", 85])
+
+This writes one row to the CSV file.
+
+Think of it like filling one row in a spreadsheet.
+4. csv.DictReader()
+
+for row in csv.DictReader(file):
+    print(row["name"], row["marks"])
+
+Instead of accessing values by their positions, you can access them using column names.
+
+For example:
+
+    row["roll"] gives the roll number.
+
+    row["name"] gives the student's name.
+
+    row["marks"] gives the marks as text, which the program converts to a float.
+
+5. newline=""
+
+with open(FILE_NAME, "r", newline="") as file:
+
+The newline="" argument is recommended when opening CSV files with Python's CSV module. It helps prevent unwanted blank lines on some systems.
+6. os.path.exists() and os.path.getsize()
+
+file_is_new = not os.path.exists(FILE_NAME) or os.path.getsize(FILE_NAME) == 0
+
+    os.path.exists() checks whether the file exists.
+
+    os.path.getsize() checks the file size.
+
+    If the file is missing or empty, the program writes the header before adding the first student.
+
+This prevents the program from repeatedly adding the header every time a student is registered.
+7. Functions
+
+The program uses load_students() to read student records from marks.csv.
+
+It returns a list of tuples in this format:
+
+[
+    ("101", "Arun", 85.0),
+    ("102", "Priya", 92.0)
+]
+
+Each tuple contains a roll number, a name, and a numeric mark.
+8. Exception Handling
+
+try:
+    marks = float(input("Enter marks (0-100): "))
+except ValueError:
+    print("Marks must be a number.")
+
+If the user enters text such as abc instead of a number, the program displays an error message instead of crashing.
+⚙️ How the Program Works
+
+Start Program
+      |
+      v
+Display Menu
+      |
+      +---- 1. Add Student
+      |          |
+      |          v
+      |    Validate Input
+      |          |
+      |          v
+      |    Check Duplicate Roll
+      |          |
+      |          v
+      |    Write Record to marks.csv
+      |
+      +---- 2. View All Students
+      |          |
+      |          v
+      |    Load and Display Records
+      |
+      +---- 3. Search by Name
+      |          |
+      |          v
+      |    Find Partial Name Matches
+      |
+      +---- 4. Class Average and Topper
+      |          |
+      |          v
+      |    Calculate Average and Highest Marks
+      |
+      +---- 5. Export Toppers Report
+      |          |
+      |          v
+      |    Save Marks >= 75 to toppers.csv
+      |
+      +---- 6. Exit
+                 |
+                 v
+             End Program
+
+▶️ Example Runs
+Example 1: Add a Student
+
+Choose: 1
+Enter roll number: 101
+Enter name: Arun
+Enter marks (0-100): 85
+Student saved!
+
+Example 2: View All Students
+
+Choose: 2
+
+Roll | Name | Marks
+101 | Arun | 85.0
+102 | Priya | 92.0
+103 | Kumar, Arun | 78.0
+
+The displayed records depend on the students saved in your CSV file.
+Example 3: Search by Name
+
+Choose: 3
+Enter name to search: aru
+101 | Arun | 85.0
+103 | Kumar, Arun | 78.0
+
+The search is case-insensitive and matches part of a student's name.
+Example 4: Class Average and Topper
+
+Choose: 4
+
+Class average: 85.0
+Topper: Priya (92.0)
+
+The average is calculated using all students' marks, and the topper is the student with the highest marks.
+Example 5: Export Toppers Report
+
+Choose: 5
+
+Report saved to toppers.csv (2 students)
+
+The toppers.csv file contains a header and only students who scored 75 or above.
+
+Example:
+
+roll,name,marks
+101,Arun,85.0
+102,Priya,92.0
+
+If students exist but nobody scored 75 or above, the program prints:
+
+No student scored 75 or above.
+
+📚 Concepts Used
+Concept	Purpose
+csv module	Read and write CSV files
+csv.writer()	Write rows into CSV files
+csv.DictReader()	Read rows using column names
+Header rows	Identify columns in the CSV file
+os.path.exists()	Check whether a file exists
+os.path.getsize()	Check whether a file is empty
+Functions	Organize reusable code
+Lists and tuples	Store loaded student records
+Dictionaries	Access CSV values by column name
+for loops	Process students and generate reports
+if/elif/else	Handle menu choices and validation
+try/except	Handle invalid numeric input
+float()	Convert marks from text to numbers
+.lower()	Perform case-insensitive searching
+.strip()	Remove leading and trailing whitespace
+File handling	Save and load persistent records
+🎁 Bonus Features
+Bonus	Status
+Subject columns such as maths, science, and English	❌ Not implemented
+Open the CSV file in Excel or LibreOffice Calc	📄 Supported by the CSV format; not specifically tested in the code
+Sort the student view by marks, highest first	❌ Not implemented
+🔗 Connection to Previous Days
+
+    Day 21 — Contact Book: Used partial, case-insensitive searches.
+
+    Day 22 — Student Marks Manager: Worked with student records, averages, and highest marks.
+
+    Day 30 — Address Book App: Used structured records and dictionaries.
+
+    Day 36 — Expense Tracker: Practised saving data to files.
+
+    Day 39 — Student Database: Used loading and saving functions to manage persistent student records.
+
+    Day 40 — Safe Calculator: Practised exception handling.
+
+    Day 41 — Login System: Practised file storage and input validation.
+
+Day 42 improves on Day 39 by using the CSV module instead of manually splitting comma-separated text.
+🎯 What I Learned
+
+After completing this project, I practised how to:
+
+    Store structured student records in a CSV file.
+
+    Write CSV rows using csv.writer().
+
+    Read records using csv.DictReader().
+
+    Use column headers to access data.
+
+    Handle names that contain commas.
+
+    Create a header row only when the file is new or empty.
+
+    Validate roll numbers, names, and marks.
+
+    Search for students using partial names.
+
+    Calculate class averages and identify the topper.
+
+    Export selected records into a separate CSV report.
+
+    Handle invalid input using try/except.
+
+📁 Project Structure
+
+day42/
+├── day42_csv_based_marks_manager.py
+├── day42_question
+├── marks.csv
+├── toppers.csv
+└── read.me
+
+Note: marks.csv is created when the first student is saved. toppers.csv is created when you export the report and at least one student has scored 75 or above. If the database is empty, the program does not create an export file.
+🚀 How to Run
+
+    Open a terminal in the day42 folder.
+
+    Run the Python file:
+
+python3 day42_csv_based_marks_manager.py
+
+    Choose an option from the menu.
+
+    Add a few students and test searching, calculating the average, and exporting the topper report.
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
