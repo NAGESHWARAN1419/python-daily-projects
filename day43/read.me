@@ -1,0 +1,440 @@
+🧠 Day 43: Simple Quiz App With Score Saved to a File
+
+📌 Project Overview
+
+This is a simple Python quiz application that tests the user's knowledge of Python programming.
+
+The program asks five multiple-choice questions in random order. Each question has four options: A, B, C, and D. The player selects an answer, receives immediate feedback, and earns one point for every correct answer.
+
+After completing the quiz, the program displays the final score, calculates the percentage, gives feedback based on performance, and saves the result to scores.txt.
+
+Users can also view previous quiz results and see the best score.
+
+✨ Features
+
+🧠 Five multiple-choice Python questions.
+
+🔀 Randomize the question order using random.shuffle().
+
+🔤 Display four answer options: A, B, C, and D.
+
+✅ Check answers and display immediate feedback.
+
+🔁 Reject invalid answers and ask again until a valid option is entered.
+
+👤 Ask for the player's name and reject empty names.
+
+🧹 Replace commas in names to protect the score file's format.
+
+🧮 Calculate the final score out of five.
+
+📊 Calculate the percentage, rounded to one decimal place.
+
+🏆 Display performance feedback based on the score.
+
+💾 Save quiz results in scores.txt.
+
+📜 View the complete score history.
+
+🥇 Find and display the best score.
+
+🛡️ Handle missing score files using try/except.
+
+⌨️ Handle non-numeric menu input.
+
+
+🧠 Concepts Explained Simply
+
+1. List of Dictionaries
+
+The quiz questions are stored in a list, and each question is represented by a dictionary.
+
+questions = [
+    {
+        "question": "Which keyword defines a function?",
+        "options": ["func", "def", "function", "define"],
+        "answer": "B"
+    }
+]
+
+Think of it like a collection of question cards. Each card contains the question, its options, and the correct answer.
+
+The list stores all the question cards.
+
+Each dictionary stores the details of one question.
+
+The keys "question", "options", and "answer" help access the information.
+
+2. random.shuffle()
+
+random.shuffle(questions)
+
+This shuffles the question list in place, changing the order in which questions appear.
+
+The questions stay the same, but their order can change each time a quiz starts.
+
+3. enumerate()
+
+letters = "ABCD"
+
+for index, option in enumerate(q["options"]):
+    print(f"{letters[index]}. {option}")
+
+enumerate() gives us an index and an option at the same time.
+
+For example:
+
+Index 0 displays option A.
+
+Index 1 displays option B.
+
+Index 2 displays option C.
+
+Index 3 displays option D.
+
+4. Input Validation with a while Loop
+
+while True:
+    answer = input("Your answer (A/B/C/D): ").strip().upper()
+
+    if answer in ["A", "B", "C", "D"]:
+        break
+
+    print("Please type A, B, C or D.")
+
+The loop keeps asking until the player enters A, B, C, or D.
+
+The .upper() method allows lowercase answers such as b to be accepted as B.
+
+5. Functions
+
+The program separates its main tasks into two functions:
+
+play_quiz() — runs the quiz, calculates the score, and saves the result.
+
+view_history() — reads previous results and identifies the best score.
+
+Functions make the program easier to organize and understand.
+
+6. File Handling
+
+The quiz uses scores.txt to store results.
+
+A saved result follows this format:
+
+Arun, 4,5
+Priya, 5,5
+
+Each line stores the player's name, score, and total number of questions.
+
+The program uses append mode ("a") so new results are added without deleting previous results.
+
+7. try/except
+
+try:
+    opt = int(input("Choose: "))
+except ValueError:
+    print("Please enter a number.")
+
+If the player types abc instead of a menu number, the program handles the error and returns to the menu.
+
+The history function also catches FileNotFoundError when no score file exists.
+
+8. Score Percentage and Feedback
+
+The percentage is calculated using:
+
+percent = round(score / len(questions) * 100, 1)
+
+The program gives feedback based on the result:
+
+Score
+
+Feedback
+
+5/5
+
+Perfect
+
+3–4/5
+
+Good job!
+
+0–2/5
+
+Keep practising.
+
+
+⚙️ How the Program Works
+
+Start Program
+      |
+      v
+Display Menu
+      |
+      +---- 1. Play Quiz
+      |          |
+      |          v
+      |     Enter Player Name
+      |          |
+      |          v
+      |     Shuffle Questions
+      |          |
+      |          v
+      |     Ask 5 Questions
+      |          |
+      |          v
+      |     Validate Each Answer
+      |          |
+      |          v
+      |     Calculate Score and Percentage
+      |          |
+      |          v
+      |     Save Result to scores.txt
+      |
+      +---- 2. View Score History
+      |          |
+      |          v
+      |     Read Previous Results
+      |          |
+      |          v
+      |     Display History and Best Score
+      |
+      +---- 3. Exit
+                 |
+                 v
+             End Program
+
+
+▶️ Example Runs
+
+Example 1: Play the Quiz
+
+Choose: 1
+Enter your name: Arun
+
+Question: 1: Which keyword is used to define a function in Python?
+A. func
+B. def
+C. function
+D. define
+Your answer (A/B/C/D): B
+Correct!
+
+The remaining four questions follow in randomized order.
+
+Example 2: Final Score
+
+Arun, you scored 4 out of 5.
+Score saved!
+Percentage: 80.0%
+Good job!
+
+The result is saved automatically to scores.txt.
+
+Example 3: View Score History
+
+Choose: 2
+
+Score History:
+1. Arun - 4/5
+2. Priya - 5/5
+Best score: Priya (5/5)
+
+The names and scores shown depend on the saved history.
+
+Example 4: Invalid Answer
+
+Your answer (A/B/C/D): Z
+Please type A, B, C or D.
+Your answer (A/B/C/D): B
+Correct!
+
+An invalid answer does not count as a wrong answer. The program asks again.
+
+Example 5: No Saved History
+
+If scores.txt does not exist, the program displays:
+
+No score yet.
+
+Your code uses "No score yet." for a missing file and "No scores yet." for an empty file.
+
+
+📚 Concepts Used
+
+Concept
+
+Purpose
+
+Lists
+
+Store all quiz questions
+
+Dictionaries
+
+Store each question's details
+
+random module
+
+Shuffle the questions
+
+random.shuffle()
+
+Change question order
+
+Functions
+
+Separate quiz and history operations
+
+enumerate()
+
+Display options and number questions
+
+while loop
+
+Validate answers and repeat the menu
+
+for loop
+
+Process questions and score history
+
+if/elif/else
+
+Check answers and select menu actions
+
+try/except
+
+Handle invalid menu input and missing files
+
+File handling
+
+Save and read quiz results
+
+Append mode
+
+Preserve previous results
+
+.strip()
+
+Remove surrounding whitespace
+
+.upper()
+
+Normalize answer choices
+
+.replace()
+
+Replace commas in player names
+
+round()
+
+Round the percentage
+
+max-style comparison
+
+Track the best score using a loop and variables
+
+
+🎁 Bonus Features
+
+Bonus
+
+Status
+
+Display score percentage
+
+✅ Completed
+
+Give feedback based on the score
+
+✅ Completed
+
+Use Python questions for revision
+
+✅ Completed
+
+Show only the top three scores
+
+❌ Not implemented
+
+Note: Your program displays every saved result and the single best score, rather than limiting the history to the top three results.
+
+
+🔗 Connection to Previous Days
+
+Day 8 — Number Guessing Game: Practised randomization and game logic.
+
+Day 17 — Word and Character Counter: Used loops and string processing.
+
+Day 20 — To-Do List: Practised lists and enumerate().
+
+Day 21 — Contact Book: Used dictionaries to organize information.
+
+Day 25 — Max, Min, and Average: Practised comparing values to find a maximum.
+
+Day 36 — Expense Tracker: Saved records to a text file.
+
+Day 39 — Student Database: Loaded records from persistent storage.
+
+Day 41 — Login System: Practised input validation and try/except.
+
+Day 43 combines these concepts to create an interactive quiz with persistent score history.
+
+
+🎯 What I Learned
+
+After completing this project, I practised how to:
+
+Combine lists and dictionaries to store structured data.
+
+Shuffle questions using the random module.
+
+Display multiple-choice options using enumerate().
+
+Validate user input with a loop.
+
+Organize a project using functions.
+
+Calculate scores and percentages.
+
+Save results to a text file.
+
+Read historical results and find the best score.
+
+Handle invalid menu input and missing files.
+
+Use Python questions to revise previously learned concepts.
+
+
+📁 Project Structure
+
+day43/
+├── day43_simple_quiz_app_score_saved_to_file.py
+├── day43_question
+├── scores.txt
+└── read.me
+
+Note: scores.txt is created after the first completed quiz. You do not need to create it manually.
+
+
+🚀 How to Run
+
+Open a terminal in the day43 folder.
+
+Run the Python file:
+
+python3 day43_simple_quiz_app_score_saved_to_file.py
+
+Choose 1 to play the quiz.
+
+Choose 2 to view the saved score history.
+
+Choose 3 to exit.
+
+
+👨‍💻 Author
+
+Nageshwaran N
+
+Learning Python and improving my programming skills step by step.
