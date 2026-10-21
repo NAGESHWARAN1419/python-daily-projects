@@ -1,0 +1,104 @@
+Day 43: Simple Quiz App With Score Saved to a File
+Concepts used: list of dictionaries, random.shuffle(), functions, file saving, try/except
+Problem Statement
+Build a quiz app with a menu:
+1. Play Quiz
+2. View Score History
+3. Exit
+
+Play Quiz: ask the player's name, then ask 5 questions, one at a time. Each question has 4 options (A, B, C, D). At the end, show the score and save it to scores.txt.
+View Score History: show every saved result, and the best score.
+Exit: quit the program.
+Example Run
+Choose: 1
+Enter your name: Arun
+
+Question 1: Which keyword is used to define a function in Python?
+A. func
+B. def
+C. function
+D. define
+Your answer (A/B/C/D): B
+Correct!
+
+Question 2: ...
+Your answer (A/B/C/D): A
+Wrong! The correct answer is C.
+
+...
+Arun, you scored 4 out of 5.
+Score saved!
+
+Choose: 2
+Score History:
+1. Arun - 4/5
+2. Priya - 5/5
+Best score: Priya (5/5)
+
+New concept: a list of dictionaries
+You've used a dictionary (Day 21) and a list (Day 20). A quiz needs both together. Each question is one dictionary, and all the questions sit in a list:
+questions = [
+    {
+        "question": "Which keyword is used to define a function in Python?",
+        "options": ["func", "def", "function", "define"],
+        "answer": "B"
+    },
+    {
+        "question": "What does len('hello') return?",
+        "options": ["4", "5", "6", "Error"],
+        "answer": "B"
+    },
+    # ... add 3 more questions here
+]
+
+Reading one question is the same two-bracket idea from Day 30:
+q = questions[0]
+print(q["question"])
+print(q["options"][1])     # → "def"
+
+Printing the options as A, B, C, D. Use enumerate (from Day 20) with a string of letters:
+letters = "ABCD"
+for index, option in enumerate(q["options"]):
+    print(f"{letters[index]}. {option}")
+
+letters[0] is "A", letters[1] is "B", and so on.
+Asking in random order. The random module (Day 8) can shuffle the list, so the quiz is different each time:
+import random
+random.shuffle(questions)     # mixes the list in place
+
+Structure hint
+def play_quiz():
+    name = input("Enter your name: ").strip()
+    random.shuffle(questions)
+    score = 0
+    for number, q in enumerate(questions, start=1):
+        print(f"\nQuestion {number}: {q['question']}")
+        # print the options here
+        answer = input("Your answer (A/B/C/D): ").strip().upper()
+        if answer == q["answer"]:
+            print("Correct!")
+            score += 1
+        else:
+            print(f"Wrong! The correct answer is {q['answer']}.")
+    print(f"\n{name}, you scored {score} out of {len(questions)}.")
+    # save the score here
+
+The function does the whole game, and the menu only calls play_quiz().
+Saving the score is the same pattern as your Day 36 expenses. Use append mode and one line per result:
+with open("scores.txt", "a") as file:
+    file.write(f"{name},{score},{len(questions)}\n")
+
+Reading the history is also the Day 36/39 pattern. Split each line, and track the best score using the "start with the first and compare" idea from Day 25.
+
+Things to handle
+1.Invalid answers: if the player types Z or presses Enter, don't count it as wrong silently. Keep asking until they type A, B, C, or D (a while True: loop around the input, with break when valid).
+2.Empty name: reject it.
+3.Name with a comma: replace commas with spaces before saving, as on Day 36.
+4.No history yet: option 2 should print "No scores yet." when the file doesn't exist (try/except FileNotFoundError).
+5.Menu input: wrap int(input(...)) in try/except ValueError, as on Day 41.
+
+Bonus (optional)
+1.Show the percentage with the score, rounded to 1 decimal place (round(score / total * 100, 1)).
+2.Give a message based on the score: 5 = "Perfect!", 3-4 = "Good job!", below 3 = "Keep practising."
+3.Show only the top 3 scores. Load all results into a list of tuples, then find the highest score three times, removing it from the list after each pass. If you'd like a shortcut, ask me about sorted() with key=.
+4.Write the questions about Python, so the quiz doubles as revision for your course.
