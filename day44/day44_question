@@ -1,0 +1,101 @@
+Day 44: File Backup and Renamer Script
+Concepts used: the os and shutil modules, working with folders, building file paths, safety checks
+
+Why this project?
+Until now your programs only touched files they created themselves. Today your program works with files and folders on your computer: listing them, copying them, and renaming them. This is real automation, and it's the base for Day 71's file organizer.
+Safety rule: renaming and copying can damage real files if the code is wrong. Only practise on a test folder you create, never on your real documents.
+
+Step 1: Make a test folder
+
+In your terminal, inside ~/daily-python-projects/day44:
+mkdir test_files
+cd test_files
+touch notes.txt photo.jpg report.pdf data.csv
+cd ..
+
+touch creates empty files. Now you have four dummy files to practise on.
+
+The new tools
+import os
+import shutil
+os.listdir("test_files")                  # → ['notes.txt', 'photo.jpg', ...]  (names only, any order)
+os.path.join("test_files", "notes.txt")   # → 'test_files/notes.txt'  (builds a correct path)
+os.path.isfile(path)                      # True for a file, False for a folder
+os.path.exists(path)                      # True if the file or folder exists
+os.makedirs("backup", exist_ok=True)      # creates a folder (no error if it already exists)
+shutil.copy(source_path, destination_path)  # copies a file
+os.rename(old_path, new_path)             # renames (or moves) a file
+os.path.splitext("photo.jpg")             # → ('photo', '.jpg')  splits name and extension
+
+Why os.path.join instead of "test_files" + "/" + name? It uses the right separator for your system. It's a good habit.
+
+Problem Statement
+Build a script with this menu:
+1. List files in a folder
+2. Backup a folder
+3. Rename files in a folder
+4. Exit
+
+List: ask for a folder name and show every file in it, numbered, in alphabetical order.
+Backup: ask for a folder name. Create a folder called <foldername>_backup and copy every file into it.
+Rename: ask for a folder name and a prefix (e.g. holiday). Rename every file to holiday_1.ext, holiday_2.ext, and so on, keeping the original extension.
+
+
+Example Run
+Choose: 1
+Enter folder name: test_files
+1. data.csv
+2. notes.txt
+3. photo.jpg
+4. report.pdf
+
+Choose: 2
+Enter folder name: test_files
+4 files copied to test_files_backup
+
+Choose: 3
+Enter folder name: test_files
+Enter new name prefix: holiday
+data.csv -> holiday_1.csv
+notes.txt -> holiday_2.txt
+photo.jpg -> holiday_3.jpg
+report.pdf -> holiday_4.pdf
+4 files renamed.
+
+
+Structure hint: a helper function for the file list
+Options 1, 2 and 3 all need "the files in this folder". Write it once:
+def get_files(folder):
+    names = sorted(os.listdir(folder))
+    files = []
+    for name in names:
+        if os.path.isfile(os.path.join(folder, name)):
+            files.append(name)
+    return files
+
+sorted() (from Day 26) keeps the order predictable. The isfile check skips sub-folders.
+Rename loop idea:
+count = 1
+for name in files:
+    extension = os.path.splitext(name)[1]          # '.txt'
+    new_name = f"{prefix}_{count}{extension}"
+    old_path = os.path.join(folder, name)
+    new_path = os.path.join(folder, new_name)
+    os.rename(old_path, new_path)
+    count += 1
+
+
+Things to handle
+1.Folder doesn't exist: check with os.path.isdir(folder) and print a message instead of crashing. isdir is True only for folders.
+2.Empty folder: print "No files found." instead of doing nothing.
+3.Rename safety: os.rename on Linux silently overwrites a file that already has the new name. Before renaming, check os.path.exists(new_path). If it does, skip that file and print a warning.
+4.Confirmation: ask Rename N files? (y/n) before option 3 changes anything, like your delete options.
+5.Empty prefix: reject it.
+6.Backup already exists: if <folder>_backup already exists, copying over it replaces files. Print a warning or ask for confirmation.
+
+
+Bonus (optional)
+1.Timestamped backup folder: use the datetime module to name the backup test_files_backup_2026-10-21.
+2.Undo the rename: before renaming, store (old_name, new_name) pairs in a list, and add a menu option that renames them back.
+3.Filter by extension: in the list option, also ask Show only extension (e.g. .txt, or press Enter for all) and use name.endswith(".txt").
+
