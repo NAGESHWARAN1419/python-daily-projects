@@ -1,0 +1,125 @@
+Day 45: Personal Expense Tracker (Phase 3 Milestone)
+
+Concepts used: functions, CSV files, try/except, dictionaries with .get(), lists of tuples
+
+This is your Phase 3 milestone. There are no new concepts, only everything from Days 31-44 working together in one program.
+
+Problem Statement
+Build an expense tracker that saves all data in expenses.csv, with the header row category,description,amount. Menu:
+1. Add Expense
+2. View All Expenses
+3. Delete an Expense
+4. Summary by Category
+5. Highest Expense and Total
+6. Exit
+
+What each option should do
+Add: ask for category, description and amount, then save to the file.
+View all: show every expense, numbered.
+Delete: show the numbered list, ask which number to delete, confirm with y/n, then remove it.
+Summary by category: show the total spent in each category.
+Highest and total: show the single biggest expense and the total of everything.
+Exit.
+
+
+Example Run
+Choose: 1
+Enter category (food/travel/bills/other): food
+Enter description: Lunch
+Enter amount: 120
+Expense saved!
+
+Choose: 1
+Enter category (food/travel/bills/other): travel
+Enter description: Bus
+Enter amount: 35
+Expense saved!
+
+Choose: 2
+1. food | Lunch | ₹120.0
+2. travel | Bus | ₹35.0
+
+Choose: 4
+Summary by category:
+food: ₹120.0
+travel: ₹35.0
+
+Choose: 5
+Highest expense: Lunch (₹120.0)
+Total spent: ₹155.0
+
+Choose: 3
+1. food | Lunch | ₹120.0
+2. travel | Bus | ₹35.0
+Enter number to delete: 2
+Delete Bus? (y/n): y
+Expense deleted!
+
+
+Starter code: three helper functions
+Put these above your menu loop. They come from Days 39 and 42.
+
+import csv
+import os
+
+FILE_NAME = "expenses.csv"
+
+def load_expenses():
+   expenses = []
+   try:
+      with open(FILE_NAME, "r", newline="") as file:
+         for row in csv.DictReader(file):
+            expenses.append((row["category"], row["description"], float(row["amount"])))
+   except FileNotFoundError:
+      pass
+   return expenses
+
+def save_expenses(expenses):
+   with open(FILE_NAME, "w", newline="") as file:
+      writer = csv.writer(file)
+      writer.writerow(["category", "description", "amount"])
+      for category, description, amount in expenses:
+         writer.writerow([category, description, amount])
+
+def add_expense(category, description, amount):
+   file_is_new = not os.path.exists(FILE_NAME) or os.path.getsize(FILE_NAME) == 0
+   with open(FILE_NAME, "a", newline="") as file:
+      writer = csv.writer(file)
+      if file_is_new:
+         writer.writerow(["category", "description", "amount"])
+      writer.writerow([category, description, amount])
+
+
+Each menu option then begins with expenses = load_expenses() and works with the list of tuples (category, description, amount).
+Hints
+Summary by category is the Day 28 word counter, but you add amounts instead of adding 1:
+totals = {}
+for category, description, amount in expenses:
+   totals[category] = totals.get(category, 0) + amount
+
+
+Highest expense is the Day 25 idea: start with the first item and update whenever you see a bigger amount.
+Delete is the Day 38 idea: expenses.pop(number - 1), then save_expenses(expenses) to write the shorter list back.
+
+
+Things to handle
+1.Amount: must be a number greater than 0 (use try/except ValueError).
+2.Category and description: must not be empty. Use .strip().lower() on the category, so Food and food count as the same category.
+3.Empty file: options 2 to 5 should print "No expenses yet." instead of crashing. Without this check, expenses[0] would fail in option 5.
+4.Delete number: must be between 1 and the number of expenses. Letters must not crash it.
+5.Menu input: wrap int(input(...)) in try/except ValueError, as on Day 41.
+6.Commas in text: the csv module handles them. Test it with the description Tea, biscuits.
+
+
+Bonus (optional)
+1.Dates: add a fourth column with from datetime import date and date.today().
+2.Budget alert: ask for a monthly budget once, and warn when the total goes over it.
+3.Percentage per category: in the summary, show each category's share of the total, round(amount / total * 100, 1).
+
+
+Build in this order
+Test after each step, so you never debug a lot of new code at once:
+1.The three helper functions, then option 1 (Add). Run cat expenses.csv to check the file.
+2.Option 2 (View).
+3.Options 4 and 5 (they only read the data).
+4.Option 3 (Delete), last, because it's the only one that changes existing data.
